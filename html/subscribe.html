@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O'FOOT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="./styles.css" rel="stylesheet"> <!-- Link to external CSS file -->
+    <style>
+        .login-form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+        }
+        .form-text {
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body class="background-image">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-warning bg-company-grey custom-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">O'FOOT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+                <ul class="navbar-nav mx-auto nav-links">
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/projet-12-o-foot/index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/projet-12-o-foot/tournois.html">Tournois</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/projet-12-o-foot/login.html">Connexion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/projet-12-o-foot/subscribe.html">Inscription</a></li>
+                    <li class="nav-item"><a class="nav-link" href="http://localhost/projet-12-o-foot/faq.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">À propos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col text-center">
+                <div class="rounded-pill bg-dark d-inline-block p-3">
+                    <h2 class="section-title m-0">Créer un compte</h2>
+                </div>
+                <p class="section-description"></p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <form class="login-form">
+                    <div class="textblack">
+                    <h2 class="text-center">Créer un compte</h2>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Adresse Email</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Mot de Passe</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label">Rôle</label>
+                        <input type="text" class="form-control" id="role" aria-describedby="Role">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Prénom</label>
+                        <input type="text" class="form-control" id="firstname" aria-describedby="firstname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="lastname" aria-describedby="lastname">
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Se souvenir de moi</label>
+                    </div>
+                    <button type="submit" class="btn btn-secondary w-100">Se connecter</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">Copyright © 2024 O'FOOT. Tous droits réservés.</p>
+            <div class="mt-2">
+                <a href="#" class="text-white me-2"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-white me-2"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
