@@ -1,11 +1,21 @@
+/* styles.css */
+
+@import url('https://fonts.bunny.net/css?family=alata:400');
+
 body {
-    background-color: rgb(137, 141, 146);
+    background-color: #999999;
+    color: white;
+    font-family: 'Alata', sans-serif;
 }
 
 .fixed-size-img {
     width: 100%;
     height: 500px; /* ajuster la hauteur de l'image */
     object-fit: cover;
+}
+
+.navbar-nav .nav-link {
+    color: white !important; /* Appliquer la couleur blanche aux liens de la navbar */
 }
 
 .nav-links .nav-item {
@@ -18,11 +28,13 @@ body {
 }
 
 .topcard {
-    width: 1200px;
-    height: 400px;
-    margin-top: 30px;
+    width: 100%; /* Utilisation de 100% pour occuper toute la largeur disponible */
+    height: 400px; /* Ajuste automatiquement la hauteur en fonction de la largeur */
+    max-width: none; /* Assurez-vous que la largeur maximale n'est pas limitée */
+    margin-top: 20px;
     margin-bottom: 30px;
 }
+
 
 .carousel-item img {
     height: 900px; /* Ajustez la hauteur selon vos besoins */
@@ -52,7 +64,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* formulaire login */
 .login-form {
     max-width: 400px;
     margin: 50px auto;
@@ -61,13 +72,46 @@ body {
     border: 1px solid #dee2e6;
     border-radius: 8px;
 }
-.form-text {
-    margin-top: -10px;
-    margin-bottom: 10px;
-}
 
 .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            background-color: black;
+.carousel-control-next-icon {
+    background-color: black; /* Couleur des flèches de contrôle du carrousel */
 }
-    
+
+.bg-company-grey {
+    background-color: #6E6E6E !important; /* Couleur de fond personnalisée pour la navbar */
+}
+
+.textblack {
+    color: black; /* Couleur du texte noir */
+}
+
+.btn-secondary {
+    background-color: #BAFF39; /* Couleur de fond personnalisée pour les boutons */
+    border-color: #BAFF39; /* Optionnel : couleur de la bordure */
+    color: black; /* Couleur du texte */
+}
+
+/* Augmenter la taille de l'icône à droite */
+.custom-navbar .nav-link i {
+    font-size: 1.5rem; /* Taille de l'icône augmentée */
+    color: white; /* Couleur de l'icône en blanc */
+}
+
+/* Mettre le texte du logo en haut à gauche en blanc */
+.custom-navbar .navbar-brand {
+    color: white; /* Couleur du texte du logo en blanc */
+    font-size: 1.5rem; /* Taille du texte du logo */
+}
+
+.custom-navbar .nav-link {
+    color: white !important; /* Couleur du texte initial */
+    transition: color 0.3s ease; /* Transition fluide pour le changement de couleur */
+}
+
+.custom-navbar .nav-link:hover {
+    color: black; /* Couleur de survol des liens */
+    text-decoration: none; /* Supprime le soulignement par défaut */
+    background-color: #BAFF39; /* Couleur de fond de survol */
+    border-radius: 5px; /* Arrondi des coins */
+}
