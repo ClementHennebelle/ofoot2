@@ -45,7 +45,7 @@ class TournamentRepository extends ServiceEntityRepository
     public function findLastThree()
     {
         return $this->createQueryBuilder('t')
-            ->orderBy('t.createdAt', 'DESC')
+            ->orderBy('t.created_at', 'DESC')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();

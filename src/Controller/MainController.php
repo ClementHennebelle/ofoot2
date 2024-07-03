@@ -16,7 +16,7 @@ class MainController extends AbstractController
         {
             $tournaments = $tournamentRepository->findLastThree();
     
-            return $this->render('home/index.html.twig', [
+            return $this->render('main/home.html.twig', [
                 'tournaments' => $tournaments,
             ]);
         }
