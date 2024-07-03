@@ -1,10 +1,21 @@
+/* styles.css */
+
 @import url('https://fonts.bunny.net/css?family=alata:400');
+
+/* Body et HTML */
+html, body {
+    height: 100%; /* Assure que le body prend toute la hauteur de la fenêtre */
+    margin: 0; /* Supprime les marges par défaut */
+    padding: 0; /* Supprime les paddings par défaut */
+    display: flex;
+    flex-direction: column; /* Contenu en colonne */
+}
 
 /* Fonts and Colors */
 body {
     background-color: rgb(2, 2, 2);
     color: #ffffff; /* Couleur du texte général */
-    font-family: 'Alata', sans-serif;
+    font-family: 'Alata', sans-serif; /* Police personnalisée */
 }
 
 /* Background Image */
@@ -14,7 +25,7 @@ body {
     background-position-y: 65px; /* Déplace légèrement l'image vers le bas */
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100%; /* Ajuste la hauteur de l'image de fond sur toute la hauteur de la vue */
+    flex: 1; /* Occupe tout l'espace restant en hauteur */
 }
 
 /* Navbar and Footer */
@@ -136,6 +147,9 @@ body {
 footer {
     background-color: #343a40; /* Couleur de fond du footer */
     color: white; /* Couleur du texte du footer */
+    text-align: center; /* Alignement du texte au centre */
+    padding: 10px 0; /* Espacement intérieur du footer */
+    margin-top: auto; /* Pour pousser le footer tout en bas */
 }
 
 /* About */
