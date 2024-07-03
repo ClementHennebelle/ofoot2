@@ -30,12 +30,12 @@ body {
 
 /* Navbar and Footer */
 .bg-company-grey {
-    background-color: #343a40 !important; /* Couleur de fond personnalisée pour la navbar et le footer */
+    background-color: #000000 !important; /* Couleur de fond personnalisée pour la navbar et le footer */
 }
 
 .navbar-nav .nav-link,
 .custom-navbar .nav-link {
-    color: white !important; /* Appliquer la couleur blanche aux liens de la navbar */
+    color: white !important; /* couleur blanche aux liens de la navbar */
     transition: color 0.3s ease; /* Transition fluide pour le changement de couleur */
 }
 
@@ -134,6 +134,10 @@ body {
     color: black; /* Couleur du texte noir */
 }
 
+.texthome {
+    font-size: 1.2rem;
+}
+
 .rounded-pill {
     border-radius: 20px; /* Bordures arrondies */
     display: inline-block; /* Affiche l'élément en ligne */
@@ -145,7 +149,7 @@ body {
 
 /* Footer */
 footer {
-    background-color: #343a40; /* Couleur de fond du footer */
+    background-color: #000000; /* Couleur de fond du footer */
     color: white; /* Couleur du texte du footer */
     text-align: center; /* Alignement du texte au centre */
     padding: 10px 0; /* Espacement intérieur du footer */
