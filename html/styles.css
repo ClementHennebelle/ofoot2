@@ -26,6 +26,8 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     flex: 1; /* Occupe tout l'espace restant en hauteur */
+    display: flex; /* Ajout de flexbox */
+    flex-direction: column; /* Contenu en colonne */
 }
 
 /* Navbar and Footer */
@@ -65,7 +67,6 @@ body {
 /* Carousel */
 .carousel-item img {
     height: 900px; /* Ajuste la hauteur */
-
 }
 
 .carousel-control-prev-icon,
@@ -178,4 +179,45 @@ footer {
 /* Custom CSS for Profile Card */
 .card-body.d-flex.flex-column.align-items-center {
     height: 100%;
+}
+
+/* Custom CSS for Tournament Card */
+.card {
+    border: none; /* Supprime la bordure par défaut de la carte */
+    border-radius: 10px; /* Coins arrondis de la carte */
+    overflow: hidden; /* Masque le débordement des éléments de la carte */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Ombre légère pour un effet de profondeur */
+}
+
+.card-body {
+    padding: 20px; /* Espacement intérieur de la carte */
+}
+
+.card-title {
+    font-size: 1.5rem; /* Taille de la police du titre */
+    margin-bottom: 15px; /* Espacement sous le titre */
+}
+
+.card-text {
+    font-size: 1rem; /* Taille de la police du texte */
+    margin-bottom: 10px; /* Espacement sous chaque ligne de texte */
+}
+
+.img-fluid {
+    object-fit: cover; /* Adapte l'image à l'espace sans la déformer */
+    height: 100%; /* Hauteur de l'image adaptée à celle de la carte */
+}
+
+.arrow-icon {
+    transition: transform 0.3s;
+}
+.arrow-icon:hover {
+    transform: scale(1.2);
+}
+
+.arrow-icon-solo {
+    transition: transform 0.3s;
+}
+.arrow-icon-solo:hover {
+    transform: scale(1.1);
 }
