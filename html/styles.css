@@ -164,3 +164,13 @@ footer {
     color: white; /* Couleur du texte */
     display: inline-block; /* Pour que le fond englobe uniquement le texte */
 }
+
+.card-body {
+    display: flex;
+    align-items: center;
+}
+.card-body i {
+    font-size: 1.5rem;
+    margin: 0 5px;
+    cursor: pointer;
+}
