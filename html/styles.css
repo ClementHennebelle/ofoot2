@@ -9,7 +9,7 @@ body {
 
 /* Background Image */
 .background-image {
-    background-image: url(images/pexels-markusspiske-114296.jpg);
+    background-image: url(./images/pexels-markusspiske-114296.jpg);
     background-position: center top;
     background-position-y: 65px; /* Déplace légèrement l'image vers le bas */
     background-size: cover;
@@ -136,4 +136,13 @@ body {
 footer {
     background-color: #343a40; /* Couleur de fond du footer */
     color: white; /* Couleur du texte du footer */
+}
+
+/* About */
+.semi-transparent-bg {
+    background-color: rgba(0, 0, 0, 0.5); /* Fond noir semi-transparent */
+    padding: 5px; 
+    border-radius: 5px; 
+    color: white; /* Couleur du texte */
+    display: inline-block; /* Pour que le fond englobe uniquement le texte */
 }
