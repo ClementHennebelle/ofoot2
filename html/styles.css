@@ -174,3 +174,8 @@ footer {
     margin: 0 5px;
     cursor: pointer;
 }
+
+/* Custom CSS for Profile Card */
+.card-body.d-flex.flex-column.align-items-center {
+    height: 100%;
+}
