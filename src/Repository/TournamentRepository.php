@@ -40,4 +40,14 @@ class TournamentRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    // Cette fonction va permettre de récupérer les 3 derniers tournois de la base de donnée pour ainsi le transmettre dans notre controller
+    public function findLastThree()
+    {
+        return $this->createQueryBuilder('t')
+            ->orderBy('t.createdAt', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult();
+    }
 }

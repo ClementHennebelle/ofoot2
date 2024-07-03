@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TournamentRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -58,11 +59,18 @@ class Tournament
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'tournament')]
     private Collection $users;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $created_at = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updated_at = null;
+
     public function __construct()
     {
         $this->game = new ArrayCollection();
         $this->clubs = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->created_at = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -243,6 +251,30 @@ class Tournament
                 $user->setTournament(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): static
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }
