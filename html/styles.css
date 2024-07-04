@@ -68,12 +68,24 @@ body {
 .carousel-item img {
     height: 900px; /* Ajuste la hauteur */
 }
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: black; /* Couleur des flèches de contrôle du carrousel */
+.carousel-image {
+    max-width: 80%; /* Exemple de largeur maximum */
+    height: auto; /* Pour conserver le ratio hauteur-largeur */
+    display: block;
+    margin: 0 auto; /* Centre l'image horizontalement */
 }
 
+
+
+.carousel-control-prev,
+.carousel-control-next {
+    color: white; /* Couleur des flèches */
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    color: white; /* Couleur au survol */
+}
 /* Tournament Info */
 .tournament-poster {
     border: 2px solid #dee2e6;
@@ -209,15 +221,48 @@ footer {
 }
 
 .arrow-icon {
-    transition: transform 0.3s;
-}
-.arrow-icon:hover {
-    transform: scale(1.2);
+    transition: transform 0.25s, color 0.3s; /* Transition pour la transformation et la couleur */
+    color: #BAFF39 !important; /* Couleur par défaut de l'icône, avec !important pour s'assurer qu'elle est prioritaire */
 }
 
-.arrow-icon-solo {
+.arrow-icon:hover {
+    transform: scale(1.2); /* Transformation au survol */
+    color: rgb(15, 15, 15) !important; /* Nouvelle couleur de l'icône au survol, avec !important pour s'assurer qu'elle est prioritaire */
+}
+
+.pen-icon-solo {
     transition: transform 0.3s;
 }
-.arrow-icon-solo:hover {
+.pen-icon-solo:hover {
     transform: scale(1.1);
+}
+
+.icon-tournoi {
+    font-size: 1.4rem;
+}
+
+.icon-tournoi-small {
+    font-size: 1rem;
+}
+
+/* le texte principal avec fond gris transparent */
+@media (max-width: 768px) {
+    .textblack.texthome {
+        background-color: rgba(200, 200, 200, 0.61); /* Couleur gris transparent */
+        padding: 10px; /* Ajustement du padding pour un meilleur espacement */
+        border-radius: 10px; /* Arrondi des coins */
+    }
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center; 
+        max-height: 40vh; 
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 0.5rem;
+        text-align: center; 
+        width: 100%; 
+    }
 }
