@@ -295,6 +295,6 @@ class __TwigTemplate_f16d717bd35c72d5a6d42d30b7368839 extends Template
         });
     </script>
 {% endblock %}
-", "@WebProfiler/Profiler/open.html.twig", "/var/www/html/ofoot/projet-12-o-foot/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/open.html.twig");
+", "@WebProfiler/Profiler/open.html.twig", "/var/www/html/projet-12-o-foot/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/open.html.twig");
     }
 }

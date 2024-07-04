@@ -168,6 +168,6 @@ class __TwigTemplate_fe5441510211a667603a031ddf8c926d extends Template
 {% block panel %}
     {{ render(controller('web_profiler.controller.router::panelAction', { token: token })) }}
 {% endblock %}
-", "@WebProfiler/Collector/router.html.twig", "/var/www/html/ofoot/projet-12-o-foot/vendor/symfony/web-profiler-bundle/Resources/views/Collector/router.html.twig");
+", "@WebProfiler/Collector/router.html.twig", "/var/www/html/projet-12-o-foot/vendor/symfony/web-profiler-bundle/Resources/views/Collector/router.html.twig");
     }
 }

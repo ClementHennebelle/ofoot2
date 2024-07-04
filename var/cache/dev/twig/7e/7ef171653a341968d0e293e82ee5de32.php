@@ -230,6 +230,6 @@ class __TwigTemplate_45c0eca978a50732485090d0339df1fe extends Template
         </dl>
     </div>
 </div>
-", "@WebProfiler/Profiler/_command_summary.html.twig", "/var/www/html/ofoot/projet-12-o-foot/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/_command_summary.html.twig");
+", "@WebProfiler/Profiler/_command_summary.html.twig", "/var/www/html/projet-12-o-foot/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/_command_summary.html.twig");
     }
 }

@@ -458,6 +458,6 @@ class __TwigTemplate_1afd23a8f549bc51a3201ccd8c8961f7 extends Template
         </div>
     {% endfor %}
 {% endblock %}
-", "@Debug/Profiler/dump.html.twig", "/var/www/html/ofoot/projet-12-o-foot/vendor/symfony/debug-bundle/Resources/views/Profiler/dump.html.twig");
+", "@Debug/Profiler/dump.html.twig", "/var/www/html/projet-12-o-foot/vendor/symfony/debug-bundle/Resources/views/Profiler/dump.html.twig");
     }
 }

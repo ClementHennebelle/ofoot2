@@ -182,6 +182,6 @@ class __TwigTemplate_821ca375d2b4e97b2af809f6b690e320 extends Template
         {%- endfor -%}
     </pre>
 {% endif %}
-", "@Doctrine/Collector/explain.html.twig", "/var/www/html/ofoot/projet-12-o-foot/vendor/doctrine/doctrine-bundle/templates/Collector/explain.html.twig");
+", "@Doctrine/Collector/explain.html.twig", "/var/www/html/projet-12-o-foot/vendor/doctrine/doctrine-bundle/templates/Collector/explain.html.twig");
     }
 }

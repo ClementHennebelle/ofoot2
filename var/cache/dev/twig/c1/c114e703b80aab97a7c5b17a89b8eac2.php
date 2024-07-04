@@ -196,6 +196,6 @@ class __TwigTemplate_8e7b356beb3ae7b57e79c18f48b5cc1d extends Template
         {% block body %}{% endblock %}
     </body>
 </html>
-", "base.html.twig", "/var/www/html/ofoot/projet-12-o-foot/templates/base.html.twig");
+", "base.html.twig", "/var/www/html/projet-12-o-foot/templates/base.html.twig");
     }
 }

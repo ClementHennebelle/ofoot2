@@ -1850,6 +1850,6 @@ class __TwigTemplate_bc471ab18986373296e368ce31f816e9 extends Template
         </tbody>
     </table>
 {% endmacro %}
-", "@Doctrine/Collector/db.html.twig", "/var/www/html/ofoot/projet-12-o-foot/vendor/doctrine/doctrine-bundle/templates/Collector/db.html.twig");
+", "@Doctrine/Collector/db.html.twig", "/var/www/html/projet-12-o-foot/vendor/doctrine/doctrine-bundle/templates/Collector/db.html.twig");
     }
 }
