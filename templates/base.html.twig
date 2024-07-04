@@ -7,11 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css" rel="stylesheet">
-        <link href="./styles.css" rel="stylesheet"> <!-- Link to external CSS file -->
+        <link rel="stylesheet" href="{{ asset('styles.css') }}"><!-- Link to external CSS file -->
         {% block stylesheets %}
         {% endblock %}
 
-        {% block body %}
 
 <body class="background-image">
     <nav class="navbar navbar-expand-lg navbar-dark bg-company-grey custom-navbar">
@@ -41,69 +40,10 @@
         </div>
     </nav>
     
-    <!-- Main Content -->
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col text-center">
-                <p class="mt-3 description textblack texthome">Bienvenue sur O'FOOT, la plateforme ultime pour tous les passionnés de football. Que vous soyez un club cherchant à organiser votre propre tournoi ou que vous souhaitiez inscrire votre équipe à des tournois existants, O'FOOT est là pour faciliter chaque étape.
-                 Rejoignez notre communauté dynamique, créez des événements mémorables et vivez l'excitation du football comme jamais auparavant. Parcourez nos tournois récents, inscrivez-vous dès aujourd'hui et faites partie de l'aventure O'FOOT !</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Carrousel de tournois -->
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col text-center">
-                <div class="rounded-pill bg-dark d-inline-block p-3">
-                    <h2 class="section-title m-0">Les derniers Tournois</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="row mt-8">
-        <div class="col-md-6 offset-md-3">
-            <div id="carouselExampleCaptions" class="carousel slide mt-4" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="images/affiche2.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5><a class="btn btn-secondary" href="http://localhost/projet-12-o-foot/tournoi2.html" role="button">Tournoi Padu Touch<br> 23 septembre 2024 <br> Plus d'infos</a></h5>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/affiche4.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5><a class="btn btn-secondary" href="#" role="button">Tournoi Big Screen <br> 23 octobre 2024 <br> Plus d'infos</a></h5>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="images/affiche8.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5><a class="btn btn-secondary" href="#" role="button">Tournoi de Lens<br> 23 novembre 2024 <br> Plus d'infos</a></h5>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    </div>
-       </head>
-    <body>
-        {% endblock %}
+   
+      
+    </body>
+       {% block body %}{% endblock %}
   
       
    

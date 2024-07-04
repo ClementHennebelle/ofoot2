@@ -19,20 +19,20 @@ class AppFixtures extends Fixture
         $tournaments = [
             'name' => 'Tournoi du FC Paris',
             'date' => '2024-04-04',
-            'price' => '15',
+            'price' => 15,
             'rewards' => 'trophée',
-            'nombre équipes'=> '16',
-            'nombre joueurs' => '12',
+            'nombre équipes'=> 16,
+            'nombre joueurs' => 12,
             'location' => 'Paris',
             'Poster' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.science-et-vie.com%2Fscience-et-culture%2Fqui-etait-ragnar-lothbrok-130245.html&psig=AOvVaw3HwLxJvo0ikemJg-eTljm7&ust=1720085608912000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjwuq_IiocDFQAAAAAdAAAAABAE',
             'created_at' => '2024-07-03'];
             [
                 'name' => 'Tournoi du FC Reims',
                 'date' => '2024-07-03',
-                'price' => '15',
+                'price' => 15,
                 'rewards' => 'medailles',
-                'nombre équipes'=> '16',
-                'nombre joueurs' => '12',
+                'nombre équipes'=> 16,
+                'nombre joueurs' => 12,
                 'location' => 'Reims',
                 'Poster' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.science-et-vie.com%2Fscience-et-culture%2Fqui-etait-ragnar-lothbrok-130245.html&psig=AOvVaw3HwLxJvo0ikemJg-eTljm7&ust=1720085608912000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjwuq_IiocDFQAAAAAdAAAAABAE',
                 'created_at' => '2024-07-03',
@@ -41,10 +41,10 @@ class AppFixtures extends Fixture
             [
                 'name' => 'Tournoi du FC Toulouse',
                 'date' => '2024-07-03',
-                'price' => '15',
+                'price' => 15,
                 'rewards' => 'medailles',
-                'nombre équipes'=> '16',
-                'nombre joueurs' => '12',
+                'nombre équipes'=> 16,
+                'nombre joueurs' => 12,
                 'location' => 'Toulouse',
                 'Poster' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.science-et-vie.com%2Fscience-et-culture%2Fqui-etait-ragnar-lothbrok-130245.html&psig=AOvVaw3HwLxJvo0ikemJg-eTljm7&ust=1720085608912000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjwuq_IiocDFQAAAAAdAAAAABAE',
                 'created_at' => '2024-07-03',
@@ -53,10 +53,10 @@ class AppFixtures extends Fixture
             [
                 'name' => 'Tournoi du FC Nantes',
                 'date' => '2024-07-03',
-                'price' => '15',
+                'price' => 15,
                 'rewards' => 'medailles',
-                'nombre équipes'=> '16',
-                'nombre joueurs' => '12',
+                'nombre équipes'=> 16,
+                'nombre joueurs' => 12,
                 'location' => 'Nantes',
                 'Poster' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.science-et-vie.com%2Fscience-et-culture%2Fqui-etait-ragnar-lothbrok-130245.html&psig=AOvVaw3HwLxJvo0ikemJg-eTljm7&ust=1720085608912000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjwuq_IiocDFQAAAAAdAAAAABAE',
                 'created_at' => '2024-07-03',
@@ -65,10 +65,10 @@ class AppFixtures extends Fixture
             [
                 'name' => 'Tournoi du FC Lyon',
                 'date' => '2024-07-02',
-                'price' => '15',
+                'price' => 15,
                 'rewards' => 'medailles',
-                'nombre équipes'=> '16',
-                'nombre joueurs' => '12',
+                'nombre équipes'=> 16,
+                'nombre joueurs' => 12,
                 'location' => 'Lyon',
                 'Poster' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.science-et-vie.com%2Fscience-et-culture%2Fqui-etait-ragnar-lothbrok-130245.html&psig=AOvVaw3HwLxJvo0ikemJg-eTljm7&ust=1720085608912000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjwuq_IiocDFQAAAAAdAAAAABAE',
                 'created_at' => '2024-07-01',
@@ -79,7 +79,7 @@ class AppFixtures extends Fixture
     {
         $newTournament = new Tournament();
         $newTournament->setTournamentName($currentTournament);
-        $newTournament->setDate($currentTournament);
+        $newTournament->setDate(new \DateTimeImmutable);
         $newTournament->setPrice($currentTournament);
         $newTournament->setRewards($currentTournament);
         $newTournament->setTeamCount($currentTournament);
@@ -103,7 +103,7 @@ private function loadClubs(ObjectManager $manager)
 
     [
         'name' => 'FC Paris',
-        'licence_number' => 12345678,
+        'licence_number' => 30000,
         'adress' => 'allée de Lyon',
         'logo' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.science-et-vie.com%2Fscience-et-culture%2Fqui-etait-ragnar-lothbrok-130245.html&psig=AOvVaw3HwLxJvo0ikemJg-eTljm7&ust=1720085608912000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjwuq_IiocDFQAAAAAdAAAAABAE',
         'created_at' => null
@@ -111,7 +111,7 @@ private function loadClubs(ObjectManager $manager)
     ];
     [
         'name' => 'FC Toulouse',
-        'licence_number' => 12345678,
+        'licence_number' => 30000,
         'adress' => 'allée de Toulouse',
         'logo' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.science-et-vie.com%2Fscience-et-culture%2Fqui-etait-ragnar-lothbrok-130245.html&psig=AOvVaw3HwLxJvo0ikemJg-eTljm7&ust=1720085608912000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjwuq_IiocDFQAAAAAdAAAAABAE',
         'created_at' => null
@@ -120,7 +120,7 @@ private function loadClubs(ObjectManager $manager)
 
     [
         'name' => 'FC Rennes',
-        'licence_number' => 12345678,
+        'licence_number' => 30000,
         'adress' => 'allée de Rennes',
         'logo' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.science-et-vie.com%2Fscience-et-culture%2Fqui-etait-ragnar-lothbrok-130245.html&psig=AOvVaw3HwLxJvo0ikemJg-eTljm7&ust=1720085608912000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjwuq_IiocDFQAAAAAdAAAAABAE',
          'created_at' => null
@@ -128,8 +128,7 @@ private function loadClubs(ObjectManager $manager)
 
     [
         'name' => 'FC Lyon',
-        'licence_number' => 12345678,
-        'price' => '15',
+        'licence_number' => 30000,
         'adress' => 'allée de Lyon',
         'logo' => 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.science-et-vie.com%2Fscience-et-culture%2Fqui-etait-ragnar-lothbrok-130245.html&psig=AOvVaw3HwLxJvo0ikemJg-eTljm7&ust=1720085608912000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjwuq_IiocDFQAAAAAdAAAAABAE',
         'created_at' => null
@@ -141,8 +140,7 @@ private function loadClubs(ObjectManager $manager)
     {
         $newClub = new Club();
         $newClub->setClubName($currentClub);
-// Pour cette ligne, je l'ai repris pour préciser que c'est un int que je veux, je l'ai repris dans le projet tripovisor
-        $newClub->setLicenceNumber(random_int(10, 2000));
+        $newClub->setLicenceNumber($currentClub);
         $newClub->setAdress($currentClub);
         $newClub->setLogo($currentClub);
        
