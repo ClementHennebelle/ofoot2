@@ -152,3 +152,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+
+
+<div class="col-8 p-4 d-flex flex-column position-static">
+    <h3 class="mb-2">{{currentTournament.TournamentName}}</h3>
+    <p class="mb-1">{{currentTournament.Location}}</p>
+    <p class="mb-1">{{currentTournament.Date|date('d F Y') }}</p>
+    <p class="mb-1">{{currentTournament.PlayerTeamCount }}</p>
+    <p class="mb-1">{{currentTournament.Price }}</p>
+    <p class="mb-1">{{currentTournament.Rewards }}</p>
+    <a href="{{ path('app_tournament_browse', {id: currentTournament.Id}) }}" class="fs-1 mt-3 text-danger align-self-start">
+        <i class="bi bi-arrow-right-square"></i>
+    </a>
+    </div>

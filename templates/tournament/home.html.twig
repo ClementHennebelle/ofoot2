@@ -6,145 +6,30 @@
 {% block body %}
 
    
-
-    <!-- Section des cartes -->
-
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col text-center">
-                <div class="rounded-pill bg-dark d-inline-block p-3">
-                    <h2 class="section-title m-0">Les tournois</h2>
-                </div>
-                <p class="section-description"></p>
-            </div>
-        </div>
-    </div>
-
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="textblack">
+<div class="container mt-4">
+    <div class="row">
+        {% for currentTournament in tournamentHome %}
+        <div class="col-md-6">
+            <div class="textblack">
                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm bg-white position-relative">
                     <div class="col-4 movie__poster">
-                        <img src="images/affiche2.jpg" class="img-fluid">
+                        <img src="{{ asset('images/' ~ currentTournament.poster) }}" class="img-fluid rounded-start">
                     </div>
-                     {% for currentTournament in tournamentHome %}
-                    <div class="col-8 p-4 d-flex flex-column position-static">
-                        <h3 class="mb-2">{{currentTournament.TournamentName}}</h3>
-                        <p class="mb-1">{{currentTournament.Location}}</p>
+                    <div class="col-8 p-4 d-flex flex-column position-static text-center">
+                        <h3 class="mb-2">{{ currentTournament.TournamentName }}</h3>
+                        <p class="mb-1">{{ currentTournament.Location }}</p>
                         <p class="mb-1">{{currentTournament.Date|date('d F Y') }}</p>
-                        <p class="mb-1">{{currentTournament.PlayerTeamCount }}</p>
-                        <p class="mb-1">{{currentTournament.Price }}</p>
-                        <p class="mb-1">{{currentTournament.Rewards }}</p>
+                        <p class="mb-1">{{ currentTournament.PlayerTeamCount }}</p>
+                        <p class="mb-1">{{ currentTournament.Price }}</p>
+                        <p class="mb-1">{{ currentTournament.Rewards }}</p>
                         <a href="{{ path('app_tournament_browse', {id: currentTournament.Id}) }}" class="fs-1 mt-3 text-danger align-self-start">
                             <i class="bi bi-arrow-right-square"></i>
                         </a>
-                        </div>
                     </div>
-                    {% endfor %}
                 </div>
             </div>
-           
         </div>
-   
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
-
-
-
-
-
- <div class="container mt-4">
-        <div class="row">
-            <div class="col text-center">
-                <div class="rounded-pill bg-dark d-inline-block p-3">
-                    <h2 class="section-title m-0">Les tournois</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="textblack">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm bg-white position-relative">
-                    <div class="col-4 movie__poster">
-                        <img src="images/affiche2.jpg" class="img-fluid rounded-start">
-                    </div>
-                    <div class="col-8 p-4 d-flex flex-column position-static text-center">
-                        <h3 class="mb-2">Nom du Tournoi</h3>
-                        <p class="mb-1 mt-1"><i class="bi bi-geo-alt-fill icon-tournoi-small"></i> XYZ</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-calendar-date icon-tournoi-small"></i> 23 septembre 2024</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-people-fill icon-tournoi-small"></i> 32 équipes</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-cash-coin icon-tournoi-small"></i> 20€ par équipe</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-trophy-fill icon-tournoi-small"></i> Trophée, Médailles, Bons d'achat</p>
-                        <a href="http://localhost/projet-12-o-foot/html/tournoi2.html" class="fs-1 mt-3 text-dark align-self-center arrow-icon">
-                            <i class="bi bi-arrow-right-circle-fill"></i>                           
-                        </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="textblack">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm bg-white position-relative">
-                    <div class="col-4 movie__poster">
-                        <img src="images/affiche4.jpg" class="img-fluid rounded-start">
-                    </div>
-                    <div class="col-8 p-4 d-flex flex-column position-static text-center">
-                        <h3 class="mb-2">Nom du Tournoi</h3>
-                        <p class="mb-1 mt-1"><i class="bi bi-geo-alt-fill icon-tournoi-small"></i> XYZ</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-calendar-date icon-tournoi-small"></i> 23 septembre 2024</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-people-fill icon-tournoi-small"></i> 32 équipes</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-cash-coin icon-tournoi-small"></i> 20€ par équipe</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-trophy-fill icon-tournoi-small"></i> Trophée, Médailles, Bons d'achat</p>
-                        <a href="http://localhost/projet-12-o-foot/html/tournoi2.html" class="fs-1 mt-3 text-dark align-self-center arrow-icon">
-                            <i class="bi bi-arrow-right-circle-fill"></i>                           
-                        </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="textblack">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm bg-white position-relative">
-                    <div class="col-4 movie__poster">
-                        <img src="images/affiche8.jpg" class="img-fluid rounded-start">
-                    </div>
-                    <div class="col-8 p-4 d-flex flex-column position-static text-center">
-                        <h3 class="mb-2">Nom du Tournoi</h3>
-                        <p class="mb-1 mt-1"><i class="bi bi-geo-alt-fill icon-tournoi-small"></i> XYZ</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-calendar-date icon-tournoi-small"></i> 23 septembre 2024</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-people-fill icon-tournoi-small"></i> 32 équipes</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-cash-coin icon-tournoi-small"></i> 20€ par équipe</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-trophy-fill icon-tournoi-small"></i> Trophée, Médailles, Bons d'achat</p>
-                        <a href="http://localhost/projet-12-o-foot/html/tournoi2.html" class="fs-1 mt-3 text-dark align-self-center arrow-icon">
-                            <i class="bi bi-arrow-right-circle-fill"></i>                           
-                        </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="textblack">
-                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm bg-white position-relative">
-                    <div class="col-4 movie__poster">
-                        <img src="images/affiche2.jpg" class="img-fluid rounded-start">
-                    </div>
-                    <div class="col-8 p-4 d-flex flex-column position-static text-center">
-                        <h3 class="mb-2">Nom du Tournoi</h3>
-                        <p class="mb-1 mt-1"><i class="bi bi-geo-alt-fill icon-tournoi-small"></i> XYZ</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-calendar-date icon-tournoi-small"></i> 23 septembre 2024</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-people-fill icon-tournoi-small"></i> 32 équipes</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-cash-coin icon-tournoi-small"></i> 20€ par équipe</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-trophy-fill icon-tournoi-small"></i> Trophée, Médailles, Bons d'achat</p>
-                        <a href="http://localhost/projet-12-o-foot/html/tournoi2.html" class="fs-1 mt-3 text-dark align-self-center arrow-icon">
-                            <i class="bi bi-arrow-right-circle-fill"></i>                           
-                        </a>
-                        
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
