@@ -26,6 +26,8 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     flex: 1; /* Occupe tout l'espace restant en hauteur */
+    display: flex; /* Ajout de flexbox */
+    flex-direction: column; /* Contenu en colonne */
 }
 
 /* Navbar and Footer */
@@ -65,14 +67,25 @@ body {
 /* Carousel */
 .carousel-item img {
     height: 900px; /* Ajuste la hauteur */
-
+}
+.carousel-image {
+    max-width: 80%; /* Exemple de largeur maximum */
+    height: auto; /* Pour conserver le ratio hauteur-largeur */
+    display: block;
+    margin: 0 auto; /* Centre l'image horizontalement */
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: black; /* Couleur des flèches de contrôle du carrousel */
+
+
+.carousel-control-prev,
+.carousel-control-next {
+    color: white; /* Couleur des flèches */
 }
 
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    color: white; /* Couleur au survol */
+}
 /* Tournament Info */
 .tournament-poster {
     border: 2px solid #dee2e6;
@@ -163,4 +176,93 @@ footer {
     border-radius: 5px; 
     color: white; /* Couleur du texte */
     display: inline-block; /* Pour que le fond englobe uniquement le texte */
+}
+
+.card-body {
+    display: flex;
+    align-items: center;
+}
+.card-body i {
+    font-size: 1.5rem;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+/* Custom CSS for Profile Card */
+.card-body.d-flex.flex-column.align-items-center {
+    height: 100%;
+}
+
+/* Custom CSS for Tournament Card */
+.card {
+    border: none; /* Supprime la bordure par défaut de la carte */
+    border-radius: 10px; /* Coins arrondis de la carte */
+    overflow: hidden; /* Masque le débordement des éléments de la carte */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Ombre légère pour un effet de profondeur */
+}
+
+.card-body {
+    padding: 20px; /* Espacement intérieur de la carte */
+}
+
+.card-title {
+    font-size: 1.5rem; /* Taille de la police du titre */
+    margin-bottom: 15px; /* Espacement sous le titre */
+}
+
+.card-text {
+    font-size: 1rem; /* Taille de la police du texte */
+    margin-bottom: 10px; /* Espacement sous chaque ligne de texte */
+}
+
+.img-fluid {
+    object-fit: cover; /* Adapte l'image à l'espace sans la déformer */
+    height: 100%; /* Hauteur de l'image adaptée à celle de la carte */
+}
+
+.arrow-icon {
+    transition: transform 0.25s, color 0.3s; /* Transition pour la transformation et la couleur */
+    color: #BAFF39 !important; /* Couleur par défaut de l'icône, avec !important pour s'assurer qu'elle est prioritaire */
+}
+
+.arrow-icon:hover {
+    transform: scale(1.2); /* Transformation au survol */
+    color: rgb(15, 15, 15) !important; /* Nouvelle couleur de l'icône au survol, avec !important pour s'assurer qu'elle est prioritaire */
+}
+
+.pen-icon-solo {
+    transition: transform 0.3s;
+}
+.pen-icon-solo:hover {
+    transform: scale(1.1);
+}
+
+.icon-tournoi {
+    font-size: 1.4rem;
+}
+
+.icon-tournoi-small {
+    font-size: 1rem;
+}
+
+/* le texte principal avec fond gris transparent */
+@media (max-width: 768px) {
+    .textblack.texthome {
+        background-color: rgba(200, 200, 200, 0.61); /* Couleur gris transparent */
+        padding: 10px; /* Ajustement du padding pour un meilleur espacement */
+        border-radius: 10px; /* Arrondi des coins */
+    }
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        justify-content: center; 
+        max-height: 40vh; 
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 0.5rem;
+        text-align: center; 
+        width: 100%; 
+    }
 }
