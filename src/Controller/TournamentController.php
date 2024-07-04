@@ -12,7 +12,7 @@ class TournamentController extends AbstractController
     public function browse(): Response
     {
         return $this->render('tournament/home.html.twig', [
-            'controller_name' => 'TournamentController',
+            'tournamentHome' => 'TournamentController',
         ]);
     }
 
