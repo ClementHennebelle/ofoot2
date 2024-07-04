@@ -7,9 +7,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="./styles.css" rel="stylesheet"> <!-- Link to external CSS file -->
-        
 </head>
-<body class="background-image">
+<body class="background-image d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-company-grey custom-navbar">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">O'FOOT</a>
@@ -39,60 +38,51 @@
     </nav>
 
     <!-- Main Content -->
-
-    <div class="container my-4">
+    <div class="container my-4 flex-grow-1">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <div></div> <!-- Placeholder for aligning "Retour" button to the right -->
             <div class="col text-center">
                 <div class="rounded-pill bg-dark d-inline-block p-3">
-                    <h2 class="section-title m-0">Créer un tournoi</h2>
+                    <h2 class="section-title m-0">Back-Office Organisateur</h2>
                 </div>
             </div>
-            <a href="http://localhost/projet-12-o-foot/html/backoffice.html" class="btn btn-secondary">Retour</a>
         </div>
-        
-        <form action="" method="POST" class="mt-5">
-            <div class="mb-3 text-center">
-                <label for="name" class="form-label semi-transparent-bg">Nom du tournoi</label>
-                <input type="text" class="form-control w-75 mx-auto" id="name" placeholder="Nom du tournoi">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="col text-end">
+                <a class="btn btn-secondary" href="http://localhost/projet-12-o-foot/html/createtournoi.html">Créer un tournoi</a>
             </div>
-            <div class="mb-3 text-center">
-                <label for="nbr_equipe" class="form-label semi-transparent-bg">Nombre d'équipes</label>
-                <input type="text" class="form-control w-75 mx-auto" id="nbr_equipes" placeholder="Nombre d'équipes">
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="card w-75">
+                <div class="card-body">
+                    <h5 class="card-title textblack"><li>Nom du Tournoi 1</li></h5>
+                    <div class="ms-auto">
+                        <i class="bi bi-eye text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Voir"></i>
+                        <i class="bi bi-pencil text-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Modifier"></i>
+                        <i class="bi bi-trash text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Supprimer"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title textblack"><li>Nom du Tournoi 2</li></h5>
+                    <div class="ms-auto">
+                        <i class="bi bi-eye text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Voir"></i>
+                        <i class="bi bi-pencil text-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Modifier"></i>
+                        <i class="bi bi-trash text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Supprimer"></i>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title textblack"><li>Nom du Tournoi 3</li></h5>
+                    <div class="ms-auto">
+                        <i class="bi bi-eye text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Voir"></i>
+                        <i class="bi bi-pencil text-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Modifier"></i>
+                        <i class="bi bi-trash text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Supprimer"></i>
+                    </div>
+                </div>
             </div>
-            <div class="mb-3 text-center">
-                <label for="nbrjoueur_equipe" class="form-label semi-transparent-bg">Nombre de joueur/équipe</label>
-                <input type="text" class="form-control w-75 mx-auto" id="nbrjoueur_equipe" placeholder="Nombre de joueur par équipe">
-            </div>
-            <div class="mb-3 text-center">
-                <label for="lieu" class="form-label semi-transparent-bg">Lieu</label>
-                <input type="text" class="form-control w-75 mx-auto" id="lieu" placeholder="Lieu" aria-describedby="subtitleHelpBlock">
-            </div>
-            <div class="mb-3 text-center">
-                <label for="date" class="form-label semi-transparent-bg">Date</label>
-                <input type="text" class="form-control w-75 mx-auto" id="date" placeholder="Date" aria-describedby="subtitleHelpBlock">
-            </div>
-            <div class="mb-3 text-center">
-                <label for="Tarif" class="form-label semi-transparent-bg">Tarif</label>
-                <input type="text" class="form-control w-75 mx-auto" id="tarif" placeholder="Tarif (en €)" aria-describedby="pictureHelpBlock">
-            </div>
-            <div class="mb-3 text-center">
-                <label for="Récompenses" class="form-label semi-transparent-bg">Récompenses</label>
-                <input type="text" class="form-control w-75 mx-auto" id="rewards" placeholder="Récompenses du tournoi" aria-describedby="pictureHelpBlock">
-            </div>
-            <div class="mb-3 text-center">
-                <label for="poster" class="form-label semi-transparent-bg">Poster/Affiche</label>
-                <input type="text" class="form-control w-75 mx-auto" id="poster" placeholder="Poster ou Affiche du tournoi" aria-describedby="pictureHelpBlock">
-            </div>
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-secondary w-50 mx-auto">Valider</button>
-            </div>
-        </form>
+        </div>
     </div>
-    
 
     <!-- Footer -->
-    <footer class="bg-dark text-center text-white py-4 mt-auto">
+    <footer class="bg-company-grey text-center text-white py-4 mt-5">
         <div class="container">
             <p class="mb-0">Copyright © 2024 O'FOOT. Tous droits réservés.</p>
             <div class="mt-2">
