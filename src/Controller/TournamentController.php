@@ -43,14 +43,6 @@ class TournamentController extends AbstractController
     }
 
 
-    // je met ici le club
-
-    #[Route('/club/createclub', name: 'app_club_create', methods:"GET", requirements: ["id" => "\d+"])]
-    public function createclub(): Response
-    {
-        return $this->render('club/create.html.twig', [
-            // 'controller_name' => 'TournamentController',
-        ]);
-    }
+   
     
 }
