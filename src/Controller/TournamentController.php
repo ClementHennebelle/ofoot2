@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Tournament;
 use App\Repository\TournamentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,20 +23,22 @@ class TournamentController extends AbstractController
 
 
     #[Route('/tournament/{id}', name: 'app_tournament_read', methods:"GET", requirements: ["id" => "\d+"])]
-    public function read(): Response
+    public function read(Tournament $tournamentRead): Response
     {
+      
         return $this->render('tournament/read.html.twig', [
-            'controller_name' => 'TournamentController',
+            'tournamentRead' => $tournamentRead,
         ]);
     }
 
-    // PAS DE CSS, A VOIR !! 
+    
 
     #[Route('/tournament/createtournoi', name: 'app_tournament_create', methods:"GET", requirements: ["id" => "\d+"])]
-    public function create(): Response
+    public function create(TournamentRepository $tournamentRepository): Response
     {
+        $tournamentCreate= $tournamentRepository->findAll();
         return $this->render('tournament/create.html.twig', [
-            // 'controller_name' => 'TournamentController',
+            'tournamentCreate' => $tournamentCreate,
         ]);
     }
 
