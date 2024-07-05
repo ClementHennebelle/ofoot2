@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class AddClubType extends AbstractType
 {
@@ -22,27 +23,31 @@ class AddClubType extends AbstractType
         $builder
             ->add('club_name', TextType::class, [
                 "label" => "Nom du Club",
-                'constraints' => [
-                    new NotNull()
-                ]
+                //'constraints' => [
+                    //new NotNull()
+                //]
             ])
             ->add('licence_number', IntegerType::class, [
                 "label" => "Numéro de license du club",
-                'constraints' => [
-                    new NotNull(),
-                    new Length(min : 6)
-                ]
+                //'constraints' => [
+                   // new NotNull(),
+                    //new Length(min : 5)
+               // ]
             ])
             ->add('adress', TextType::class, [
                 "label" => "Adresse du club",
-                'constraints' => [
-                    new NotNull()
-                ]
+                //'constraints' => [
+                   // new NotNull()
+                //]
             ]) 
             ->add('logo', UrlType::class, [
-                "label" => "Image",
+                "label" => "logo",
                 'help' => "Url vers l'image"
             ]) 
+            ->add('submit', SubmitType::class, [
+                'label' => 'Envoyer',
+                'attr' => ['class' => 'btn btn-secondary w-50 mx-auto']
+            ]);
         ;
     }
 
