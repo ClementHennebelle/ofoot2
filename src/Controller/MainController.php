@@ -48,6 +48,17 @@ class MainController extends AbstractController
                     ]);
                 } 
 
+                #[Route('/cgu', name: 'app_main_cgu', methods:"GET")]
+                public function cgu(): Response
+                
+                    // 1. préparation des données
+                    {
+                
+                        return $this->render('main/cgu.html.twig', [
+                            // 'tournaments' => $tournaments,
+                        ]);
+                    } 
+
 
                 // pour la page de login, faudra mettre sur un controller user, pour l'instant je le met ici
 
