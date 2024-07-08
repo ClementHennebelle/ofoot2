@@ -269,6 +269,7 @@ footer {
     }
 }
 
+
 /* Back office */
 .semi-transparent-bg-white {
     background-color: rgba(253, 253, 253, 0.76); /* Fond noir semi-transparent */
@@ -276,4 +277,5 @@ footer {
     border-radius: 5px; 
     color: white; /* Couleur du texte */
     display: inline-block; /* Pour que le fond englobe uniquement le texte */
+
 }
