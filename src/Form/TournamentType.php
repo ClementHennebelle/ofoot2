@@ -35,11 +35,11 @@ class TournamentType extends AbstractType
         'label' => "Lieu",]) 
     ->add('poster', UrlType::class, [
         'label' => "Affiche du Tournoi",
-        'help' => "Url vers l'affiche"])
-    ->add('submit', SubmitType::class, [
-        'label' => 'Envoyer',
-        'attr' => ['class' => 'btn btn-secondary w-50 mx-auto'] // Attention à la syntaxe correcte ici
-    ]);
+        'help' => "Url vers l'affiche"]);
+    // ->add('submit', SubmitType::class, [
+    //     'label' => 'Envoyer',
+    //     'attr' => ['class' => 'btn btn-secondary w-50 mx-auto'] // Attention à la syntaxe correcte ici
+    // ]);
      
         
     }
