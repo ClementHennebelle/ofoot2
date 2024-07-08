@@ -3,44 +3,58 @@
 {% block title %}Club{% endblock %}
 
 {% block body %}
-    <h1>Club</h1>
+<div class="container mt-4 custom-contact-container">
+    <div class="row">
+        <div class="col text-center">
+            <div class="rounded-pill bg-dark d-inline-block p-3">
+                <h2 class="section-title m-0">{{ club.clubName }}</h2>
+            </div>
+        </div>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ club.id }}</td>
-            </tr>
-            <tr>
-                <th>Club_name</th>
-                <td>{{ club.clubName }}</td>
-            </tr>
-            <tr>
-                <th>Licence_number</th>
-                <td>{{ club.licenceNumber }}</td>
-            </tr>
-            <tr>
-                <th>Adress</th>
-                <td>{{ club.adress }}</td>
-            </tr>
-            <tr>
-                <th>Logo</th>
-                <td>{{ club.logo }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ club.createdAt ? club.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Updated_at</th>
-                <td>{{ club.updatedAt ? club.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12 semi-transparent-bg-white p-4 text-center">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ club.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nom du Club</th>
+                            <td>{{ club.clubName }}</td>
+                        </tr>
+                        <tr>
+                            <th>Numéro de Licence</th>
+                            <td>{{ club.licenceNumber }}</td>
+                        </tr>
+                        <tr>
+                            <th>Adresse</th>
+                            <td>{{ club.adress }}</td>
+                        </tr>
+                        <tr>
+                            <th>Logo</th>
+                            <td>{{ club.logo }}</td>
+                        </tr>
+                        <tr>
+                            <th>Créé le</th>
+                            <td>{{ club.createdAt ? club.createdAt|date('Y-m-d') : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Mis à jour le</th>
+                            <td>{{ club.updatedAt ? club.updatedAt|date('Y-m-d') : '' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-    <a href="{{ path('app_club_back_index') }}">back to list</a>
-
-    <a href="{{ path('app_club_back_edit', {'id': club.id}) }}">edit</a>
-
-    {{ include('club_back/_delete_form.html.twig') }}
+                <div class="text-center mt-4">
+                    <a href="{{ path('app_club_back_index') }}" class="btn btn-secondary">Retour à la liste</a>
+                    <a href="{{ path('app_club_back_edit', {'id': club.id}) }}" class="btn btn-warning ml-2">Éditer</a>
+                    {{ include('club_back/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

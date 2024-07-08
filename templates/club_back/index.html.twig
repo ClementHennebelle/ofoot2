@@ -3,21 +3,31 @@
 {% block title %}Club index{% endblock %}
 
 {% block body %}
-    <h1>Club index</h1>
+<div class="container mt-4 custom-contact-container">
+    <div class="row">
+        <div class="col text-center">
+            <div class="rounded-pill bg-dark d-inline-block p-3">
+                <h2 class="section-title m-0">Liste des clubs</h2>
+            </div>
+        </div>
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Club_name</th>
-                <th>Licence_number</th>
-                <th>Adress</th>
-                <th>Logo</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
+<div class="container table-container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="semi-transparent-bg-white p-4">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="align-middle">Id</th>
+                                <th class="align-middle">Nom du Club</th>
+                                <th class="align-middle">Numéro de licence</th>
+                                <th class="align-middle">Adresse du club</th>
+                                <th class="align-middle">Logo</th>
+                                <th class="align-middle">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
         <tbody>
         {% for club in clubs %}
             <tr>
@@ -26,20 +36,31 @@
                 <td>{{ club.licenceNumber }}</td>
                 <td>{{ club.adress }}</td>
                 <td>{{ club.logo }}</td>
-                <td>{{ club.createdAt ? club.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ club.updatedAt ? club.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_club_back_show', {'id': club.id}) }}">show</a>
-                    <a href="{{ path('app_club_back_edit', {'id': club.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                    <a href="{{ path('app_club_back_show', {'id': club.id}) }}" class="btn btn-success btn-sm mb-2">Voir</a>
+                    <a href="{{ path('app_club_back_edit', {'id': club.id}) }}" class="btn btn-warning btn-sm mb-2">Editer</a>
+                <form action="{{ path('app_club_back_delete', {'id': club.id}) }}" method="post" class="d-inline">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ club.id) }}">
+                                        <button type="submit" class="btn btn-danger btn-sm mb-2">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="12" class="text-center">Aucun enregistrement trouvé</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
 
-    <a href="{{ path('app_club_back_new') }}">Create new</a>
+                    <div class="text-center mt-4 mb-3">
+                        <a href="{{ path('app_club_back_new') }}" class="btn btn-secondary">Créer un nouveau club</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

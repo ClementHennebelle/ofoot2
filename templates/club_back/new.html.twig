@@ -3,9 +3,24 @@
 {% block title %}New Club{% endblock %}
 
 {% block body %}
-    <h1>Create new Club</h1>
-
+    <div class="container mt-4 custom-contact-container">
+    <div class="row">
+        <div class="col text-center">
+            <div class="rounded-pill bg-dark d-inline-block p-3">
+                <h2 class="section-title m-0">Ajouter un tournoi</h2>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="container mt-4 mb-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12 semi-transparent-bg-white p-4 text-center text-black">
     {{ include('club_back/_form.html.twig') }}
-
-    <a href="{{ path('app_club_back_index') }}">back to list</a>
+    <div class="text-center mt-2 mb-2">
+        <a href="{{ path('app_club_back_index') }}" class="btn btn-secondary">Retour à la liste des tournois</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
