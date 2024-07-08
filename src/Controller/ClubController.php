@@ -36,7 +36,7 @@ class ClubController extends AbstractController
      }
 
 
-     #[Route('/club/{id}/add', name: 'app_club_add', methods:["GET", "POST"], requirements: ["id" => "\d+"])]
+     #[Route('/club/add', name: 'app_club_add', methods:["GET", "POST"], requirements: ["id" => "\d+"])]
      public function add(EntityManagerInterface $em, Request $request): Response
      {
 

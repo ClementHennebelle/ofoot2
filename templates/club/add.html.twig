@@ -13,29 +13,35 @@
         </div>
     </div>
 
-<div class="container form-container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 col-md-8 col-sm-10">
-            {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'login-form'}}) }}
-            <div class="textblack text-center">
-                <div class="mb-3">
-                    {{ form_row(form.club_name) }}
+    <div class="container form-container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'login-form'}}) }}
+                <div class="textblack text-center">
+                    <div class="mb-3">
+                        {{ form_label(form.club_name, 'Nom du Club', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.club_name, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(form.licence_number, 'Numéro de Licence', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.licence_number, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(form.adress, 'Adresse', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.adress, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(form.logo, 'Logo', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.logo, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="d-grid gap-2">
+                        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-secondary w-100'}}) }}
+                    </div>
                 </div>
-                <div class="mb-3">
-                    {{ form_row(form.licence_number) }}
-                </div>
-                <div class="mb-3">
-                    {{ form_row(form.adress) }}
-                </div>
-                <div class="mb-3">
-                    {{ form_row(form.logo) }}
-                </div>
-                <div class="d-grid gap-2">
-                    {{ form_widget(form.submit) }}
-                </div>
+                {{ form_end(form) }}
             </div>
-            {{ form_end(form) }}
         </div>
     </div>
 </div>
+
 {% endblock %}
