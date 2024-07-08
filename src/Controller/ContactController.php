@@ -35,9 +35,9 @@ class ContactController extends AbstractController
                     ->text($content);
 
                     $mailer -> send($email);
-                    
+               
             // redirection meme page pour vider le formulaire
-            return $this->redirectToRoute('app_contact');
+            return $this->redirectToRoute('app_main');
             
             }
 
