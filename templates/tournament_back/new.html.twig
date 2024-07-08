@@ -12,14 +12,15 @@
         </div>
     </div>
 
-<div class="container mt-4">
+    <div class="container mt-4 mb-4">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-md-10 col-sm-12 semi-transparent-bg-white p-4 text-center text-black">
     {{ include('tournament_back/_form.html.twig') }}
-<div class="text-center mt-2 mb-2">
-    <a href="{{ path('app_tournament_back_index') }}" class="btn btn-secondary">Retour à la liste des tournois</a>
-    </div>
-         </div>
+    <div class="text-center mt-2 mb-2">
+        <a href="{{ path('app_tournament_back_index') }}" class="btn btn-secondary">Retour à la liste des tournois</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
