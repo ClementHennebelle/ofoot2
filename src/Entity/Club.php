@@ -64,6 +64,7 @@ class Club
     {
         $this->tournament = new ArrayCollection();
         $this->user = new ArrayCollection();
+        $this->created_at = new \DateTimeImmutable(); // Initialisation de la date de création
     }
 
  
