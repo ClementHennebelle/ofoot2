@@ -62,17 +62,6 @@ class MainController extends AbstractController
 
                 // pour la page de login, faudra mettre sur un controller user, pour l'instant je le met ici
 
-                #[Route('/subscribe', name: 'app_main_subscribe', methods:"GET")]
-                public function subscribe(): Response
-                
-                    // 1. préparation des données
-                    {
-                        // $tournaments = $tournamentRepository->findLastThree();
-                
-                        return $this->render('login/subscribe.html.twig', [
-                            // 'tournaments' => $tournaments,
-                        ]);
-                    } 
     
                    
                    
