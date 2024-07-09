@@ -51,10 +51,16 @@
             color: #666;
         }
 
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
         .btn {
             display: inline-block;
-            background-color: #343a40;
-            color: #ffffff;
+            background-color: #BAFF39;
+            border-color: #BAFF39;
+            color: #000000;
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
@@ -78,19 +84,19 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Hi! Please confirm your email!</h1>
+            <h1>Bonjour ! Veuillez confirmer votre adresse e-mail!</h1>
         </div>
         <div class="content">
-            <p>Please confirm your email address by clicking the following link:</p>
-            <p>
-                <a href="{{ signedUrl|raw }}" class="btn">Confirm my Email</a>
-            </p>
-            <p>This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.</p>
+            <p>Merci de bien vouloir cliquer sur le lien ci-dessous pour confirmer votre e-mail</p>
+            <div class="btn-container">
+                <a href="{{ signedUrl|raw }}" class="btn">Confirmer mon e-mail</a>
+            </div>
+            <p>Ce lien expire dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.</p>
             <p>Cheers!</p>
         </div>
         <div class="footer">
-            <p>If you didn't request this email, you can safely ignore it.</p>
-            <p>Thanks, <br> The Team</p>
+            <p>Si vous n'êtes pas à l'origine de cette inscription, veuillez ignorer cet e-mail.</p>
+            <p>Merci, <br> l'équipe O'FOOT</p>
         </div>
     </div>
 </body>
