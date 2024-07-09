@@ -40,14 +40,14 @@ security:
         - { path: ^/login, roles: PUBLIC_ACCESS }
          
 #         #  attention à mettre les routes plus précises au début
-        - { path: ^/back/.*/(add|delete|edit), roles: ROLE_USER}
-        - { path: ^/back/user, roles: ROLE_USER}
-        - { path: ^/back/, roles: ROLE_USER}
+        - { path: ^/back/.*/(add|delete|edit), roles: ROLE_ADMIN}
+        - { path: ^/back/user, roles: ROLE_SUPER_ADMIN}
+        - { path: ^/back/, roles: ROLE_ADMIN}
 
  
     role_hierarchy:
         ROLE_ADMIN: [ROLE_USER, ROLE_ALLOWED_TO_SWITCH]
-
+        ROLE_SUPER_ADMIN : [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
 
 when@test:
