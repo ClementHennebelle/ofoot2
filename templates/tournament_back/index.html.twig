@@ -35,7 +35,7 @@
                         </thead>
                         <tbody>
                         {% for tournament in tournaments %}
-                            <tr>
+                            <tr class="text-center">
                                 <td class="align-middle">{{ tournament.id }}</td>
                                 <td class="align-middle">{{ tournament.tournamentName }}</td>
                                 <td class="align-middle">{{ tournament.date ? tournament.date|date('Y-m-d') : '' }}</td>
@@ -53,7 +53,7 @@
                                     <form action="{{ path('app_tournament_back_delete', {'id': tournament.id}) }}" method="post" class="d-inline">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tournament.id) }}">
-                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                        {# <button type="submit" class="btn btn-danger btn-sm">Supprimer</button> #}
                                     </form>
                                 </td>
                             </tr>
