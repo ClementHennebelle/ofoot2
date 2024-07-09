@@ -60,20 +60,7 @@ class MainController extends AbstractController
                     } 
 
 
-                // pour la page de login, faudra mettre sur un controller user, pour l'instant je le met ici
 
     
                    
-                   
-                    #[Route('/login', name: 'app_main_login', methods:"GET")]
-                    public function login(): Response
-                    
-                        // 1. préparation des données
-                        {
-                            // $tournaments = $tournamentRepository->findLastThree();
-                    
-                            return $this->render('login/login.html.twig', [
-                                // 'tournaments' => $tournaments,
-                            ]);
-                        } 
 }
