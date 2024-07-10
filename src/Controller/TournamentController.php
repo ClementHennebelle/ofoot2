@@ -46,17 +46,30 @@ class TournamentController extends AbstractController
 
 //         if ($form->isSubmitted() && $form->isValid()) {
             
-//             // 3 traiter le formulaire
-//             $entityManager->persist($tournament);
-//             $entityManager->flush();
 
-//             return $this->redirectToRoute('app_tournament_read',  ['id' => $tournament->getId()], );
-//         }
+            // 3 traiter le formulaire
+            $entityManager->persist($tournament);
+            $entityManager->flush();
 
-//         return $this->render('tournament/add.html.twig', [
-//             'tournament' => $tournament,
-//             'form' => $form,
-//         ]);
-//     }
+            return $this->redirectToRoute('app_tournament_read',  ['id' => $tournament->getId()], );
+        }
+
+        return $this->render('tournament/add.html.twig', [
+            'tournament' => $tournament,
+            'form' => $form,
+        ]);
+    }
+
+    // route des score avec tournoi{id}
+
+    #[Route('/tournament/score/{id}', name: 'app_tournament_score', methods:"GET", requirements: ["id" => "\d+"])]
+    public function score(Tournament $tournamentRead): Response
+    {
+      
+        return $this->render('score/score.html.twig', [
+            'tournamentRead' => $tournamentRead,
+        ]);
+    }
+
     
 }
