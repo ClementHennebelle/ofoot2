@@ -58,5 +58,16 @@ class TournamentController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    // route des score avec tournoi{id}
+
+    #[Route('/tournament/score/{id}', name: 'app_tournament_score', methods:"GET", requirements: ["id" => "\d+"])]
+    public function score(Tournament $tournamentRead): Response
+    {
+      
+        return $this->render('score/score.html.twig', [
+            'tournamentRead' => $tournamentRead,
+        ]);
+    }
     
 }
