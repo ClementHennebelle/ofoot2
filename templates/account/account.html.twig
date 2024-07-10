@@ -25,7 +25,7 @@
         </div>
 
         <!-- Account Settings -->
-        <div class="col-md-8 mb-4">
+        <div class="col-md-8 mb-4 mt-4">
             <div class="card mb-4">
                 <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Paramètres du Compte</h5>
@@ -33,15 +33,12 @@
                 </div>
                 <div class="card-body">
                     <div class="mb-3 mx-4 text-center">
-                        <label class="form-label fw-bold">Date d'inscription</label>
                         <p class="form-control-plaintext">Date d'inscription</p>
                     </div>
                     <div class="mb-3 mx-4 text-center">
-                        <label class="form-label fw-bold">E-mail utilisateur</label>
                         <p class="form-control-plaintext">E-mail de l'utilisateur</p>
                     </div>
                     <div class="mb-3 mx-4 text-center">
-                        <label class="form-label fw-bold">Club utilisateur</label>
                         <p class="form-control-plaintext">Club de l'utilisateur</p>
                     </div>
                 </div>
@@ -55,8 +52,8 @@
     </div>
     <div class="card-body">
         <div class="d-flex justify-content-between">
-            <a href="{{ path('app_account') }}"><button type="button" class="btn btn-success mx-2 mt-2 mb-2">Accéder à mon profil</a></button>
-            <a href="{{ path('app_tournament_back_new') }}"><button type="button" class="btn btn-warning mx-2 mt-2 mb-2">M'inscrire à un tournoi</a></button>
+            <a href="{{ path('app_account') }}" class="link_nostyle textwhite"><button type="button" class="btn btn-success mx-2 mt-2 mb-2">Accéder à mon profil</a></button>
+            <a href="{{ path('app_tournament_back_new') }}"class="link_nostyle textblack"><button type="button" class="btn btn-warning mx-2 mt-2 mb-2">M'inscrire à un tournoi</a></button>
             <button type="button" class="btn btn-secondary mx-2 mt-2 mb-2">Créer un tournoi</button>
            
         </div>
