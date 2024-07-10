@@ -15,4 +15,12 @@ class AccountController extends AbstractController
             'controller_name' => 'AccountController',
         ]);
     }
+
+    #[Route('/account/home', name: 'app_account')]
+    public function home(): Response
+    {
+        return $this->render('account/accounthome.html.twig', [
+            'controller_name' => 'AccountController',
+        ]);
+    }
 }
