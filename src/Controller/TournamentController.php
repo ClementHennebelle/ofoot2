@@ -34,6 +34,10 @@ class TournamentController extends AbstractController
         ]);
     }
 
+    
+
+
+
     // route des score avec tournoi{id}
 
     #[Route('/tournament/score/{id}', name: 'app_tournament_score', methods:"GET", requirements: ["id" => "\d+"])]
