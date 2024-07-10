@@ -30,7 +30,7 @@
                         <p class="mb-1">{{ currentTournament.PlayerTeamCount }}</p>
                         <p class="mb-1">{{ currentTournament.Price }}</p>
                         <p class="mb-1">{{ currentTournament.Rewards }}</p>
-                        <a href="{{ path('app_tournament_browse', {id: currentTournament.Id}) }}" class="fs-1 mt-3 text-dark align-self-center arrow-icon">
+                        <a href="{{ path('app_tournament_read', {id: currentTournament.Id}) }}" class="fs-1 mt-3 text-dark align-self-center arrow-icon">
                             <i class="bi bi-arrow-right-circle-fill"></i>
                         </a>
                     </div>

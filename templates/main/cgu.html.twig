@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}C.G.U - O'FOOT{% endblock %}
+
+{% block body %}
+
+<!-- Main Content -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col text-center">
+                <div class="rounded-pill bg-dark d-inline-block p-3">
+                    <h2 class="section-title m-0">Conditions Générales d'Utilisation</h2>
+                </div>
+                <p class="section-description"></p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10 col-sm-12 semi-transparent-bg">
+                    <h3 class="text-center">1. Introduction</h3>
+                    <p>Bienvenue sur O'FOOT. En utilisant notre site web, vous acceptez de respecter les présentes conditions générales d'utilisation. Veuillez les lire attentivement.</p>
+                    
+                    <h3 class="text-center">2. Utilisation du Site</h3>
+                    <p>Vous vous engagez à utiliser ce site conformément aux lois en vigueur et à respecter les droits des autres utilisateurs. Toute utilisation abusive ou illégale du site entraînera une suspension ou une résiliation de votre compte.</p>
+                    
+                    <h3 class="text-center">3. Inscription</h3>
+                    <p>Pour participer à nos tournois, vous devez vous inscrire en fournissant des informations exactes et à jour. Vous êtes responsable de la confidentialité de vos identifiants de connexion.</p>
+                    
+                    <h3 class="text-center">4. Données Personnelles</h3>
+                    <p>Nous collectons et traitons vos données personnelles conformément à notre politique de confidentialité. Vos données sont utilisées uniquement dans le cadre de nos activités et ne seront pas partagées avec des tiers sans votre consentement.</p>
+                    
+                    <h3 class="text-center">5. Propriété Intellectuelle</h3>
+                    <p>Tout le contenu de ce site, y compris les textes, images et logos, est la propriété de O'FOOT ou de ses partenaires et est protégé par les lois sur la propriété intellectuelle.</p>
+                    
+                    <h3 class="text-center">6. Limitation de Responsabilité</h3>
+                    <p>O'FOOT ne peut être tenu responsable des dommages directs ou indirects résultant de l'utilisation ou de l'incapacité à utiliser ce site. Nous nous efforçons de fournir des informations précises, mais nous ne pouvons garantir leur exactitude ou leur complétude.</p>
+                    
+                    <h3 class="text-center">7. Modifications des CGU</h3>
+                    <p>Nous nous réservons le droit de modifier ces conditions générales d'utilisation à tout moment. Les modifications seront effectives dès leur publication sur le site.</p>
+                    
+                    <h3 class="text-center">8. Contact</h3>
+                    <p>Pour toute question concernant ces conditions générales d'utilisation, veuillez nous contacter grâce à notre formulaire de <a href="{{ path('app_contact')}}">Contact</a> ou bien à <a href="mailto:ofoot.contact@gmail.com">ofoot.contact@gmail.com</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

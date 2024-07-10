@@ -9,6 +9,7 @@ html, body {
     padding: 0; /* Supprime les paddings par défaut */
     display: flex;
     flex-direction: column; /* Contenu en colonne */
+    height: 100%;
 }
 
 /* Fonts and Colors */
@@ -16,6 +17,7 @@ body {
     background-color: rgb(2, 2, 2);
     color: #ffffff; /* Couleur du texte général */
     font-family: 'Alata', sans-serif; /* Police personnalisée */
+    
 }
 
 /* Background Image */
@@ -267,6 +269,7 @@ footer {
     }
 }
 
+
 /* style des scores */
 
 
@@ -342,3 +345,15 @@ footer {
 .teams input[type="text"]:hover {
     background-color: #21f30e; /* Vert foncé */
 }
+=======
+
+/* Back office */
+.semi-transparent-bg-white {
+    background-color: rgba(253, 253, 253, 0.76); /* Fond noir semi-transparent */
+    padding: 5px; 
+    border-radius: 5px; 
+    color: white; /* Couleur du texte */
+    display: inline-block; /* Pour que le fond englobe uniquement le texte */
+
+}
+

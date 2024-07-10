@@ -36,16 +36,17 @@ class TournamentController extends AbstractController
 
     
 
-// route accessible en GET et en POST
-    #[Route('/tournament/add', name: 'app_tournament_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $tournament = new Tournament();
-        $form = $this->createForm(TournamentType::class, $tournament);
-        $form->handleRequest($request);
+// // route accessible en GET et en POST
+//     #[Route('/tournament/add', name: 'app_tournament_new', methods: ['GET', 'POST'])]
+//     public function new(Request $request, EntityManagerInterface $entityManager): Response
+//     {
+//         $tournament = new Tournament();
+//         $form = $this->createForm(TournamentType::class, $tournament);
+//         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+//         if ($form->isSubmitted() && $form->isValid()) {
             
+
             // 3 traiter le formulaire
             $entityManager->persist($tournament);
             $entityManager->flush();
@@ -69,5 +70,6 @@ class TournamentController extends AbstractController
             'tournamentRead' => $tournamentRead,
         ]);
     }
+
     
 }

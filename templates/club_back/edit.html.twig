@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Club{% endblock %}
+
+{% block body %}
+<div class="container mt-4 custom-contact-container">
+    <div class="row">
+        <div class="col text-center">
+            <div class="rounded-pill bg-dark d-inline-block p-3">
+                <h2 class="section-title m-0">Edition d'un club</h2>
+            </div>
+        </div>
+    </div>
+<div class="container mt-2">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12 semi-transparent-bg-white p-4 text-center text-black">
+                {{ include('club_back/_form.html.twig') }}
+<div class="text-center mt-2 ">
+                    
+                </div>
+
+                {{ include('club_back/_delete_form.html.twig') }}
+                <a href="{{ path('app_club_back_index') }}" class="btn btn-secondary mb-2 mt-2">Retour à la liste des clubs</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

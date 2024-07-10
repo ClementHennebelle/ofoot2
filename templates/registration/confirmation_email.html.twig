@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Confirmation</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #343a40;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .header h1 {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .content {
+            padding: 20px;
+            color: #333;
+        }
+
+        .content h1 {
+            color: #333;
+        }
+
+        .content p {
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #BAFF39;
+            border-color: #BAFF39;
+            color: #000000;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .footer a {
+            color: #343a40;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Bonjour ! Veuillez confirmer votre adresse e-mail!</h1>
+        </div>
+        <div class="content">
+            <p>Merci de bien vouloir cliquer sur le lien ci-dessous pour confirmer votre e-mail</p>
+            <div class="btn-container">
+                <a href="{{ signedUrl|raw }}" class="btn">Confirmer mon e-mail</a>
+            </div>
+            <p>Ce lien expire dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.</p>
+            <p>Cheers!</p>
+        </div>
+        <div class="footer">
+            <p>Si vous n'êtes pas à l'origine de cette inscription, veuillez ignorer cet e-mail.</p>
+            <p>Merci, <br> l'équipe O'FOOT</p>
+        </div>
+    </div>
+</body>
+
+</html>

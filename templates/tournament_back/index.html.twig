@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tournois - O'FOOT{% endblock %}
+
+{% block body %}
+{% if is_granted('ROLE_ADMIN') %}
+
+<div class="container mt-4 custom-contact-container">
+    <div class="row">
+        <div class="col text-center">
+            <div class="rounded-pill bg-dark d-inline-block p-3">
+                <h2 class="section-title m-0">Liste des Tournois</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container table-container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="semi-transparent-bg-white p-4">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th class="align-middle">Id</th>
+                                <th class="align-middle">Nom du Tournoi</th>
+                                <th class="align-middle">Date</th>
+                                <th class="align-middle">Prix par équipe</th>
+                                <th class="align-middle">Récompenses</th>
+                                <th class="align-middle">Nombres d'équipes</th>
+                                <th class="align-middle">Nombres de joueur</th>
+                                <th class="align-middle">Lieu</th>
+                                <th class="align-middle">Affiche</th>
+                                <th class="align-middle">Créé le</th>
+                                <th class="align-middle">Mis à jour le</th>
+                                <th class="align-middle">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for tournament in tournaments %}
+                            <tr class="text-center">
+                                <td class="align-middle">{{ tournament.id }}</td>
+                                <td class="align-middle">{{ tournament.tournamentName }}</td>
+                                <td class="align-middle">{{ tournament.date ? tournament.date|date('Y-m-d') : '' }}</td>
+                                <td class="align-middle">{{ tournament.price }} €</td>
+                                <td class="align-middle">{{ tournament.rewards }}</td>
+                                <td class="align-middle">{{ tournament.teamCount }}</td>
+                                <td class="align-middle">{{ tournament.playerTeamCount }}</td>
+                                <td class="align-middle">{{ tournament.location }}</td>
+                                <td class="align-middle">{{ tournament.poster }}</td>
+                                <td class="align-middle">{{ tournament.createdAt ? tournament.createdAt|date('Y-m-d') : '' }}</td>
+                                <td class="align-middle">{{ tournament.updatedAt ? tournament.updatedAt|date('Y-m-d') : '' }}</td>
+                                <td>
+                                    <a href="{{ path('app_tournament_back_show', {'id': tournament.id}) }}" class="btn btn-success btn-sm mb-2">Voir</a>
+                                    <a href="{{ path('app_tournament_back_edit', {'id': tournament.id}) }}" class="btn btn-warning btn-sm mb-2">Éditer</a>
+                                    <form action="{{ path('app_tournament_back_delete', {'id': tournament.id}) }}" method="post" class="d-inline">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ tournament.id) }}">
+                                        {# <button type="submit" class="btn btn-danger btn-sm">Supprimer</button> #}
+                                    </form>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="12" class="text-center">Aucun enregistrement trouvé</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div class="text-center mt-4 mb-3">
+                        <a href="{{ path('app_tournament_back_new') }}" class="btn btn-secondary">Créer un nouveau tournoi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="alert alert-danger text-center">
+                    <h2>Accès Refusé</h2>
+                    <p>Vous n'avez pas les permissions nécessaires pour accéder à cette page.</p>
+                    <a href="{{ path('app_main') }}" class="btn btn-primary mt-3">Retour à l'accueil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

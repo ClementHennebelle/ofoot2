@@ -48,32 +48,19 @@ class MainController extends AbstractController
                     ]);
                 } 
 
-
-                // pour la page de login, faudra mettre sur un controller user, pour l'instant je le met ici
-
-                #[Route('/subscribe', name: 'app_main_subscribe', methods:"GET")]
-                public function subscribe(): Response
+                #[Route('/cgu', name: 'app_main_cgu', methods:"GET")]
+                public function cgu(): Response
                 
                     // 1. préparation des données
                     {
-                        // $tournaments = $tournamentRepository->findLastThree();
                 
-                        return $this->render('login/subscribe.html.twig', [
+                        return $this->render('main/cgu.html.twig', [
                             // 'tournaments' => $tournaments,
                         ]);
                     } 
+
+
+
     
                    
-                   
-                    #[Route('/login', name: 'app_main_login', methods:"GET")]
-                    public function login(): Response
-                    
-                        // 1. préparation des données
-                        {
-                            // $tournaments = $tournamentRepository->findLastThree();
-                    
-                            return $this->render('login/login.html.twig', [
-                                // 'tournaments' => $tournaments,
-                            ]);
-                        } 
 }
