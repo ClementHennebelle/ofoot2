@@ -34,32 +34,6 @@ class TournamentController extends AbstractController
         ]);
     }
 
-    
-
-// // route accessible en GET et en POST
-//     #[Route('/tournament/add', name: 'app_tournament_new', methods: ['GET', 'POST'])]
-//     public function new(Request $request, EntityManagerInterface $entityManager): Response
-//     {
-//         $tournament = new Tournament();
-//         $form = $this->createForm(TournamentType::class, $tournament);
-//         $form->handleRequest($request);
-
-//         if ($form->isSubmitted() && $form->isValid()) {
-            
-
-            // 3 traiter le formulaire
-            $entityManager->persist($tournament);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_tournament_read',  ['id' => $tournament->getId()], );
-        }
-
-        return $this->render('tournament/add.html.twig', [
-            'tournament' => $tournament,
-            'form' => $form,
-        ]);
-    }
-
     // route des score avec tournoi{id}
 
     #[Route('/tournament/score/{id}', name: 'app_tournament_score', methods:"GET", requirements: ["id" => "\d+"])]
