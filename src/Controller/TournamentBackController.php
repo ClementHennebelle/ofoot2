@@ -53,7 +53,7 @@ class TournamentBackController extends AbstractController
     #[Route('/{id}/edit', name: 'app_tournament_back_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Tournament $tournament, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(Tournament1Type::class, $tournament);
+        $form = $this->createForm(TournamentType::class, $tournament);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

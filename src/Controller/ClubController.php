@@ -66,6 +66,34 @@ class ClubController extends AbstractController
          
      }
 
+
+    //  #[Route('/rattachement/user', name: 'register_user_club')]
+    // public function registerUserClub(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+    // {
+    //     $user = new User();
+    //     $form = $this->createForm(UserClubType::class, $user);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         // Hasher le mot de passe
+    //         $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
+    //         $user->setPassword($hashedPassword);
+
+    //         if (!$user->getHasClub()) {
+    //             $user->setClub(null);
+    //         }
+
+    //         $entityManager->persist($user);
+    //         $entityManager->flush();
+
+    //         $this->addFlash('success', 'L\'utilisateur a été enregistré avec succès !');
+    //         return $this->redirectToRoute('some_route');
+    //     }
+
+    //     return $this->render('user_club/register.html.twig', [
+    //         'form' => $form->createView(),
+    //     ]);
+    // }
 }
 
 
