@@ -14,10 +14,6 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-h1, h2 {
-    text-align: center;
-}
-
 .round {
     margin-bottom: 30px;
 }
@@ -57,7 +53,7 @@ h1, h2 {
     text-align: center;
 }
 
-input[type="text"] {
+.input {
     width: 50px;
     padding: 5px;
     border: 1px solid #ccc;
