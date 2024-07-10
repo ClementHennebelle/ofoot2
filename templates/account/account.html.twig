@@ -29,7 +29,7 @@
             <div class="card mb-4">
                 <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Paramètres du Compte</h5>
-                     <a href="{{ path('app_club_back_index') }}" class="btn btn-secondary w-25 text-decoration-none text-black">Ajouter un Club</a>
+                     {# <a href="{{ path('app_account_addclub') }}" class="btn btn-secondary w-25 text-decoration-none text-black">Ajouter un Club</a> #}
                 </div>
                 <div class="card-body">
                     <div class="mb-3 mx-4 text-center">
@@ -48,7 +48,7 @@
              <div class="card">
     <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
         <h5 class="mb-0">Options du compte</h5>
-        <button type="button" class="btn btn-success w-25">Se rattacher à un club</button>
+        <a href="{{ path('app_account_addclub') }}" class="btn btn-secondary w-25 text-decoration-none text-black">Rattacher à un club</a>
     </div>
     <div class="card-body">
         <div class="d-flex justify-content-between">

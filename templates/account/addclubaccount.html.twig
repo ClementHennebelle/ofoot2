@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rattacher un Compte à un Club{% endblock %}
+
+{% block body %}
+<div class="container mt-4 custom-contact-container">
+    <div class="row">
+        <div class="col text-center">
+            <div class="rounded-pill bg-dark d-inline-block p-3">
+                <h2 class="section-title m-0">Rattacher un club à mon compte</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5 flex-grow-1">
+        <div class="row justify-content-center">
+            <!-- Account Settings -->
+            <div class="col-md-8 mb-4 mt-4">
+                <div class="card mb-4">
+                    <div class="card-header bg-dark text-white d-flex justify-content-center align-items-center">
+                        <h5 class="mb-0">Choix du club</h5>
+                    </div>
+                    <div class="card-body justify-content-center">
+                        <form  method="POST">
+                            <div class="mb-3 text-center">
+                                <p class="textblack">Veuillez selectionner votre club s'il se trouve dans la liste ci-dessous</p>
+                                <label for="club-select" class="form-label">Sélectionnez un club :</label>
+                                <select id="club-select" name="club" class="form-select mx-auto" style="max-width: 300px;">
+                                    <option value="">-- Choisissez un club --</option>
+                                    <option value="club1">Club 1</option>
+                                    <option value="club2">Club 2</option>
+                                    <option value="club3">Club 3</option>
+                                    <!-- Ajoutez d'autres clubs ici -->
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                <button type="submit" class="btn btn-secondary">Rattacher mon compte à ce club</button>
+                            </div>
+                            <div class="d-flex justify-content-center mt-4">
+                                <p class="textblack text-center">Si vous ne trouvez pas votre club dans la liste, merci de cliquer sur le bouton ci-dessous pour le créer.</p>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <a href="{{ path('app_club_back_new') }}"><button type="button" class="btn btn-secondary">Créer un club</button></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
