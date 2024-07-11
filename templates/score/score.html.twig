@@ -24,112 +24,21 @@
             <div id="collapseEight" class="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
-                        <!-- Repeat your matches here -->
+                        {% for i in 1..8 %}
                         <div class="match">
-                            <div class="match-header">Match 1</div>
+                            <div class="match-header">Match {{ i }}</div>
                             <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
+                                <input class="input" type="text" id="team1-match{{ i }}" placeholder="Équipe 1" readonly>
+                                <input class="input" type="text" id="team2-match{{ i }}" placeholder="Équipe 2" readonly>
                             </div>
                             <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
+                                <input type="time" id="time1-match{{ i }}" placeholder="Heure" readonly>
                             </div>
                             <div class="result">
-                                <input class="input" type="text" id="result1" placeholder="Résultat">
+                                <input class="input" type="text" id="result1-match{{ i }}" placeholder="Résultat" readonly>
                             </div>
                         </div>
-                        <div class="match">
-                            <div class="match-header">Match 2</div>
-                            <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
-                            </div>
-                            <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
-                            </div>
-                            <div class="result">
-                                <input class="input" type="text" id="result1" placeholder="Résultat">
-                            </div>
-                        </div>
-                        <div class="match">
-                            <div class="match-header">Match 3</div>
-                            <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
-                            </div>
-                            <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
-                            </div>
-                            <div class="result">
-                                <input class="input" type="text" id="result1" placeholder="Résultat">
-                            </div>
-                        </div>
-                        <div class="match">
-                            <div class="match-header">Match 4</div>
-                            <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
-                            </div>
-                            <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
-                            </div>
-                            <div class="result">
-                                <input class="input" type="text" id="result1" placeholder="Résultat">
-                            </div>
-                        </div>
-                        <div class="match">
-                            <div class="match-header">Match 5</div>
-                            <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
-                            </div>
-                            <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
-                            </div>
-                            <div class="result">
-                                <input class="input" type="text" id="result1" placeholder="Résultat">
-                            </div>
-                        </div>
-                        <div class="match">
-                            <div class="match-header">Match 6</div>
-                            <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
-                            </div>
-                            <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
-                            </div>
-                            <div class="result">
-                                <input class="input" type="text" id="result1" placeholder="Résultat">
-                            </div>
-                        </div>
-                        <div class="match">
-                            <div class="match-header">Match 7</div>
-                            <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
-                            </div>
-                            <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
-                            </div>
-                            <div class="result">
-                                <input class="input" type="text" id="result1" placeholder="Résultat">
-                            </div>
-                        </div>
-                        <div class="match">
-                            <div class="match-header">Match 8</div>
-                            <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
-                            </div>
-                            <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
-                            </div>
-                            <div class="result">
-                                <input class="input" type="text" id="result1" placeholder="Résultat">
-                            </div>
-                        </div>
-                        <!-- Repeat for other matches -->
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -145,60 +54,21 @@
             <div id="collapseQuarter" class="accordion-collapse collapse" aria-labelledby="headingQuarter" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
-                        <!-- Repeat your matches here -->
+                        {% for i in 9..12 %}
                         <div class="match">
-                            <div class="match-header">Quart de finale 1</div>
+                            <div class="match-header">Quart de finale {{ i - 8 }}</div>
                             <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
+                                <input class="input" type="text" id="team1-match{{ i }}" placeholder="Équipe 1" readonly>
+                                <input class="input" type="text" id="team2-match{{ i }}" placeholder="Équipe 2" readonly>
                             </div>
                             <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
+                                <input type="time" id="time1-match{{ i }}" placeholder="Heure" readonly>
                             </div>
                             <div class="result">
-                                <input class="input" type="text" id="result9" placeholder="Résultat">
+                                <input class="input" type="text" id="result1-match{{ i }}" placeholder="Résultat" readonly>
                             </div>
                         </div>
-                        <div class="match">
-                            <div class="match-header">Quart de finale 2</div>
-                            <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
-                            </div>
-                            <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
-                            </div>
-                            <div class="result">
-                                <input class="input" type="text" id="result9" placeholder="Résultat">
-                            </div>
-                        </div>
-                        <div class="match">
-                            <div class="match-header">Quart de finale 3</div>
-                            <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
-                            </div>
-                            <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
-                            </div>
-                            <div class="result">
-                                <input class="input" type="text" id="result9" placeholder="Résultat">
-                            </div>
-                        </div>
-                        <div class="match">
-                            <div class="match-header">Quart de finale 4</div>
-                            <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
-                            </div>
-                            <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
-                            </div>
-                            <div class="result">
-                                <input class="input" type="text" id="result9" placeholder="Résultat">
-                            </div>
-                        </div>
-                        <!-- Repeat for other matches -->
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -214,34 +84,21 @@
             <div id="collapseSemi" class="accordion-collapse collapse" aria-labelledby="headingSemi" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
-                        <!-- Repeat your matches here -->
+                        {% for i in 13..14 %}
                         <div class="match">
-                            <div class="match-header">Demi-finale 1</div>
+                            <div class="match-header">Demi-finale {{ i - 12 }}</div>
                             <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
+                                <input class="input" type="text" id="team1-match{{ i }}" placeholder="Équipe 1" readonly>
+                                <input class="input" type="text" id="team2-match{{ i }}" placeholder="Équipe 2" readonly>
                             </div>
                             <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
+                                <input type="time" id="time1-match{{ i }}" placeholder="Heure" readonly>
                             </div>
                             <div class="result">
-                                <input class="input" type="text" id="result13" placeholder="Résultat">
+                                <input class="input" type="text" id="result1-match{{ i }}" placeholder="Résultat" readonly>
                             </div>
                         </div>
-                        <div class="match">
-                            <div class="match-header">Demi-finale 2</div>
-                            <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
-                            </div>
-                            <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
-                            </div>
-                            <div class="result">
-                                <input class="input" type="text" id="result13" placeholder="Résultat">
-                            </div>
-                        </div>
-                        <!-- Repeat for other matches -->
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -250,39 +107,40 @@
         <!-- Finale et petite finale -->
         <div class="accordion-item mb-2">
             <h2 class="accordion-header" id="headingFinal">
-                <button class="accordion-button collapsed w-100 text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFinal" aria-expanded="false" aria-controls="collapseFinal">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFinal" aria-expanded="false" aria-controls="collapseFinal">
                     Finale et Petite Finale
                 </button>
             </h2>
             <div id="collapseFinal" class="accordion-collapse collapse" aria-labelledby="headingFinal" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
-                        <!-- Finale -->
-                        <div class="match" id="finalMatch">
-                            <div class="match-header">Finale</div>
-                            <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
-                            </div>
-                            <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
-                            </div>
-                            <div class="result">
-                                <input class="input" type="text" id="resultFinal" placeholder="Résultat">
-                            </div>
-                        </div>
                         <!-- Petite finale -->
                         <div class="match" id="thirdPlaceMatch">
                             <div class="match-header">Petite finale</div>
                             <div class="teams">
-                                <input class="input" type="text" id="team1" placeholder="Équipe 1">
-                                <input class="input" type="text" id="team2" placeholder="Équipe 2">
+                                <input class="input" type="text" id="team1-match15" placeholder="Équipe 1" readonly>
+                                <input class="input" type="text" id="team2-match15" placeholder="Équipe 2" readonly>
                             </div>
                             <div class="time">
-                                <input type="time" id="time1" placeholder="Heure">
+                                <input type="time" id="time-match15" placeholder="Heure" readonly>
                             </div>
                             <div class="result">
-                                <input class="input" type="text" id="resultThirdPlace" placeholder="Résultat">
+                                <input class="input" type="text" id="result1-match15" placeholder="Résultat" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Finale -->
+                        <div class="match" id="finalMatch">
+                            <div class="match-header">Finale</div>
+                            <div class="teams">
+                                <input class="input" type="text" id="team1-match16" placeholder="Équipe 1" readonly>
+                                <input class="input" type="text" id="team2-match16" placeholder="Équipe 2" readonly>
+                            </div>
+                            <div class="time">
+                                <input type="time" id="time-match16" placeholder="Heure" readonly>
+                            </div>
+                            <div class="result">
+                                <input class="input" type="text" id="result1-match16" placeholder="Résultat" readonly>
                             </div>
                         </div>
                     </div>
@@ -291,10 +149,5 @@
         </div>
 
     </div>
-
-   </div>
-</div>
-</div>
-</div>
 </div>
 {% endblock %}
