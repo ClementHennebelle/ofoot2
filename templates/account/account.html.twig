@@ -10,14 +10,14 @@
         <!-- Profile Information -->
         <div class="col-md-4 mb-4">
             <div class="card">
-                <div class="card-header bg-dark text-white">
-                    <h5 class="mb-0">Profil</h5>
+                <div class="card-header bg-dark text-white text-center">
+                    <h5 class="mb-0 text-center">Profil</h5>
                 </div>
                 <div class="card-body d-flex flex-column align-items-center">
-                    <img src="./images/150.png" class="rounded-circle mb-3" alt="User Avatar">
-                    <h6 class="mb-1 textblack">Nom de l'utilisateur</h6>
-                    <p class="text-muted mb-1">email@example.com</p>
-                    <p class="text-muted mb-0">Club: Club Name</p>
+                    <img src="https://img.freepik.com/vecteurs-premium/avatar-footballeur-francais_24908-33227.jpg" style="width: 250px; height: 200px;" class="rounded-circle mb-3" alt="User Avatar">
+                    <h6 class="mb-1 text-black">{{ accountInfo.firstname }} {{ accountInfo.lastname }}</h6>
+                    <p class="text-muted mb-1">{{ accountInfo.email }}</p>
+                    <p class="text-muted mb-0">{{ accountInfo.clubName }}</p>
                     <p></p> <!-- paragraphe vide pour saut de ligne --> 
                     <button class="btn btn-danger">Se Déconnecter</button>
                 </div>
@@ -27,41 +27,46 @@
         <!-- Account Settings -->
         <div class="col-md-8 mb-4 mt-4">
             <div class="card mb-4">
-                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <div class="card-header bg-dark text-white d-flex justify-content-center">
                     <h5 class="mb-0">Paramètres du Compte</h5>
-                     {# <a href="{{ path('app_account_addclub') }}" class="btn btn-secondary w-25 text-decoration-none text-black">Ajouter un Club</a> #}
                 </div>
                 <div class="card-body">
                     <div class="mb-3 mx-4 text-center">
-                        <p class="form-control-plaintext">Date d'inscription</p>
+                        <a href="#">
+                            <button class="btn btn-success">Modifier ma photo de profil</button>
+                        </a> 
                     </div>
                     <div class="mb-3 mx-4 text-center">
-                        <p class="form-control-plaintext">E-mail de l'utilisateur</p>
+                        <button class="btn btn-secondary">Modifier mon mot de passe</button>
                     </div>
                     <div class="mb-3 mx-4 text-center">
-                        <p class="form-control-plaintext">Club de l'utilisateur</p>
+                        <button class="btn btn-warning">Modifier mon adresse e-mail</button>
                     </div>
                 </div>
             </div>
             
             <!-- Second Account Settings -->
-             <div class="card">
-    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-        <h5 class="mb-0">Options du compte</h5>
-        <a href="{{ path('app_account_addclub') }}" class="btn btn-secondary w-25 text-decoration-none text-black">Rattacher à un club</a>
-    </div>
-    <div class="card-body">
-        <div class="d-flex justify-content-between">
-
-           
-
-            <a href="{{ path('app_account') }}" class="link_nostyle textwhite"><button type="button" class="btn btn-success mx-2 mt-2 mb-2">Accéder à mon profil</a></button>
-            <a href="{{ path('app_tournament_back_new') }}"class="link_nostyle textblack"><button type="button" class="btn btn-warning mx-2 mt-2 mb-2">M'inscrire à un tournoi</a></button>
-            <button type="button" class="btn btn-secondary mx-2 mt-2 mb-2">Créer un tournoi</button>
-            
-        </div>
-    </div>
-</div>
+            <div class="card">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <div class="flex-grow-1 text-center">
+                        <h5 class="mb-0">Options du compte</h5>
+                    </div>
+                    <a href="{{ path('app_account_addclub') }}" class="btn btn-secondary text-decoration-none text-black">Rattacher à un club</a>
+                </div>
+                <div class="card-body d-flex justify-content-center">
+                    <div class="btn-group">
+                        <a href="{{ path('app_account_home') }}" class="link_nostyle text-white">
+                            <button type="button" class="btn btn-success">Accéder à mon profil</button>
+                        </a>
+                        <a href="{{ path('app_tournament_browse') }}" class="link_nostyle text-black">
+                            <button type="button" class="btn btn-secondary">M'inscrire à un tournoi</button>
+                        </a>
+                        <a href="{{ path('app_tournament_back_new') }}" class="link_nostyle text-black">
+                            <button type="button" class="btn btn-warning">Créer un tournoi</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
