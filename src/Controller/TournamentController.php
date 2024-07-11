@@ -6,10 +6,11 @@ use App\Entity\Tournament;
 use App\Form\TournamentType;
 use App\Repository\TournamentRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class TournamentController extends AbstractController
 {
@@ -49,5 +50,14 @@ class TournamentController extends AbstractController
         ]);
     }
 
-    
+    #[Route('/tournament/{id}/register', name: 'app_tournament_register', methods:"GET", requirements: ["id" => "\d+"])]
+    public function register(Tournament $tournamentRead): Response
+    {
+      
+        return $this->render('tournament/register.html.twig', [
+            'tournamentRead' => $tournamentRead,
+            // 'form' => $form->createView(),
+        ]);
+   
+    }
 }

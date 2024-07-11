@@ -39,6 +39,7 @@ security:
         - { path: ^/back/.*/(add|delete|edit), roles: ROLE_ADMIN}
         - { path: ^/back/user, roles: ROLE_SUPER_ADMIN}
         - { path: ^/back/, roles: ROLE_ADMIN}
+        # - { path: ^/tournament/\d+/register, roles: [ROLE_USER, ROLE_ADMIN]}
 
  
     role_hierarchy:
