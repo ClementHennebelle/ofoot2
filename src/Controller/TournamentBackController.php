@@ -78,4 +78,15 @@ class TournamentBackController extends AbstractController
 
         return $this->redirectToRoute('app_tournament_back_index', [], Response::HTTP_SEE_OTHER);
     }
+
+  
+    #[Route('/score/{id}', name: 'app_score', methods:"GET", requirements: ["id" => "\d+"])]
+    public function score(Tournament $tournamentRead): Response
+    {
+      
+        return $this->render('tournament_back/score.html.twig', [
+            'tournamentRead' => $tournamentRead,
+        ]);
+    }
+
 }
