@@ -16,14 +16,15 @@
     </div>
 </div>
 
-<div class="container my-4 semi-transparent-bg-white text-center mx-auto">
+<div class="container mt-4 semi-transparent-bg-white text-center text-black mb-4">
     <div class="row align-items-center">
-        <div class="col-md-4 mb-4 mb-md-0 mx-auto">
+        <div class="col-md-4 mb-4 mb-md-0">
             <img src="{{ asset('images/' ~ tournamentRead.Poster) }}" class="img-fluid rounded-start" alt="Image du tournoi">
         </div>
         <div class="col-md-8">
+            <h2 class="section-title text-black">{{ tournamentRead.TournamentName }}</h2>
             <div class="table-responsive">
-                <table class="table table-bordered table-transparent mt-4">
+                <table class="table table-bordered mt-4">
                     <tbody>
                         <tr>
                             <th scope="row" style="width: 30%;"><i class="bi bi-geo-alt-fill icon-tournoi"></i> Lieu :</th>
@@ -35,10 +36,14 @@
                         </tr>
                         <tr>
                             <th scope="row"><i class="bi bi-people-fill icon-tournoi"></i> Nombre d'équipes :</th>
-                            <td>{{ tournamentRead.TeamCount }}</td>
+                            <td>{{ tournamentRead.TeamCount }} équipes</td>
                         </tr>
                         <tr>
-                            <th scope="row"><i class="bi bi-cash-coin icon-tournoi"></i> Prix :</th>
+                            <th scope="row"><i class="bi bi-trophy-fill icon-tournoi"></i> Nombre de joueur/équipe :</th>
+                            <td>{{ tournamentRead.PlayerTeamCount }} joueurs</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><i class="bi bi-cash-coin icon-tournoi"></i> Prix par équipe :</th>
                             <td>{{ tournamentRead.Price }} €</td>
                         </tr>
                         <tr>
@@ -49,9 +54,12 @@
                 </table>
             </div>
             <div class="text-center mt-4">
-                <a href="{{ path('app_tournament_register', {'id': tournamentRead.id}) }}" class="fs-4 px-4 py-3 rounded pen-icon-solo text-decoration-none text-white btn btn-secondary">
-                    <i class="bi bi-pen me-2"></i> Je m'inscris
+                <a href="{{ path('app_tournament_register', {'id': tournamentRead.id}) }}" class="fs-4 px-4 py-3 rounded pen-icon-solo text-decoration-none text-black btn btn-secondary">
+                    <i class="bi bi-pen me-2"></i> J'inscris mon équipe
                 </a>
+            </div>
+            <div class="text-center mt-4 mb-2">
+                <a href="{{ path('app_tournament_back_index') }}" class="btn btn-success">Retour à la liste des tournois</a>
             </div>
         </div>
     </div>
