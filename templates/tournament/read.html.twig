@@ -4,45 +4,65 @@
 
 {% block body %}
 
-  <!-- Main Content-->
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col text-center">
-                <div class="rounded-pill bg-dark d-inline-block p-3">
-                    <h2 class="section-title m-0">{{ tournamentRead.TournamentName }}</h2>
+<!-- Main Content -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col text-center">
+            <div class="rounded-pill bg-dark d-inline-block p-3">
+                <h2 class="section-title m-0">{{ tournamentRead.TournamentName }}</h2>
+            </div>
+            <p class="section-description"></p>
+        </div>
+    </div>
+</div>
+
+<div class="container my-4 semi-transparent-bg-white text-center">
+    <div class="row align-items-center">
+        <div class="col-md-4 mb-4 mb-md-0">
+            <img src="{{ asset('images/' ~ tournamentRead.Poster) }}" class="img-fluid rounded-start" alt="Image du tournoi">
+        </div>
+        <div class="col-md-8">
+            <h3 class="section-title text-black">{{ tournamentRead.TournamentName }}</h3> <!-- Placé à l'extérieur du tableau -->
+            <div class="table-responsive">
+                <table class="table table-bordered mt-4">
+                    <tbody>
+                        <tr>
+                            <th scope="row" style="width: 30%;"><i class="bi bi-geo-alt-fill icon-tournoi"></i> Lieu :</th>
+                            <td style="width: 70%;">{{ tournamentRead.Location }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><i class="bi bi-calendar-date icon-tournoi"></i> Date :</th>
+                            <td>{{ tournamentRead.Date|date('d F Y') }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><i class="bi bi-people-fill icon-tournoi"></i> Nombre d'équipes :</th>
+                            <td>{{ tournamentRead.TeamCount }} équipes</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><i class="bi bi-trophy-fill icon-tournoi"></i> Nombre de joueur/équipe :</th>
+                            <td>{{ tournamentRead.PlayerTeamCount }} joueurs</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><i class="bi bi-cash-coin icon-tournoi"></i> Prix par équipe :</th>
+                            <td>{{ tournamentRead.Price }} €</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><i class="bi bi-trophy-fill icon-tournoi"></i> Récompenses :</th>
+                            <td>{{ tournamentRead.Rewards }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center mt-4">
+            <div>
+                <a href="{{ path('app_tournament_register', {'id': tournamentRead.id}) }}" class="fs-4 px-4 py-3 rounded pen-icon-solo text-decoration-none text-black btn btn-secondary mb-2">
+                    <i class="bi bi-pen me-2"></i> Je m'inscris
+                </a>
                 </div>
-                <p class="section-description"></p>
+                <a href="{{ path('app_tournament_score', {'id': tournamentRead.id}) }}" class="fs-4 px-4 py-3 rounded pen-icon-solo text-decoration-none text-black btn btn-success mb-2">Les Scores</a>
             </div>
         </div>
     </div>
-    <div class="container my-4">
-        <div class="textblack">
-            <div class="card">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                   
-                        <img src="{{ asset('images/' ~ tournamentRead.Poster) }}" class="img-fluid rounded-start" alt="Image du tournoi">
-                    </div>
-                    <div class="col-8 p-4 d-flex flex-column position-static text-center">
-                        <h3 class="mb-2 mt-3 display-3">  {{ tournamentRead.TournamentName }}</h3>
-                        <p class="mb-1 mt-1"><i class="bi bi-geo-alt-fill icon-tournoi"></i>  {{ tournamentRead.Location }}</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-calendar-date icon-tournoi"></i>  {{tournamentRead.Date|date('d F Y') }}</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-people-fill icon-tournoi"></i>  {{ tournamentRead.TeamCount }} équipes</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-cash-coin icon-tournoi"></i>  {{ tournamentRead.Price }} €</p>
-                        <p class="mb-1 mt-1"><i class="bi bi-trophy-fill icon-tournoi"></i>  {{ tournamentRead.Rewards }}</p>
-                        <a href="#" class="fs-1 mt-3 align-self-center px-3 py-2 rounded pen-icon-solo text-decoration-none textblack btn btn-secondary w-50">
-                            <i class="bi bi-pen me-2"></i> Je m'inscris
-                        </a>
-                    </div>
-                  
-                </div>
-            </div>
-        </div>
-        
-    </div>
- 
+</div>
+
 {% endblock %}
-
-
-
-
