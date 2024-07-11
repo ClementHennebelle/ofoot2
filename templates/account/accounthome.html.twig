@@ -11,13 +11,13 @@
         <div class="col-md-6 mb-4">
             <div class="card">
                 <div class="card-header bg-dark text-white">
-                    <h5 class="mb-0 text-center"> Mon Profil</h5>
+                    <h3 class="mb-0 text-center"> Mon Profil</h3>
                 </div>
                 <div class="card-body d-flex flex-column align-items-center">
-                    <img src="../images/150.png" class="rounded-circle mb-3" alt="User Avatar">
-                    <h6 class="mb-1 textblack">Nom de l'utilisateur</h6>
-                    <p class="text-muted mb-1">email@example.com</p>
-                    <p class="text-muted mb-0">Club: Club Name</p>
+                    <img src="https://img.freepik.com/vecteurs-premium/avatar-footballeur-francais_24908-33227.jpg" style="width: 250px; height: 200px;" class="rounded-circle mb-3" alt="User Avatar">
+                    <h6 class="mb-1 textblack">{{ accountInfo.firstname }} {{ accountInfo.lastname }}</h6>
+                    <p class="text-muted mb-1">{{ accountInfo.email }}</p>
+                    <p class="text-muted mb-0">{{ accountInfo.clubName }}</p>
                     <p></p> <!-- paragraphe vide pour saut de ligne --> 
                     {#  #}
                 </div>
@@ -26,12 +26,12 @@
 <div class="col-md-6 mb-4">
             <div class="card">
                 <div class="card-header bg-dark text-white">
-                    <h5 class="mb-0 text-center">Mon Club</h5>
+                    <h3 class="mb-0 text-center">Mon Club</h3>
                 </div>
                 <div class="card-body d-flex flex-column align-items-center">
-                    <img src="../images/150.png" class="rounded-circle mb-3" alt="User Avatar">
-                    <h6 class="mb-1 textblack">Club: Club Name</h6>
-                    <p class="text-muted mb-1">email@example.com</p>
+                    <img src="{{ accountInfo.clubLogo }}" style="width: 250px; height: 200px;" class="rounded-circle mb-3" alt="User Avatar">
+                    <h6 class="mb-1 textblack">{{ accountInfo.clubName }}</h6>
+                    <p class="text-muted mb-1">N° de licence : {{ accountInfo.clubLicenceNumber }}</p>
                     <p class="text-muted mb-0">Tournois inscrits à venir</p>
                     <p></p> <!-- paragraphe vide pour saut de ligne --> 
                     {# <button class="btn btn-danger">Se Déconnecter</button> #}
