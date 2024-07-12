@@ -1,5 +1,7 @@
 <?php
 
+// App/Entity/Game.php
+
 namespace App\Entity;
 
 use App\Repository\GameRepository;
@@ -28,53 +30,24 @@ class Game
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::STRING, length:255)]
+    #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $score = null;
 
-    /**
-     * @var Collection<int, Tournament>
-     */
     #[ORM\ManyToMany(targetEntity: Tournament::class, mappedBy: 'game')]
     private Collection $tournaments;
 
-    /**
-     * @var Collection<int, Club>
-     */
-    #[ORM\OneToMany(targetEntity: Club::class, mappedBy: 'game')]
-    private Collection $clubs;
+    #[ORM\ManyToOne(targetEntity: Club::class)]
+    private ?Club $firstClub = null;
 
-    /**
-     * @var Collection<int, Club>
-     */
-    #[ORM\OneToMany(targetEntity: Club::class, mappedBy: 'game')]
-    private Collection $firstClub;
+    #[ORM\ManyToOne(targetEntity: Club::class)]
+    private ?Club $secondClub = null;
 
-    /**
-     * @var Collection<int, Club>
-     */
-    #[ORM\OneToMany(targetEntity: Club::class, mappedBy: 'firstclub')]
-    private Collection $firstclub;
-
-    /**
-     * @var Collection<int, Club>
-     */
-    #[ORM\OneToMany(targetEntity: Club::class, mappedBy: 'secondclub')]
-    private Collection $secondClub;
-
-    /**
-     * @var Collection<int, Club>
-     */
-    #[ORM\OneToMany(targetEntity: Club::class, mappedBy: 'winner')]
-    private Collection $winner;
+    #[ORM\ManyToOne(targetEntity: Club::class)]
+    private ?Club $winner = null;
 
     public function __construct()
     {
         $this->tournaments = new ArrayCollection();
-        $this->clubs = new ArrayCollection();
-        $this->firstClub = new ArrayCollection();
-        $this->firstclub = new ArrayCollection();
-        $this->secondClub = new ArrayCollection();
-        $this->winner = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -169,122 +142,38 @@ class Game
         return $this;
     }
 
-    /**
-     * @return Collection<int, Club>
-     */
-    public function getClubs(): Collection
-    {
-        return $this->clubs;
-    }
-
-    public function addClub(Club $club): static
-    {
-        if (!$this->clubs->contains($club)) {
-            $this->clubs->add($club);
-            $club->setGame($this);
-        }
-
-        return $this;
-    }
-
-    public function removeClub(Club $club): static
-    {
-        if ($this->clubs->removeElement($club)) {
-            // set the owning side to null (unless already changed)
-            if ($club->getGame() === $this) {
-                $club->setGame(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Club>
-     */
-    public function getFirstClub(): Collection
+    public function getFirstClub(): ?Club
     {
         return $this->firstClub;
     }
 
-    public function addFirstClub(Club $firstClub): static
+    public function setFirstClub(?Club $firstClub): static
     {
-        if (!$this->firstClub->contains($firstClub)) {
-            $this->firstClub->add($firstClub);
-            $firstClub->setGame($this);
-        }
+        $this->firstClub = $firstClub;
 
         return $this;
     }
 
-    public function removeFirstClub(Club $firstClub): static
-    {
-        if ($this->firstClub->removeElement($firstClub)) {
-            // set the owning side to null (unless already changed)
-            if ($firstClub->getGame() === $this) {
-                $firstClub->setGame(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Club>
-     */
-    public function getSecondClub(): Collection
+    public function getSecondClub(): ?Club
     {
         return $this->secondClub;
     }
 
-    public function addSecondClub(Club $secondClub): static
+    public function setSecondClub(?Club $secondClub): static
     {
-        if (!$this->secondClub->contains($secondClub)) {
-            $this->secondClub->add($secondClub);
-            $secondClub->setSecondclub($this);
-        }
+        $this->secondClub = $secondClub;
 
         return $this;
     }
 
-    public function removeSecondClub(Club $secondClub): static
-    {
-        if ($this->secondClub->removeElement($secondClub)) {
-            // set the owning side to null (unless already changed)
-            if ($secondClub->getSecondclub() === $this) {
-                $secondClub->setSecondclub(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Club>
-     */
-    public function getWinner(): Collection
+    public function getWinner(): ?Club
     {
         return $this->winner;
     }
 
-    public function addWinner(Club $winner): static
+    public function setWinner(?Club $winner): static
     {
-        if (!$this->winner->contains($winner)) {
-            $this->winner->add($winner);
-            $winner->setWinner($this);
-        }
-
-        return $this;
-    }
-
-    public function removeWinner(Club $winner): static
-    {
-        if ($this->winner->removeElement($winner)) {
-            // set the owning side to null (unless already changed)
-            if ($winner->getWinner() === $this) {
-                $winner->setWinner(null);
-            }
-        }
+        $this->winner = $winner;
 
         return $this;
     }
