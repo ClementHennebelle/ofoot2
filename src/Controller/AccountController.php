@@ -33,6 +33,8 @@ class AccountController extends AbstractController
         $clubLicenceNumber = $user->getClub() ? $user->getClub()->getLicenceNumber() : 'Aucun numéro de licence associé';
         $clubDateCreation = $user->getClub() ? $user->getClub()->getCreatedAt() : 'Aucun club associé';
         $clubLogo = $user->getClub() ? $user->getClub()->getLogo() : 'Aucun logo associé';
+        $userTournament = $user->getTournament() ? $user->getTournament()->getTournamentName() : 'Inscrit pour aucun tournoi prochainement';
+        $userTournamentDate = $user->getTournament() ? $user->getTournament()->getDate() : 'Pas de date pour ce tournoi';
         $accountInfo = [
             'lastname' => $user->getLastname(),
             'firstname' => $user->getFirstname(),
@@ -40,7 +42,9 @@ class AccountController extends AbstractController
             'clubName' => $clubName,
             'clubLicenceNumber' => $clubLicenceNumber,
             'clubDateCreation' => $clubDateCreation,
-            'clubLogo' => $clubLogo,   
+            'clubLogo' => $clubLogo, 
+            'userTournament' => $userTournament  ,
+            'userTournamentDate' => $userTournamentDate
         ];
         return $this->render('account/accounthome.html.twig', [
             'controller_name' => 'AccountController',
