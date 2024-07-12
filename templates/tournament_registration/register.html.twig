@@ -6,23 +6,21 @@
 
 <!-- Main Content -->
 <div class="container mt-4">
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        {{ message }}
-    </div>
-{% endfor %}
-
-{% for message in app.flashes('error') %}
-    <div class="alert alert-danger">
-        {{ message }}
-    </div>
-{% endfor %}
-
-{% for message in app.flashes('info') %}
-    <div class="alert alert-info">
-        {{ message }}
-    </div>
-{% endfor %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('info') %}
+        <div class="alert alert-info">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="row">
         <div class="col text-center">
             <div class="rounded-pill bg-dark d-inline-block p-3">
@@ -70,16 +68,26 @@
                     </tbody>
                 </table>
             </div>
-            <div class="text-center mt-4">
-        <form method="post" action="{{ path('app_tournament_register', {'id': tournamentRead.id}) }}">
-            <button type="submit" class="fs-4 px-4 py-3 rounded pen-icon-solo text-decoration-none text-black btn btn-secondary">
-                <i class="bi bi-pen me-2"></i> J'inscris mon équipe
-            </button>
-        </form>
-            </div>
-            <div class="text-center mt-4 mb-2">
-                <a href="{{ path('app_tournament_back_index') }}" class="btn btn-success">Retour à la liste des tournois</a>
-            </div>
+             <div class="text-center mt-4">
+        {% if app.user %}
+            {% if app.user.tournament == tournamentRead %}
+                <p class="alert alert-info">Vous êtes déjà inscrit à ce tournoi.</p>
+            {% else %}
+                <form method="post" action="{{ path('app_tournament_register', {'id': tournamentRead.id}) }}">
+                    {% if app.user.tournament %}
+                        <p class="alert alert-warning">Attention : Vous êtes actuellement inscrit au tournoi "{{ app.user.tournament.TournamentName }}". En vous inscrivant à ce nouveau tournoi, vous serez désinscrit de l'ancien.</p>
+                    {% endif %}
+                    <button type="submit" class="fs-4 px-4 py-3 rounded pen-icon-solo text-decoration-none text-black btn btn-secondary">
+                        <i class="bi bi-pen me-2"></i> {% if app.user.tournament %}Changer de tournoi{% else %}J'inscris mon équipe{% endif %}
+                    </button>
+                </form>
+            {% endif %}
+        {% else %}
+            <a href="{{ path('app_login') }}" class="fs-4 px-4 py-3 rounded pen-icon-solo text-decoration-none text-black btn btn-secondary">
+                <i class="bi bi-person me-2"></i> Connectez-vous pour vous inscrire
+            </a>
+        {% endif %}
+    </div>
         </div>
     </div>
 </div>
