@@ -19,7 +19,10 @@
                     <p class="text-muted mb-1">{{ accountInfo.email }}</p>
                     <p class="text-muted mb-0">{{ accountInfo.clubName }}</p>
                     <p></p> <!-- paragraphe vide pour saut de ligne --> 
-                    <button class="btn btn-danger">Se Déconnecter</button>
+                    <a href="{{ path('app_logout') }}">
+                            <button class="btn btn-danger">Se Déconnecter</button>
+                        </a> 
+                    
                 </div>
             </div>
         </div>
