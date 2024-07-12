@@ -2,6 +2,8 @@
 
 {% block title %}O'FOOT - Résultats{% endblock %}
 
+
+
 {% block body %}
 <div class="container mt-4 custom-contact-container">
     <div class="row">
@@ -150,4 +152,7 @@
 
     </div>
 </div>
+{% block javascripts %}
+        <script src="{{ asset('js/score.js') }}"></script>
+    {% endblock %}
 {% endblock %}
