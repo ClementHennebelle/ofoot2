@@ -28,8 +28,8 @@ class Game
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $score = null;
+    #[ORM\Column(type: Types::STRING, length:255)]
+    private ?string $score = null;
 
     /**
      * @var Collection<int, Tournament>
@@ -130,12 +130,12 @@ class Game
         return $this;
     }
 
-    public function getScore(): ?int
+    public function getScore(): ?string
     {
         return $this->score;
     }
 
-    public function setScore(int $score): static
+    public function setScore(string $score): static
     {
         $this->score = $score;
 
