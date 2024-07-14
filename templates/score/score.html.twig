@@ -153,45 +153,53 @@
     </div>
 </div>
 <script>
-    console.log('Le fichier est bien chargé');
-
-    async function fetchAndDisplayScores() {
-        try {
-            console.log('Début de la récupération des scores...');
-
-            const response = await fetch('http://localhost:8000/api/score');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const scores = await response.json();
-            console.log('Scores reçus:', scores);
-
-            displayScores(scores);
-        } catch (error) {
-            console.error('Erreur lors de la récupération des scores:', error);
+// Définissez d'abord la fonction displayScores
+function displayScores(scores) {
+    console.log('Début de l\'affichage des scores');
+    scores.forEach((score, index) => {
+        const id = score.id || score.matchId || (index + 1);
+        const elementId = `result1-match${id}`;
+        console.log(`Recherche de l'élément avec l'ID: ${elementId}`);
+        const resultInput = document.getElementById(elementId);
+        if (resultInput) {
+            console.log(`Élément trouvé pour le match ${id}, valeur actuelle: ${resultInput.value}`);
+            const result = score.result || score.score || 'N/A';
+            console.log(`Valeur à définir pour le match ${id}:`, result);
+            resultInput.value = result;
+            console.log(`Nouvelle valeur définie: ${resultInput.value}`);
+        } else {
+            console.warn(`Élément non trouvé pour le match ${id}`);
         }
-    }
-
-    function displayScores(scores) {
-        console.log('Début de l\'affichage des scores');
-        scores.forEach(score => {
-            const elementId = `result1-match${score.id}`;
-            console.log(`Recherche de l'élément avec l'ID: ${elementId}`);
-            const resultInput = document.getElementById(elementId);
-            if (resultInput) {
-                console.log(`Élément trouvé pour le match ${score.id}, valeur actuelle: ${resultInput.value}`);
-                resultInput.value = score.result;
-                console.log(`Nouvelle valeur définie: ${resultInput.value}`);
-            } else {
-                console.warn(`Élément non trouvé pour le match ${score.id}`);
-            }
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM chargé, lancement de fetchAndDisplayScores');
-        fetchAndDisplayScores();
     });
+}
+console.log('displayScores est définie:', typeof displayScores);
+
+// Ensuite, définissez la fonction fetchAndDisplayScores
+async function fetchAndDisplayScores() {
+    try {
+        console.log('Début de la récupération des scores...');
+        const response = await fetch('http://localhost:8000/api/score');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const scores = await response.json();
+        console.log('Données brutes reçues de l\'API:', JSON.stringify(scores, null, 2));
+        displayScores(scores);
+    } catch (error) {
+        console.error('Erreur lors de la récupération des scores:', error);
+    }
+}
+
+// Enfin, ajoutez l'écouteur d'événements
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM chargé, lancement de fetchAndDisplayScores');
+    // Vérifiez si les éléments HTML existent
+    for (let i = 1; i <= 16; i++) {
+        const el = document.getElementById(`result1-match${i}`);
+        console.log(`Élément result1-match${i} existe: ${el ? 'Oui' : 'Non'}`);
+    }
+    fetchAndDisplayScores();
+});
 </script>
 {% endblock %}
 
