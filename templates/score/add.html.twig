@@ -2,14 +2,12 @@
 
 {% block title %}O'FOOT - Résultats{% endblock %}
 
-
-
 {% block body %}
 <div class="container mt-4 custom-contact-container">
     <div class="row">
         <div class="col text-center">
             <div class="rounded-pill bg-dark d-inline-block p-3">
-                <h2 class="section-title m-0">Résultats du {{ tournamentRead.TournamentName }}</h2>
+                <h2 class="section-title m-0">Résultats du Tournoi</h2>
             </div>
         </div>
     </div>
@@ -37,8 +35,9 @@
                                 <input type="time" id="time1-match{{ i }}" placeholder="Heure" readonly>
                             </div>
                             <div class="result">
-                                <input class="input" type="text" id="result1-match{{ i }}" placeholder="Résultat" readonly>
+                                <input class="input" type="text" id="result1-match{{ i }}" placeholder="Résultat">
                             </div>
+                            <button class="btn btn-primary mt-2 send-score-btn" data-match="{{ i }}">Envoyer le score</button>
                         </div>
                         {% endfor %}
                     </div>
@@ -67,8 +66,9 @@
                                 <input type="time" id="time1-match{{ i }}" placeholder="Heure" readonly>
                             </div>
                             <div class="result">
-                                <input class="input" type="text" id="result1-match{{ i }}" placeholder="Résultat" readonly>
+                                <input class="input" type="text" id="result1-match{{ i }}" placeholder="Résultat">
                             </div>
+                            <button class="btn btn-primary mt-2 send-score-btn" data-match="{{ i }}">Envoyer le score</button>
                         </div>
                         {% endfor %}
                     </div>
@@ -97,8 +97,9 @@
                                 <input type="time" id="time1-match{{ i }}" placeholder="Heure" readonly>
                             </div>
                             <div class="result">
-                                <input class="input" type="text" id="result1-match{{ i }}" placeholder="Résultat" readonly>
+                                <input class="input" type="text" id="result1-match{{ i }}" placeholder="Résultat">
                             </div>
+                            <button class="btn btn-primary mt-2 send-score-btn" data-match="{{ i }}">Envoyer le score</button>
                         </div>
                         {% endfor %}
                     </div>
@@ -127,8 +128,9 @@
                                 <input type="time" id="time-match15" placeholder="Heure" readonly>
                             </div>
                             <div class="result">
-                                <input class="input" type="text" id="result1-match15" placeholder="Résultat" readonly>
+                                <input class="input" type="text" id="result1-match15" placeholder="Résultat">
                             </div>
+                            <button class="btn btn-primary mt-2 send-score-btn" data-match="15">Envoyer le score</button>
                         </div>
 
                         <!-- Finale -->
@@ -142,8 +144,9 @@
                                 <input type="time" id="time-match16" placeholder="Heure" readonly>
                             </div>
                             <div class="result">
-                                <input class="input" type="text" id="result1-match16" placeholder="Résultat" readonly>
+                                <input class="input" type="text" id="result1-match16" placeholder="Résultat">
                             </div>
+                            <button class="btn btn-primary mt-2 send-score-btn" data-match="16">Envoyer le score</button>
                         </div>
                     </div>
                 </div>
@@ -152,47 +155,41 @@
 
     </div>
 </div>
-<script>
-    console.log('Le fichier est bien chargé');
-
-    async function fetchAndDisplayScores() {
-        try {
-            console.log('Début de la récupération des scores...');
-
-            const response = await fetch('http://localhost:8000/api/score');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const scores = await response.json();
-            console.log('Scores reçus:', scores);
-
-            displayScores(scores);
-        } catch (error) {
-            console.error('Erreur lors de la récupération des scores:', error);
-        }
-    }
-
-    function displayScores(scores) {
-        console.log('Début de l\'affichage des scores');
-        scores.forEach(score => {
-            const elementId = `result1-match${score.id}`;
-            console.log(`Recherche de l'élément avec l'ID: ${elementId}`);
-            const resultInput = document.getElementById(elementId);
-            if (resultInput) {
-                console.log(`Élément trouvé pour le match ${score.id}, valeur actuelle: ${resultInput.value}`);
-                resultInput.value = score.result;
-                console.log(`Nouvelle valeur définie: ${resultInput.value}`);
-            } else {
-                console.warn(`Élément non trouvé pour le match ${score.id}`);
-            }
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM chargé, lancement de fetchAndDisplayScores');
-        fetchAndDisplayScores();
-    });
-</script>
 {% endblock %}
 
-
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/score.js') }}"></script>
+    <script>
+        document.querySelectorAll('.send-score-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const matchId = this.getAttribute('data-match');
+                const result = document.getElementById(`result1-match${matchId}`).value;
+                
+                // Envoyer le score à la base de données via une requête AJAX
+                fetch('/update-score', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        matchId: matchId,
+                        result: result
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Score enregistré avec succès!');
+                    } else {
+                        alert('Erreur lors de l\'enregistrement du score.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    alert('Une erreur est survenue lors de l\'envoi du score.');
+                });
+            });
+        });
+    </script>
+{% endblock %}

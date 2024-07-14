@@ -60,4 +60,13 @@ class TournamentController extends AbstractController
         ]);
    
     }
+
+      // route des score avec tournoi{id}
+
+      #[Route('/tournament/score/add', name: 'app_tournament_add', methods:"GET", requirements: ["id" => "\d+"])]
+      public function scoreAdd(): Response
+      {
+        
+          return $this->render('score/add.html.twig');
+      }
 }

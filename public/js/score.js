@@ -1,6 +1,9 @@
+console.log('le fichier est bien chargé')
+
 // Fonction asynchrone pour récupérer et afficher les scores
 async function fetchAndDisplayScores() {
     try {
+        
         // Effectue une requête GET vers l'API
         const response = await fetch('http://localhost:8000/api/score');
         
