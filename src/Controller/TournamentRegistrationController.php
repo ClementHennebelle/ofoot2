@@ -5,7 +5,7 @@ use App\Entity\Tournament;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -21,7 +21,8 @@ class TournamentRegistrationController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        $isAlreadyRegistered = ($user->getTournament() === $tournamentRead);
+        // Vérifier si l'utilisateur est déjà inscrit à ce tournoi
+        $isAlreadyRegistered = $user->getTournament() && $user->getTournament()->getId() === $tournamentRead->getId();
 
         return $this->render('tournament_registration/register.html.twig', [
             'tournamentRead' => $tournamentRead,
@@ -39,7 +40,8 @@ class TournamentRegistrationController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        $isAlreadyRegistered = ($user->getTournament() === $tournamentRead);
+        // Vérifier si l'utilisateur est déjà inscrit à ce tournoi
+        $isAlreadyRegistered = $user->getTournament() && $user->getTournament()->getId() === $tournamentRead->getId();
 
         if (!$isAlreadyRegistered) {
             // Désinscription de l'ancien tournoi si nécessaire
@@ -54,12 +56,9 @@ class TournamentRegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->persist($tournamentRead);
             $entityManager->flush();
-
-            $this->addFlash('success', 'Vous êtes inscrit au tournoi avec succès !');
-        } else {
-            $this->addFlash('info', 'Vous êtes déjà inscrit à ce tournoi.');
+           
         }
 
-        return $this->redirectToRoute('app_tournament_read', ['id' => $tournamentRead->getId()]);
+        return $this->redirectToRoute('app_account_home', ['id' => $tournamentRead->getId()]);
     }
 }

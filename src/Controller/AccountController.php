@@ -14,39 +14,42 @@ class AccountController extends AbstractController
 {
     #[Route('/account', name: 'app_account')]
     public function index(): Response
-{
-    $user = $this->getUser();
+    {
+        $user = $this->getUser();
 
-    // Vérifier si l'utilisateur est connecté
-    if (!$user) {
-        // Gérer le cas où aucun utilisateur n'est connecté
-        return $this->redirectToRoute('app_login'); // Rediriger vers la page de connexion par exemple
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $clubName = $user->getClub() ? $user->getClub()->getClubName() : 'Aucun club associé';
+        $accountInfo = [
+            'lastname' => $user->getLastname(),
+            'firstname' => $user->getFirstname(),
+            'email' => $user->getEmail(),
+            'clubName' => $clubName,
+        ];
+
+        return $this->render('account/account.html.twig', [
+            'accountInfo' => $accountInfo,
+        ]);
     }
-
-    // Si l'utilisateur est connecté, récupérer les informations du compte
-    $clubName = $user->getClub() ? $user->getClub()->getClubName() : 'Aucun club associé';
-    $accountInfo = [
-        'lastname' => $user->getLastname(),
-        'firstname' => $user->getFirstname(),
-        'email' => $user->getEmail(),
-        'clubName' => $clubName,
-    ];
-
-    return $this->render('account/account.html.twig', [
-        'accountInfo' => $accountInfo,
-    ]);
-}
 
     #[Route('/account/home', name: 'app_account_home')]
     public function home(): Response
     {
         $user = $this->getUser();
+
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $clubName = $user->getClub() ? $user->getClub()->getClubName() : 'Aucun club associé';
         $clubLicenceNumber = $user->getClub() ? $user->getClub()->getLicenceNumber() : 'Aucun numéro de licence associé';
         $clubDateCreation = $user->getClub() ? $user->getClub()->getCreatedAt() : 'Aucun club associé';
         $clubLogo = $user->getClub() ? $user->getClub()->getLogo() : 'Aucun logo associé';
-        $userTournament = $user->getTournament() ? $user->getTournament()->getTournamentName() : 'Inscrit pour aucun tournoi prochainement';
-        $userTournamentDate = $user->getTournament() ? $user->getTournament()->getDate() : 'Pas de date pour ce tournoi';
+        $userTournament = $user->getTournament() ? $user->getTournament()->getTournamentName() : null;
+        $userTournamentDate = $user->getTournament() ? $user->getTournament()->getDate() : null;
+
         $accountInfo = [
             'lastname' => $user->getLastname(),
             'firstname' => $user->getFirstname(),
@@ -54,13 +57,12 @@ class AccountController extends AbstractController
             'clubName' => $clubName,
             'clubLicenceNumber' => $clubLicenceNumber,
             'clubDateCreation' => $clubDateCreation,
-            'clubLogo' => $clubLogo, 
-            'userTournament' => $userTournament  ,
-            'userTournamentDate' => $userTournamentDate
+            'clubLogo' => $clubLogo,
+            'userTournament' => $userTournament,
+            'userTournamentDate' => $userTournamentDate,
         ];
 
         return $this->render('account/accounthome.html.twig', [
-            'controller_name' => 'AccountController',
             'accountInfo' => $accountInfo,
         ]);
     }
@@ -70,7 +72,6 @@ class AccountController extends AbstractController
     {
         $user = $this->getUser();
 
-        // Récupération de tous les clubs pour afficher dans le formulaire
         $clubs = $entityManager->getRepository(Club::class)->findAll();
 
         if ($request->isMethod('POST')) {
@@ -80,7 +81,6 @@ class AccountController extends AbstractController
                 $club = $entityManager->getRepository(Club::class)->find($clubId);
 
                 if ($club) {
-                    // Associer l'utilisateur au club sélectionné
                     $user->setClub($club);
                     $entityManager->flush();
 
