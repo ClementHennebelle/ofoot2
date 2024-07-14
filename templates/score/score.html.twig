@@ -153,51 +153,67 @@
     </div>
 </div>
 <script>
-// Définissez d'abord la fonction displayScores
+// Fonction pour afficher les scores
 function displayScores(scores) {
     console.log('Début de l\'affichage des scores');
+    // Parcours chaque score dans le tableau
     scores.forEach((score, index) => {
+        // Détermine l'ID du match (utilise l'ID du score, ou l'index + 1 si non défini)
         const id = score.id || score.matchId || (index + 1);
+        // Construit l'ID de l'élément HTML correspondant
         const elementId = `result1-match${id}`;
         console.log(`Recherche de l'élément avec l'ID: ${elementId}`);
+        // Recherche l'élément HTML correspondant
         const resultInput = document.getElementById(elementId);
         if (resultInput) {
+            // Si l'élément est trouvé, affiche sa valeur actuelle
             console.log(`Élément trouvé pour le match ${id}, valeur actuelle: ${resultInput.value}`);
+            // Détermine le résultat à afficher (utilise 'result' ou 'score' du score, ou 'N/A' si non défini)
             const result = score.result || score.score || 'N/A';
             console.log(`Valeur à définir pour le match ${id}:`, result);
+            // Met à jour la valeur de l'élément HTML
             resultInput.value = result;
             console.log(`Nouvelle valeur définie: ${resultInput.value}`);
         } else {
+            // Si l'élément n'est pas trouvé, affiche un avertissement
             console.warn(`Élément non trouvé pour le match ${id}`);
         }
     });
 }
+
+// Vérifie que la fonction displayScores est bien définie
 console.log('displayScores est définie:', typeof displayScores);
 
-// Ensuite, définissez la fonction fetchAndDisplayScores
+// Fonction asynchrone pour récupérer et afficher les scores
 async function fetchAndDisplayScores() {
     try {
         console.log('Début de la récupération des scores...');
+        // Fait une requête à l'API pour récupérer les scores
         const response = await fetch('http://localhost:8000/api/score');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
+        // Convertit la réponse en JSON
         const scores = await response.json();
+        // Affiche les données brutes reçues dans la console
         console.log('Données brutes reçues de l\'API:', JSON.stringify(scores, null, 2));
+        // Appelle la fonction pour afficher les scores
         displayScores(scores);
     } catch (error) {
+        // En cas d'erreur, affiche l'erreur dans la console
         console.error('Erreur lors de la récupération des scores:', error);
     }
 }
 
-// Enfin, ajoutez l'écouteur d'événements
+// Ajoute un écouteur d'événements pour s'assurer que le DOM est chargé avant d'exécuter le code
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM chargé, lancement de fetchAndDisplayScores');
-    // Vérifiez si les éléments HTML existent
+    // Vérifie si les éléments HTML pour chaque match existent
     for (let i = 1; i <= 16; i++) {
         const el = document.getElementById(`result1-match${i}`);
         console.log(`Élément result1-match${i} existe: ${el ? 'Oui' : 'Non'}`);
     }
+    // Lance la récupération et l'affichage des scores
     fetchAndDisplayScores();
 });
 </script>
