@@ -155,41 +155,39 @@
 
     </div>
 </div>
-{% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('js/score.js') }}"></script>
-    <script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.send-score-btn').forEach(button => {
-            button.addEventListener('click', function() {
+            button.addEventListener('click', async function() {
                 const matchId = this.getAttribute('data-match');
-                const result = document.getElementById(`result1-match${matchId}`).value;
+                const score = document.getElementById(`result1-match${matchId}`).value;
                 
-                // Envoyer le score à la base de données via une requête AJAX
-                fetch('/update-score', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        matchId: matchId,
-                        result: result
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Score enregistré avec succès!');
+                try {
+                    const response = await fetch(('http://localhost:8000/api/score/post'), {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            score: score
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        alert(`Score enregistré avec succès! ID: ${data.id}`);
                     } else {
-                        alert('Erreur lors de l\'enregistrement du score.');
+                        alert(`Erreur lors de l'enregistrement du score: ${data.error || 'Erreur inconnue'}`);
                     }
-                })
-                .catch((error) => {
+                } catch (error) {
                     console.error('Error:', error);
                     alert('Une erreur est survenue lors de l\'envoi du score.');
-                });
+                }
             });
         });
-    </script>
-{% endblock %}
+    });
+</script>
+
+    {% endblock %}
