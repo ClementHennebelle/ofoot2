@@ -34,9 +34,6 @@ class Game
 
     #[ORM\Column(type: Types::STRING, length:255)]
     #[Groups(['score_browse'])]
-
-    #[ORM\Column(type: Types::STRING, length: 255)]
-
     private ?string $score = null;
 
     #[ORM\ManyToMany(targetEntity: Tournament::class, mappedBy: 'game')]
