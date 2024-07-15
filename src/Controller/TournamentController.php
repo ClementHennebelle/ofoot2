@@ -28,12 +28,15 @@ class TournamentController extends AbstractController
 
     #[Route('/tournament/{id}', name: 'app_tournament_read', methods:"GET", requirements: ["id" => "\d+"])]
     public function read(Tournament $tournamentRead): Response
-    {
-      
-        return $this->render('tournament/read.html.twig', [
-            'tournamentRead' => $tournamentRead,
-        ]);
-    }
+{
+    // Récupérer les utilisateurs inscrits à ce tournoi avec leur club
+    $users = $tournamentRead->getUsers();
+
+    return $this->render('tournament/read.html.twig', [
+        'tournamentRead' => $tournamentRead,
+        'users' => $users,
+    ]);
+}
 
     
 
