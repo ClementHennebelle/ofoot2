@@ -36,11 +36,14 @@
                 <div class="card-body">
                     <div class="mb-3 mx-4 text-center">
                         <a href="#">
-                            <button class="btn btn-success">Modifier ma photo de profil</button>
+                            <button class="btn btn-success">Voir la page de mon club</button>
                         </a> 
                     </div>
                     <div class="mb-3 mx-4 text-center">
-                        <button class="btn btn-secondary">Modifier mon mot de passe</button>
+                    <a href="{{ path('app_forgot_password_request') }}">
+                            <button class="btn btn-secondary">Modifier mon mot de passe</button>
+                        </a> 
+    
                     </div>
                     <div class="mb-3 mx-4 text-center">
                         <button class="btn btn-warning">Modifier mon adresse e-mail</button>
