@@ -1,5 +1,7 @@
 <?php
 
+// App/Entity/Club.php
+
 namespace App\Entity;
 
 use App\Repository\ClubRepository;
@@ -28,37 +30,17 @@ class Club
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $logo = null;
 
-    /**
-     * @var Collection<int, Tournament>
-     */
     #[ORM\ManyToMany(targetEntity: Tournament::class, inversedBy: 'clubs')]
     private Collection $tournament;
 
-    /**
-     * @var Collection<int, User>
-     */
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'club')]
     private Collection $user;
-
-    #[ORM\ManyToOne(inversedBy: 'firstClub')]
-    private ?Game $game = null;
-
-    #[ORM\ManyToOne(inversedBy: 'firstclub')]
-    private ?Game $firstclub = null;
-
-    #[ORM\ManyToOne(inversedBy: 'secondClub')]
-    private ?Game $secondclub = null;
-
-    #[ORM\ManyToOne(inversedBy: 'winner')]
-    private ?Game $winner = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
-
-
 
     public function __construct()
     {
@@ -67,7 +49,7 @@ class Club
         $this->created_at = new \DateTimeImmutable(); // Initialisation de la date de création
     }
 
- 
+    // ... autres getters et setters
 
     public function getId(): ?int
     {
@@ -176,54 +158,6 @@ class Club
         return $this;
     }
 
-    public function getGame(): ?Game
-    {
-        return $this->game;
-    }
-
-    public function setGame(?Game $game): static
-    {
-        $this->game = $game;
-
-        return $this;
-    }
-
-    public function getFirstclub(): ?Game
-    {
-        return $this->firstclub;
-    }
-
-    public function setFirstclub(?Game $firstclub): static
-    {
-        $this->firstclub = $firstclub;
-
-        return $this;
-    }
-
-    public function getSecondclub(): ?Game
-    {
-        return $this->secondclub;
-    }
-
-    public function setSecondclub(?Game $secondclub): static
-    {
-        $this->secondclub = $secondclub;
-
-        return $this;
-    }
-
-    public function getWinner(): ?Game
-    {
-        return $this->winner;
-    }
-
-    public function setWinner(?Game $winner): static
-    {
-        $this->winner = $winner;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;
@@ -247,7 +181,4 @@ class Club
 
         return $this;
     }
-
-
-
 }

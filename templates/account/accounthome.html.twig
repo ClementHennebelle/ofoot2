@@ -15,7 +15,7 @@
                 </div>
                 <div class="card-body d-flex flex-column align-items-center">
                     <img src="https://img.freepik.com/vecteurs-premium/avatar-footballeur-francais_24908-33227.jpg" style="width: 250px; height: 200px;" class="rounded-circle mb-3" alt="User Avatar">
-                    <h6 class="mb-1 textblack">{{ accountInfo.firstname }} {{ accountInfo.lastname }}</h6>
+                    <h6 class="mb-1 text-black">{{ accountInfo.firstname }} {{ accountInfo.lastname }}</h6>
                     <p class="text-muted mb-1">{{ accountInfo.email }}</p>
                     <p class="text-muted mb-0">{{ accountInfo.clubName }}</p>
                     <p></p> <!-- paragraphe vide pour saut de ligne --> 
@@ -23,27 +23,40 @@
                 </div>
             </div>
         </div>
-<div class="col-md-6 mb-4">
+
+        <!-- Club Information -->
+        <div class="col-md-6 mb-4">
             <div class="card">
                 <div class="card-header bg-dark text-white">
                     <h3 class="mb-0 text-center">Mon Club</h3>
                 </div>
                 <div class="card-body d-flex flex-column align-items-center">
-                    <img src="{{ accountInfo.clubLogo }}" style="width: 250px; height: 200px;" class="rounded-circle mb-3" alt="User Avatar">
-                    <h6 class="mb-1 textblack">{{ accountInfo.clubName }}</h6>
+                    <img src="{{ accountInfo.clubLogo }}" style="width: 250px; height: 200px;" class="rounded-circle mb-3" alt="Club Logo">
+                    <h6 class="mb-1 text-black">{{ accountInfo.clubName }}</h6>
                     <p class="text-muted mb-1">N° de licence : {{ accountInfo.clubLicenceNumber }}</p>
                     <p class="text-muted mb-0">Tournois inscrits à venir :</p>
-                    <p class="text-black">{{ accountInfo.userTournament }} le {{ accountInfo.userTournamentDate|date("d-m-Y") }}</p>
-                    <p></p> <!-- paragraphe vide pour saut de ligne --> 
-                    {# <button class="btn btn-danger">Se Déconnecter</button> #}
+
+                    {% if accountInfo.userTournaments is not empty %}
+                        <ul class="list-unstyled">
+                            {% for tournament in accountInfo.userTournaments %}
+                                <li class="text-black">{{ tournament.tournamentName }} le {{ tournament.tournamentDate }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="text-black">Aucun tournoi à venir</p>
+                    {% endif %}
+
+                    <p></p> <!-- paragraphe vide pour saut de ligne -->
+                    
                 </div>
             </div>
         </div>
-        <div class="mb-4 text-center"><button class="btn btn-danger">Se Déconnecter</button></div>
-            
-            
-    </div>
-</div>
+
+        <!-- Logout Button -->
+        <div class="mb-4 text-center">
+            <a href="{{ path('app_logout') }}">
+                <button class="btn btn-danger">Se Déconnecter</button>
+            </a>
         </div>
     </div>
 </div>

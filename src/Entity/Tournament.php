@@ -41,22 +41,13 @@ class Tournament
     #[ORM\Column(length: 255)]
     private ?string $poster = null;
 
-    /**
-     * @var Collection<int, Game>
-     */
     #[ORM\ManyToMany(targetEntity: Game::class, inversedBy: 'tournaments')]
     private Collection $game;
 
-    /**
-     * @var Collection<int, Club>
-     */
     #[ORM\ManyToMany(targetEntity: Club::class, mappedBy: 'tournament')]
     private Collection $clubs;
 
-    /**
-     * @var Collection<int, User>
-     */
-    #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'tournament')]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'tournaments')]
     private Collection $users;
 
     #[ORM\Column]
@@ -237,7 +228,7 @@ class Tournament
     {
         if (!$this->users->contains($user)) {
             $this->users->add($user);
-            $user->setTournament($this);
+            $user->addTournament($this);
         }
 
         return $this;
@@ -246,10 +237,7 @@ class Tournament
     public function removeUser(User $user): static
     {
         if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getTournament() === $this) {
-                $user->setTournament(null);
-            }
+            $user->removeTournament($this);
         }
 
         return $this;
