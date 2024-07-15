@@ -157,31 +157,43 @@
 </div>
 
 <script>
+    // Attendre que le DOM soit entièrement chargé avant d'exécuter le script
     document.addEventListener('DOMContentLoaded', function() {
+        // Sélectionner tous les boutons avec la classe 'send-score-btn'
         document.querySelectorAll('.send-score-btn').forEach(button => {
+            // Ajouter un écouteur d'événement 'click' à chaque bouton
             button.addEventListener('click', async function() {
+                // Récupérer l'ID du match à partir de l'attribut data-match du bouton
                 const matchId = this.getAttribute('data-match');
+                // Récupérer la valeur du score depuis l'input correspondant
                 const score = document.getElementById(`result1-match${matchId}`).value;
-                
+
                 try {
+                    // Envoyer une requête POST à l'API
                     const response = await fetch(('http://localhost:8000/api/score/post'), {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
+                        // Convertir les données en JSON pour l'envoi
                         body: JSON.stringify({
                             score: score
                         })
                     });
 
+                    // Analyser la réponse JSON
                     const data = await response.json();
 
+                    // Vérifier si la requête a réussi
                     if (response.ok) {
+                        // Afficher un message de succès avec l'ID du score
                         alert(`Score enregistré avec succès! ID: ${data.id}`);
                     } else {
+                        // Afficher un message d'erreur si la requête a échoué
                         alert(`Erreur lors de l'enregistrement du score: ${data.error || 'Erreur inconnue'}`);
                     }
                 } catch (error) {
+                    // Gérer les erreurs de réseau ou autres erreurs
                     console.error('Error:', error);
                     alert('Une erreur est survenue lors de l\'envoi du score.');
                 }
@@ -189,5 +201,4 @@
         });
     });
 </script>
-
     {% endblock %}

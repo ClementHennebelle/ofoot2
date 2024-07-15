@@ -70,4 +70,11 @@ class TournamentController extends AbstractController
           
 
       }
+      #[Route('/tournament/score/update', name: 'app_tournament_update', methods:"GET", requirements: ["id" => "\d+"])]
+      public function scoreUpdate(): Response
+      {
+          return $this->render('score/update.html.twig');
+          
+
+      }
 }

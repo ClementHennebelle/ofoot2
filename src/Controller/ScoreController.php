@@ -54,4 +54,30 @@ return $this->json($allScore, 200, [], ["groups" => "score_browse"]);
          'score' => $game->getScore()
      ], 201); // 201 est le code de statut HTTP pour "Created"
  }
+
+ #[Route('/update/{id}', name: 'score_update', methods: ['PATCH'])]
+ public function updateScore(Request $request, EntityManagerInterface $entityManager, int $id): JsonResponse
+ {
+    $data = json_decode($request->getContent(), true);
+    $score = $data['score'] ?? null;
+
+    if ($score === null) {
+        return $this->json(['error' => 'Score is required'], 400);
+    }
+
+    $game = $entityManager->getRepository(Game::class)->find($id);
+
+    if (!$game) {
+        return $this->json(['error' => 'Game not found'], 404);
+    }
+
+    $game->setScore($score);
+    $entityManager->flush();
+
+    return $this->json([
+        'message' => 'Score updated successfully',
+        'id' => $id,
+        'score' => $score
+    ]);
+}
 }
