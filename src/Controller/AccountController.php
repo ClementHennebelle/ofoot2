@@ -36,36 +36,54 @@ class AccountController extends AbstractController
 
     #[Route('/account/home', name: 'app_account_home')]
     public function home(): Response
-    {
-        $user = $this->getUser();
+{
+    $user = $this->getUser();
 
-        if (!$user) {
-            return $this->redirectToRoute('app_login');
-        }
-
-        $clubName = $user->getClub() ? $user->getClub()->getClubName() : 'Aucun club associé';
-        $clubLicenceNumber = $user->getClub() ? $user->getClub()->getLicenceNumber() : 'Aucun numéro de licence associé';
-        $clubDateCreation = $user->getClub() ? $user->getClub()->getCreatedAt() : 'Aucun club associé';
-        $clubLogo = $user->getClub() ? $user->getClub()->getLogo() : 'Aucun logo associé';
-        $userTournament = $user->getTournament() ? $user->getTournament()->getTournamentName() : null;
-        $userTournamentDate = $user->getTournament() ? $user->getTournament()->getDate() : null;
-
-        $accountInfo = [
-            'lastname' => $user->getLastname(),
-            'firstname' => $user->getFirstname(),
-            'email' => $user->getEmail(),
-            'clubName' => $clubName,
-            'clubLicenceNumber' => $clubLicenceNumber,
-            'clubDateCreation' => $clubDateCreation,
-            'clubLogo' => $clubLogo,
-            'userTournament' => $userTournament,
-            'userTournamentDate' => $userTournamentDate,
-        ];
-
-        return $this->render('account/accounthome.html.twig', [
-            'accountInfo' => $accountInfo,
-        ]);
+    if (!$user) {
+        return $this->redirectToRoute('app_login');
     }
+
+    $clubName = $user->getClub() ? $user->getClub()->getClubName() : 'Aucun club associé';
+    $clubLicenceNumber = $user->getClub() ? $user->getClub()->getLicenceNumber() : 'Aucun numéro de licence associé';
+    $clubDateCreation = $user->getClub() ? $user->getClub()->getCreatedAt()->format('d/m/Y') : 'Aucun club associé';
+    $clubLogo = $user->getClub() ? $user->getClub()->getLogo() : 'Aucun logo associé';
+
+    // Récupération des tournois de l'utilisateur
+    $userTournaments = [];
+    foreach ($user->getTournaments() as $tournament) {
+        $userTournaments[] = [
+            'tournamentName' => $tournament->getTournamentName(),
+            'tournamentDate' => $tournament->getDate()->format('d/m/Y'),
+            'tournamentLocation' => $tournament->getLocation(),
+            'tournamentTeamCount' => $tournament->getTeamCount(),
+            'tournamentPlayerTeamCount' => $tournament->getPlayerTeamCount(),
+            'tournamentPrice' => $tournament->getPrice(),
+            'tournamentRewards' => $tournament->getRewards(),
+        ];
+    }
+
+    // Récupération du premier tournoi de l'utilisateur (pour affichage dans le template)
+    $userTournament = $user->getTournaments()->first();
+    $userTournamentName = $userTournament ? $userTournament->getTournamentName() : null;
+    $userTournamentDate = $userTournament ? $userTournament->getDate()->format('d/m/Y') : null;
+
+    $accountInfo = [
+        'lastname' => $user->getLastname(),
+        'firstname' => $user->getFirstname(),
+        'email' => $user->getEmail(),
+        'clubName' => $clubName,
+        'clubLicenceNumber' => $clubLicenceNumber,
+        'clubDateCreation' => $clubDateCreation,
+        'clubLogo' => $clubLogo,
+        'userTournaments' => $userTournaments,
+        'userTournament' => $userTournamentName,
+        'userTournamentDate' => $userTournamentDate,
+    ];
+
+    return $this->render('account/accounthome.html.twig', [
+        'accountInfo' => $accountInfo,
+    ]);
+}
 
     #[Route('/account/addclub', name: 'app_account_addclub', methods: ['GET', 'POST'])]
     public function addClub(Request $request, EntityManagerInterface $entityManager): Response
@@ -97,3 +115,4 @@ class AccountController extends AbstractController
         ]);
     }
 }
+

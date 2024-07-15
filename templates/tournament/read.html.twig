@@ -22,7 +22,7 @@
             <img src="{{ asset('images/' ~ tournamentRead.Poster) }}" class="img-fluid rounded-start" alt="Image du tournoi">
         </div>
         <div class="col-md-8">
-            <h3 class="section-title text-black">{{ tournamentRead.TournamentName }}</h3> <!-- Placé à l'extérieur du tableau -->
+            <h2 class="section-title text-black">{{ tournamentRead.TournamentName }}</h2> <!-- Placé à l'extérieur du tableau -->
             <div class="table-responsive">
                 <table class="table table-bordered mt-4">
                     <tbody>
@@ -52,6 +52,22 @@
                         </tr>
                     </tbody>
                 </table>
+                <h2 class="text-black">Utilisateurs Inscrits</h2>
+                    <ul>
+                        {% for user in users %}
+                            <li class="clubList">
+                                {# {{ user.firstname }} {{ user.lastname }} #}
+                                
+                                {% if user.club %}
+                                    <span class="text-black mx-auto"><i class="bi bi-caret-right-fill"> </i>{{ user.club.clubName }}</span>
+                                {% else %}
+                                    <span>(Aucun club associé)</span>
+                                {% endif %}
+                            </li>
+                        {% else %}
+                            <li>Aucun utilisateur inscrit pour le moment.</li>
+                        {% endfor %}
+                    </ul>
             </div>
             <div class="text-center mt-4">
             <div>
