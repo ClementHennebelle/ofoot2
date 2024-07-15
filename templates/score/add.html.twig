@@ -38,6 +38,8 @@
                                 <input class="input" type="text" id="result1-match{{ i }}" placeholder="Résultat">
                             </div>
                             <button class="btn btn-primary mt-2 send-score-btn" data-match="{{ i }}">Envoyer le score</button>
+                            <a href="{{ path('app_tournament_update', {'id': i}) }}" class="btn btn-secondary mt-2">Modifier</a>
+
                         </div>
                         {% endfor %}
                     </div>
@@ -200,5 +202,7 @@
             });
         });
     });
+
+
 </script>
     {% endblock %}

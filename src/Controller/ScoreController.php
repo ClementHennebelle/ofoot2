@@ -58,6 +58,7 @@ return $this->json($allScore, 200, [], ["groups" => "score_browse"]);
  #[Route('/update/{id}', name: 'score_update', methods: ['PATCH'])]
  public function updateScore(Request $request, EntityManagerInterface $entityManager, int $id): JsonResponse
  {
+    
     $data = json_decode($request->getContent(), true);
     $score = $data['score'] ?? null;
 
