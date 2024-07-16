@@ -31,10 +31,10 @@ class Club
     private ?string $logo = null;
 
     #[ORM\ManyToMany(targetEntity: Tournament::class, inversedBy: 'clubs')]
-    private Collection $tournament;
+    private Collection $tournaments;
 
     #[ORM\OneToMany(targetEntity: User::class, mappedBy: 'club')]
-    private Collection $user;
+    private Collection $users;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
@@ -44,8 +44,8 @@ class Club
 
     public function __construct()
     {
-        $this->tournament = new ArrayCollection();
-        $this->user = new ArrayCollection();
+        $this->tournaments = new ArrayCollection();
+        $this->users = new ArrayCollection();
         $this->created_at = new \DateTimeImmutable(); // Initialisation de la date de création
     }
 
@@ -107,15 +107,15 @@ class Club
     /**
      * @return Collection<int, Tournament>
      */
-    public function getTournament(): Collection
+    public function getTournaments(): Collection
     {
-        return $this->tournament;
+        return $this->tournaments;
     }
 
     public function addTournament(Tournament $tournament): static
     {
-        if (!$this->tournament->contains($tournament)) {
-            $this->tournament->add($tournament);
+        if (!$this->tournaments->contains($tournament)) {
+            $this->tournaments->add($tournament);
         }
 
         return $this;
@@ -123,7 +123,7 @@ class Club
 
     public function removeTournament(Tournament $tournament): static
     {
-        $this->tournament->removeElement($tournament);
+        $this->tournaments->removeElement($tournament);
 
         return $this;
     }
@@ -131,15 +131,15 @@ class Club
     /**
      * @return Collection<int, User>
      */
-    public function getUser(): Collection
+    public function getUsers(): Collection
     {
-        return $this->user;
+        return $this->users;
     }
 
     public function addUser(User $user): static
     {
-        if (!$this->user->contains($user)) {
-            $this->user->add($user);
+        if (!$this->users->contains($user)) {
+            $this->users->add($user);
             $user->setClub($this);
         }
 
@@ -148,7 +148,7 @@ class Club
 
     public function removeUser(User $user): static
     {
-        if ($this->user->removeElement($user)) {
+        if ($this->users->removeElement($user)) {
             // set the owning side to null (unless already changed)
             if ($user->getClub() === $this) {
                 $user->setClub(null);

@@ -20,7 +20,7 @@ class TournamentController extends AbstractController
 
         $tournamentHome= $tournamentRepository->findAll();
 
-        return $this->render('tournament/home.html.twig', [
+        return $this->render('tournament/index.html.twig', [
             'tournamentHome' => $tournamentHome,
         ]);
     }
@@ -30,11 +30,11 @@ class TournamentController extends AbstractController
     public function read(Tournament $tournamentRead): Response
 {
     // Récupérer les utilisateurs inscrits à ce tournoi avec leur club
-    $users = $tournamentRead->getUsers();
-
+    $clubs = $tournamentRead->getClubs();
+// dd($clubs->isEmpty());
     return $this->render('tournament/read.html.twig', [
         'tournamentRead' => $tournamentRead,
-        'users' => $users,
+        'clubs' => $clubs,
     ]);
 }
 
@@ -44,7 +44,7 @@ class TournamentController extends AbstractController
 
     // route des score avec tournoi{id}
 
-    #[Route('/tournament/score/{id}', name: 'app_tournament_score', methods:"GET", requirements: ["id" => "\d+"])]
+    #[Route('/tournament/{id}/score/', name: 'app_tournament_score', methods:"GET", requirements: ["id" => "\d+"])]
     public function score(Tournament $tournamentRead): Response
     {
       
@@ -53,16 +53,16 @@ class TournamentController extends AbstractController
         ]);
     }
 
-    #[Route('/tournament/{id}/register', name: 'app_tournament_register', methods:"GET", requirements: ["id" => "\d+"])]
-    public function register(Tournament $tournamentRead): Response
-    {
+    // #[Route('/tournament/{id}/register', name: 'app_tournament_register', methods:"GET", requirements: ["id" => "\d+"])]
+    // public function register(Tournament $tournamentRead): Response
+    // {
       
-        return $this->render('tournament/register.html.twig', [
-            'tournamentRead' => $tournamentRead,
-            // 'form' => $form->createView(),
-        ]);
+    //     return $this->render('tournament/register.html.twig', [
+    //         'tournamentRead' => $tournamentRead,
+    //         // 'form' => $form->createView(),
+    //     ]);
    
-    }
+    // }
 
       // route des score avec tournoi{id}
 
@@ -81,7 +81,7 @@ class TournamentController extends AbstractController
 
       }
 
-      #[Route('/createtournament', name: 'app_create_tournament', methods: ['GET', 'POST'])]
+      #[Route('/create', name: 'app_create_tournament', methods: ['GET', 'POST'])]
       public function new(Request $request, EntityManagerInterface $entityManager): Response
       {
           $tournament = new Tournament();
@@ -89,15 +89,34 @@ class TournamentController extends AbstractController
           $form->handleRequest($request);
   
           if ($form->isSubmitted() && $form->isValid()) {
+              $user = $this->getUser();
+              $tournament->setCreator($user);
               $entityManager->persist($tournament);
               $entityManager->flush();
   
-              return $this->redirectToRoute('app_tournament_browse', [], Response::HTTP_SEE_OTHER);
+              return $this->redirectToRoute('app_account', [], Response::HTTP_SEE_OTHER);
           }
   
-          return $this->render('tournament_back/new.html.twig', [
+          return $this->render('tournament/new.html.twig', [
               'tournament' => $tournament,
               'form' => $form,
+          ]);
+      }
+
+      #[Route('/tournament/{id}/register', name: 'app_tournament_register', methods: ['GET'], requirements: ['id' => '\d+'])]
+      public function showRegistrationForm(Tournament $tournament): Response
+      {
+          $user = $this->getUser();
+          if (!$user) {
+              $this->addFlash('error', 'Vous devez être connecté pour vous inscrire à un tournoi.');
+              return $this->redirectToRoute('app_login');
+          }
+
+          $isAlreadyRegistered = $user->getClub()->getTournaments()->contains($tournament);
+    // dd($isAlreadyRegistered);
+          return $this->render('tournament_registration/register.html.twig', [
+              'tournament' => $tournament,
+              'isAlreadyRegistered' => $isAlreadyRegistered,
           ]);
       }
   

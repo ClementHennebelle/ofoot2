@@ -54,19 +54,18 @@
                 </table>
                 <h2 class="text-black">Utilisateurs Inscrits</h2>
                     <ul>
-                        {% for user in users %}
+                    {% if  clubs is not empty %}
+                        {% for club in clubs %}
                             <li class="clubList">
-                                {# {{ user.firstname }} {{ user.lastname }} #}
                                 
-                                {% if user.club %}
-                                    <span class="text-black mx-auto"><i class="bi bi-caret-right-fill"> </i>{{ user.club.clubName }}</span>
-                                {% else %}
-                                    <span>(Aucun club associé)</span>
-                                {% endif %}
+                                <span class="text-black mx-auto"><i class="bi bi-caret-right-fill"> </i>{{ club.clubName }}</span>
+                               
                             </li>
-                        {% else %}
-                            <li>Aucun utilisateur inscrit pour le moment.</li>
+                        
                         {% endfor %}
+                    {% else %}
+                        <li class="clubList text-black mx-auto" >Aucun club inscrit pour le moment.</li>
+                    {% endif %}
                     </ul>
             </div>
             <div class="text-center mt-4">

@@ -42,15 +42,16 @@ class AccountController extends AbstractController
     if (!$user) {
         return $this->redirectToRoute('app_login');
     }
-
-    $clubName = $user->getClub() ? $user->getClub()->getClubName() : 'Aucun club associé';
-    $clubLicenceNumber = $user->getClub() ? $user->getClub()->getLicenceNumber() : 'Aucun numéro de licence associé';
-    $clubDateCreation = $user->getClub() ? $user->getClub()->getCreatedAt()->format('d/m/Y') : 'Aucun club associé';
-    $clubLogo = $user->getClub() ? $user->getClub()->getLogo() : 'Aucun logo associé';
+    $club = $user->getClub();
+    $clubName = $club ? $club->getClubName() : 'Aucun club associé';
+    $clubLicenceNumber = $club ? $club->getLicenceNumber() : 'Aucun numéro de licence associé';
+    $clubDateCreation = $club ? $club->getCreatedAt()->format('d/m/Y') : 'Aucun club associé';
+    $clubLogo = $club ? $club->getLogo() : 'Aucun logo associé';
 
     // Récupération des tournois de l'utilisateur
     $userTournaments = [];
-    foreach ($user->getTournaments() as $tournament) {
+    // dd($club);
+    foreach ($club->getTournaments() as $tournament) {
         $userTournaments[] = [
             'tournamentName' => $tournament->getTournamentName(),
             'tournamentDate' => $tournament->getDate()->format('d/m/Y'),
@@ -63,9 +64,9 @@ class AccountController extends AbstractController
     }
 
     // Récupération du premier tournoi de l'utilisateur (pour affichage dans le template)
-    $userTournament = $user->getTournaments()->first();
-    $userTournamentName = $userTournament ? $userTournament->getTournamentName() : null;
-    $userTournamentDate = $userTournament ? $userTournament->getDate()->format('d/m/Y') : null;
+//     $userTournament = $user->getTournaments()->first();
+    // $userTournamentName = $userTournament ? $userTournament->getTournamentName() : null;
+    // $userTournamentDate = $userTournament ? $userTournament->getDate()->format('d/m/Y') : null;
 
     $accountInfo = [
         'lastname' => $user->getLastname(),
@@ -76,8 +77,8 @@ class AccountController extends AbstractController
         'clubDateCreation' => $clubDateCreation,
         'clubLogo' => $clubLogo,
         'userTournaments' => $userTournaments,
-        'userTournament' => $userTournamentName,
-        'userTournamentDate' => $userTournamentDate,
+        // 'userTournament' => $userTournamentName,
+        // 'userTournamentDate' => $userTournamentDate,
     ];
 
     return $this->render('account/accounthome.html.twig', [

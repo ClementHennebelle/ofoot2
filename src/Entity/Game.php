@@ -36,8 +36,7 @@ class Game
     #[Groups(['score_browse'])]
     private ?string $score = null;
 
-    #[ORM\ManyToMany(targetEntity: Tournament::class, mappedBy: 'game')]
-    private Collection $tournaments;
+  
 
     #[ORM\ManyToOne(targetEntity: Club::class)]
     private ?Club $firstClub = null;
@@ -48,11 +47,14 @@ class Game
     #[ORM\ManyToOne(targetEntity: Club::class)]
     private ?Club $winner = null;
 
-    public function __construct()
-    {
-        $this->tournaments = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'games')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Tournament $tournament = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+   
     public function getId(): ?int
     {
         return $this->id;
@@ -118,33 +120,7 @@ class Game
         return $this;
     }
 
-    /**
-     * @return Collection<int, Tournament>
-     */
-    public function getTournaments(): Collection
-    {
-        return $this->tournaments;
-    }
-
-    public function addTournament(Tournament $tournament): static
-    {
-        if (!$this->tournaments->contains($tournament)) {
-            $this->tournaments->add($tournament);
-            $tournament->addGame($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTournament(Tournament $tournament): static
-    {
-        if ($this->tournaments->removeElement($tournament)) {
-            $tournament->removeGame($this);
-        }
-
-        return $this;
-    }
-
+   
     public function getFirstClub(): ?Club
     {
         return $this->firstClub;
@@ -177,6 +153,30 @@ class Game
     public function setWinner(?Club $winner): static
     {
         $this->winner = $winner;
+
+        return $this;
+    }
+
+    public function getTournament(): ?Tournament
+    {
+        return $this->tournament;
+    }
+
+    public function setTournament(?Tournament $tournament): static
+    {
+        $this->tournament = $tournament;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
 
         return $this;
     }

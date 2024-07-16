@@ -33,20 +33,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $firstname = null;
 
-    #[ORM\ManyToMany(targetEntity: Tournament::class, inversedBy: 'users')]
-    private Collection $tournaments;
 
-    #[ORM\ManyToOne(inversedBy: 'user')]
+    #[ORM\ManyToOne(inversedBy: 'users')]
     private ?Club $club = null;
 
     #[ORM\Column]
     private bool $isVerified = false;
+
+    /**
+     * @var Collection<int, Tournament>
+     */
+    #[ORM\OneToMany(targetEntity: Tournament::class, mappedBy: 'creator')]
+    private Collection $tournaments;
 
     public function __construct()
     {
         $this->tournaments = new ArrayCollection();
     }
 
+  
     public function getId(): ?int
     {
         return $this->id;
@@ -118,32 +123,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Tournament>
-     */
-    public function getTournaments(): Collection
-    {
-        return $this->tournaments;
-    }
-
-    public function addTournament(Tournament $tournament): static
-    {
-        if (!$this->tournaments->contains($tournament)) {
-            $this->tournaments[] = $tournament;
-            $tournament->addUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTournament(Tournament $tournament): static
-    {
-        if ($this->tournaments->removeElement($tournament)) {
-            $tournament->removeUser($this);
-        }
-
-        return $this;
-    }
+   
 
     public function getClub(): ?Club
     {
@@ -164,6 +144,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tournament>
+     */
+    public function getTournaments(): Collection
+    {
+        return $this->tournaments;
+    }
+
+    public function addTournament(Tournament $tournament): static
+    {
+        if (!$this->tournaments->contains($tournament)) {
+            $this->tournaments->add($tournament);
+            $tournament->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTournament(Tournament $tournament): static
+    {
+        if ($this->tournaments->removeElement($tournament)) {
+            // set the owning side to null (unless already changed)
+            if ($tournament->getCreator() === $this) {
+                $tournament->setCreator(null);
+            }
+        }
+
         return $this;
     }
 }
