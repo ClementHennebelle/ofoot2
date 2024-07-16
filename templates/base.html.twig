@@ -11,8 +11,8 @@
 </head>
 <body class="background-image">
 
-{# si le nom de la route actuelle contient le mot "back" alors on affiche la nav du back #}
-    {% if "back" in app.current_route %}
+{# Si le client a un rôle d'administrateur, on affiche la nav du back #}
+    {% if is_granted('ROLE_ADMIN') %}
         {% include 'front/layout/navuserclub.html.twig' %}
        
     {% elseif app.user %}
@@ -23,7 +23,8 @@
             {# Navbar pour le visiteur #}
         {% include 'front/layout/nav.html.twig' %}
 
-        {% endif %}
+    {% endif %}
+
 
     {% block body %}{% endblock %}
 
