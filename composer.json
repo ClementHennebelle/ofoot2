@@ -44,11 +44,11 @@
         },
         "sort-packages": true
     },
-  
+    
     
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "App\\": "src/"
         }
     },
     "replace": {
