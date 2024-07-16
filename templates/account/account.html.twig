@@ -57,7 +57,9 @@
                     <div class="flex-grow-1 text-center">
                         <h5 class="mb-0">Options du compte</h5>
                     </div>
-                    <a href="{{ path('app_account_addclub') }}" class="btn btn-secondary text-decoration-none text-black">Rattacher à un club</a>
+                    {% if not app.user.club %}
+            <a href="{{ path('app_account_addclub') }}" class="btn btn-secondary text-decoration-none text-black">Rattacher à un club</a>
+        {% endif %}
                 </div>
                 <div class="card-body d-flex justify-content-center">
                     <div class="btn-group">
