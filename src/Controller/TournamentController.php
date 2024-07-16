@@ -81,4 +81,24 @@ class TournamentController extends AbstractController
 
       }
 
+      #[Route('/createtournament', name: 'app_create_tournament', methods: ['GET', 'POST'])]
+      public function new(Request $request, EntityManagerInterface $entityManager): Response
+      {
+          $tournament = new Tournament();
+          $form = $this->createForm(TournamentType::class, $tournament);
+          $form->handleRequest($request);
+  
+          if ($form->isSubmitted() && $form->isValid()) {
+              $entityManager->persist($tournament);
+              $entityManager->flush();
+  
+              return $this->redirectToRoute('app_tournament_browse', [], Response::HTTP_SEE_OTHER);
+          }
+  
+          return $this->render('tournament_back/new.html.twig', [
+              'tournament' => $tournament,
+              'form' => $form,
+          ]);
+      }
+  
 }
