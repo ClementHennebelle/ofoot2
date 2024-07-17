@@ -24,33 +24,14 @@ class GameType extends AbstractType
     $builder
 
         //  Ajoute un champ pour le score du match
-        ->add('score', TextType::class, [
-            'label' => 'Score du match',
-            'required' => false,
-        ])
+        // ->add('score', TextType::class, [
+        //     'label' => 'Score du match',
+        //     'required' => false,
+        // ])
         // Ajoute un champ pour le nom du match
         ->add('name')
-        
-        ->add('date', DateType::class, [
-            'widget' => 'single_text',
-            'required' => false,
-            'data' => new \DateTime(), // Date par défaut
-        ])
-        ->add('time', DateTimeType::class, [
-            'widget' => 'single_text',
-            'required' => true,
-            'data' => new \DateTime(), // Date et heure par défaut
-            'label' => 'Date et heure du match',
-        ])
-        ->add('location', TextType::class, [
-            'label' => 'Lieu du match',
-            'required' => true,
-        ])
-        ->add('description', TextareaType::class, [
-            'label' => 'Description du match',
-            'required' => true,
-            'attr' => ['rows' => 4],
-        ])
+    
+      
         // Ajoute un champ pour le tournoi, qui sera désactivé et pré-rempli
         ->add('tournament', EntityType::class, [
             'class' => Tournament::class,
