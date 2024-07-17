@@ -73,6 +73,9 @@
                     {% if isAlreadyRegistered %}
                         <p class="alert alert-info">Vous êtes déjà inscrit à ce tournoi.</p>
                         {# todo ajouter un bouton pour revenir à la liste des tournois et changer de tournoi #}
+                        <div class="text-center mt-4 mb-2">
+                <a href="{{ path('app_tournament_browse') }}" class="btn btn-success">Retour à la liste des tournois</a>
+                        </div>
                     {% else %}
                         <form method="post" action="{{ path('app_tournament_register_process', {'id': tournament.id}) }}">
                             <button type="submit" class="fs-4 px-4 py-3 rounded pen-icon-solo text-decoration-none text-black btn btn-secondary">
