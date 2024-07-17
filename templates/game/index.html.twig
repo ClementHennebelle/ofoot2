@@ -65,43 +65,50 @@
     form.addEventListener('submit', async function() {
         event.preventDefault();
         console.log("c'est soumis !!!");
-        const form = event.target;
-        const formData = new FormData(form);
+        // const form = event.target;
+        const formData = new FormData(this);
         console.log(formData.get("score"));
-        
 
-        // try {
-        //     const response = await fetch(`http://localhost:8000/api/game/${form.id}`, {
-        //     method: 'PATCH',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         data: formData
-        //     })
-        //     });
+        const gameData = {
+            score: formData.get("score"),
+            firstClub: formData.get("firstClub"),
+            secondClub: formData.get("secondClub"),
+            name: this.querySelector('.match-header').textContent.split(' ')[1]
+        };
 
-        //     const responseText = await response.text(); // Obtenez le texte brut de la réponse
-        //     console.log('Réponse brute:', responseText); // Affichez la réponse brute dans la console
+        console.log('Sending data:', JSON.stringify(gameData));
+        console.log('To URL:', `/api/game/${this.id}`);
 
-        //     let data;
-        //     try {
-        //         data = JSON.parse(responseText); // Essayez de parser le JSON
-        //     } catch (parseError) {
-        //         console.error('Erreur lors du parsing JSON:', parseError);
-        //         alert('La réponse du serveur n\'est pas un JSON valide');
-        //         return;
-        //     }
+        try {
+            const response = await fetch(`/api/game/${this.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(gameData)
+            });
 
-        //     if (response.ok) {
-        //         alert(`Score mis à jour avec succès! Match ID: ${matchId}`);
-        //     } else {
-        //         alert(`Erreur lors de la mise à jour du score: ${data.error || 'Erreur inconnue'}`);
-        //     }
-        // } catch (error) {
-        //     console.error('Error:', error);
-        //     alert('Une erreur est survenue lors de la mise à jour du score.');
-        // }
+            const responseText = await response.text();
+            console.log('Raw response:', responseText);
+
+            let data;
+            try {
+                data = JSON.parse(responseText);
+            } catch (parseError) {
+                console.error('Error parsing JSON:', parseError);
+                alert('Server response is not valid JSON. Check the console for details.');
+                return;
+            }
+
+            if (response.ok) {
+                alert(`Score updated successfully! Match: ${data.name}, Score: ${data.score}`);
+            } else {
+                alert(`Error updating score: ${data.error || 'Unknown error'}`);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while updating the score.');
+        }
     });
 });
 </script>

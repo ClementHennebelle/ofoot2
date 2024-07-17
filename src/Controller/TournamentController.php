@@ -46,11 +46,13 @@ class TournamentController extends AbstractController
     // route des score avec tournoi{id}
 
     #[Route('/tournament/{id}/score/', name: 'app_tournament_score', methods:"GET", requirements: ["id" => "\d+"])]
-    public function score(Tournament $tournamentRead): Response
+    public function score(Tournament $tournament, EntityManagerInterface $entityManager): Response
     {
-      
+        $games = $entityManager->getRepository(Game::class)->findBy(['tournament' => $tournament]);
+
         return $this->render('game/score.html.twig', [
-            'tournamentRead' => $tournamentRead,
+            'tournament' => $tournament,
+            'games' => $games,
         ]);
     }
 
