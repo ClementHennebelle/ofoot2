@@ -68,6 +68,12 @@
                     {% endif %}
                     </ul>
             </div>
+            <div class="text-center mt-4 mb-2">
+                {% if app.user and app.user.id == tournament.creatorId %}
+                    <a href="{{ path('app_game_new') }}" class="btn btn-danger">Ajouter les matchs</a>
+                {% endif %}
+                <!--  modifier link  -->
+                        </div>
             <div class="text-center mt-4">
             <div>
                 <a href="{{ path('app_tournament_register', {'id': tournamentRead.id}) }}" class="fs-4 px-4 py-3 rounded pen-icon-solo text-decoration-none text-black btn btn-secondary mb-2">
