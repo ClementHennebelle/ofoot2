@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\API;
 
 use App\Entity\Game;
 use App\Repository\GameRepository;
@@ -42,6 +42,7 @@ return $this->json($allScore, 200, [], ["groups" => "score_browse"]);
      $game->setTime(new \DateTime()); // Heure actuelle
      $game->setLocation('Default Location');
      $game->setDescription('Default Description');
+     $game->setName('Default Name'); // Ajoutez cette ligne pour définir un nom par défaut
 
      // Persiste le nouvel objet Game dans la base de données
      $entityManager->persist($game);
