@@ -70,12 +70,13 @@
             </div>
             <div class="text-center mt-4">
                 {% if app.user %}
-                    {% if app.user.getTournaments().contains(tournament) %}
+                    {% if isAlreadyRegistered %}
                         <p class="alert alert-info">Vous êtes déjà inscrit à ce tournoi.</p>
+                        {# todo ajouter un bouton pour revenir à la liste des tournois et changer de tournoi #}
                     {% else %}
                         <form method="post" action="{{ path('app_tournament_register_process', {'id': tournament.id}) }}">
                             <button type="submit" class="fs-4 px-4 py-3 rounded pen-icon-solo text-decoration-none text-black btn btn-secondary">
-                                {% if app.user.getTournaments().contains(tournament) %}Changer de tournoi{% else %}J'inscris mon équipe{% endif %}
+                                J'inscris mon équipe
                             </button>
                         </form>
                     {% endif %}

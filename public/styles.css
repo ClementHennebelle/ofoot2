@@ -377,3 +377,9 @@ footer {
     list-style-type: none;
     padding-left: 0; /* Optionnel : pour supprimer l'espacement à gauche */
 }
+
+.img-500 {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+}

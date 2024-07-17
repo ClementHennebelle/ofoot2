@@ -41,14 +41,11 @@ class Tournament
     #[ORM\Column(length: 255)]
     private ?string $poster = null;
 
-    #[ORM\ManyToMany(targetEntity: Game::class, inversedBy: 'tournaments')]
-    private Collection $game;
-
-    #[ORM\ManyToMany(targetEntity: Club::class, mappedBy: 'tournament')]
+   
+    #[ORM\ManyToMany(targetEntity: Club::class, mappedBy: 'tournaments')]
     private Collection $clubs;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'tournaments')]
-    private Collection $users;
+
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
@@ -56,12 +53,22 @@ class Tournament
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updated_at = null;
 
+    /**
+     * @var Collection<int, Game>
+     */
+    #[ORM\OneToMany(targetEntity: Game::class, mappedBy: 'tournament', orphanRemoval: true)]
+    private Collection $games;
+
+    #[ORM\ManyToOne(inversedBy: 'tournaments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $creator = null;
+
     public function __construct()
     {
-        $this->game = new ArrayCollection();
+        
         $this->clubs = new ArrayCollection();
-        $this->users = new ArrayCollection();
         $this->created_at = new DateTimeImmutable();
+        $this->games = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -165,29 +172,7 @@ class Tournament
         return $this;
     }
 
-    /**
-     * @return Collection<int, Game>
-     */
-    public function getGame(): Collection
-    {
-        return $this->game;
-    }
-
-    public function addGame(Game $game): static
-    {
-        if (!$this->game->contains($game)) {
-            $this->game->add($game);
-        }
-
-        return $this;
-    }
-
-    public function removeGame(Game $game): static
-    {
-        $this->game->removeElement($game);
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection<int, Club>
@@ -216,32 +201,7 @@ class Tournament
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): static
-    {
-        if (!$this->users->contains($user)) {
-            $this->users->add($user);
-            $user->addTournament($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): static
-    {
-        if ($this->users->removeElement($user)) {
-            $user->removeTournament($this);
-        }
-
-        return $this;
-    }
+  
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -263,6 +223,26 @@ class Tournament
     public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Game>
+     */
+    public function getGames(): Collection
+    {
+        return $this->games;
+    }
+
+    public function getCreator(): ?User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?User $creator): static
+    {
+        $this->creator = $creator;
 
         return $this;
     }
