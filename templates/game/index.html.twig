@@ -1,62 +1,115 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nouveau Match - {{ parent() }}{% endblock %}
+{% block title %}O'FOOT - Modifier les Résultats{% endblock %}
 
 {% block body %}
-<div class="container mt-5 text-black">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-company-grey text-white">
-                    <h2 class="mb-0">Nouveau Match</h2>
-                </div>
-                <div class="card-body">
-                    {{ form_start(form) }}
-                    
-                    <div class="mb-3">
-                        {{ form_label(form.name, 'Nom du match', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
-                    </div>
-
-                    {# <div class="mb-3">
-                        {{ form_label(form.score, 'Score', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.score, {'attr': {'class': 'form-control'}}) }}
-                    </div> #}
-                    {# <div class="mb-3">
-                        {{ form_label(form.time, 'Date et heure du match', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.time, {'attr': {'class': 'form-control'}}) }}
-                    </div> #}
-                    {# <div class="mb-3">
-                        {{ form_label(form.location, 'Lieu du match', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.location, {'attr': {'class': 'form-control'}}) }}
-                    </div> #}
-                    {# <div class="mb-3">
-                        {{ form_label(form.description, 'Description du match', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
-                    </div> #}
-                    <div class="mb-3">
-                        {{ form_label(form.firstClub, 'Premier club', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.firstClub, {'attr': {'class': 'form-select'}}) }}
-                    </div>
-
-                    <div class="mb-3">
-                        {{ form_label(form.secondClub, 'Deuxième club', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.secondClub, {'attr': {'class': 'form-select'}}) }}
-                    </div>
-
-                    <div class="mb-3">
-                        {{ form_label(form.tournament, 'Tournoi', {'label_attr': {'class': 'form-label'}}) }}
-                        {{ form_widget(form.tournament, {'attr': {'class': 'form-select'}}) }}
-                    </div>
-
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Créer le match</button>
-                    </div>
-
-                    {{ form_end(form) }}
-                </div>
+<div class="container mt-4 custom-contact-container">
+    <div class="row">
+        <div class="col text-center">
+            <div class="rounded-pill bg-dark d-inline-block p-3">
+                <h2 class="section-title m-0">Modifier les Résultats du Tournoi</h2>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="accordion mt-4" id="tournamentAccordion">
+
+        <!-- Huitièmes de finale -->
+        <div class="accordion-item mb-2">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                    Huitièmes de finale
+                </button>
+            </h2>
+            <div id="collapseEight" class="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#tournamentAccordion">
+                <div class="accordion-body">
+                    <div class="round">
+                        {% for game in games %}
+                        <form id="{{ game.id }}" class="update-game-form" >
+                            <div class="match">
+                                <div class="match-header">Match {{ game.name }}</div>
+                                <div class="teams">
+                                    <select name = "firstClub">
+                                        <option value = "" >Choisir un club</option>
+                                        {% for club in tournament.clubs %}
+                                            <option value = "{{ club.id }}" {% if club.id is same as game.firstClub.id %} selected {% endif %}> {{ club.clubName }} </option>
+                                        
+                                        {% endfor %}
+                                    </select>
+                                    <select name = "secondClub">
+                                        <option value = "" >Choisir un club</option>
+                                        {% for club in tournament.clubs %}
+                                            <option value = "{{ club.id }}" {% if club.id is same as game.secondClub.id %} selected {% endif %}> {{ club.clubName }} </option>
+                                        
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="result">
+                                    <input class="input" type="text" name="score" value = "{{game.score}}" placeholder="Résultat">
+                                </div>
+                                <button class="btn btn-primary mt-2 update-score-btn">Mettre à jour le score</button>
+                            </div>
+                        </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+  
+
+<script>
+   document.querySelectorAll('.update-game-form').forEach(form => {
+    form.addEventListener('submit', async function() {
+        event.preventDefault();
+        console.log("c'est soumis !!!");
+        // const form = event.target;
+        const formData = new FormData(this);
+        console.log(formData.get("score"));
+
+        const gameData = {
+            score: formData.get("score"),
+            firstClub: formData.get("firstClub"),
+            secondClub: formData.get("secondClub"),
+            name: this.querySelector('.match-header').textContent.split(' ')[1]
+        };
+
+        console.log('Sending data:', JSON.stringify(gameData));
+        console.log('To URL:', `/api/game/${this.id}`);
+
+        try {
+            const response = await fetch(`/api/game/${this.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(gameData)
+            });
+
+            const responseText = await response.text();
+            console.log('Raw response:', responseText);
+
+            let data;
+            try {
+                data = JSON.parse(responseText);
+            } catch (parseError) {
+                console.error('Error parsing JSON:', parseError);
+                alert('Server response is not valid JSON. Check the console for details.');
+                return;
+            }
+
+            if (response.ok) {
+                alert(`Score updated successfully! Match: ${data.name}, Score: ${data.score}`);
+            } else {
+                alert(`Error updating score: ${data.error || 'Unknown error'}`);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while updating the score.');
+        }
+    });
+});
+</script>
 {% endblock %}

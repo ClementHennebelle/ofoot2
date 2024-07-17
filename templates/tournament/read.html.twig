@@ -69,8 +69,9 @@
                     </ul>
             </div>
             <div class="text-center mt-4 mb-2">
-                {% if app.user and app.user.id == tournament.creatorId %}
-                    <a href="{{ path('app_game_new') }}" class="btn btn-danger">Ajouter les matchs</a>
+                {% if app.user and app.user.id == tournamentRead.creator.id %}
+                    <a href="{{ path('app_game_new', {'id': tournamentRead.id}) }}" class="btn btn-danger">Ajouter un match</a>
+                    <a href="{{ path('app_tournament_games', {'id': tournamentRead.id}) }}" class="btn btn-danger">Gérer les matchs</a>
                 {% endif %}
                 <!--  modifier link  -->
                         </div>

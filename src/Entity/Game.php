@@ -39,9 +39,11 @@ class Game
   
 
     #[ORM\ManyToOne(targetEntity: Club::class)]
+    #[Groups(['score_browse'])]
     private ?Club $firstClub = null;
 
     #[ORM\ManyToOne(targetEntity: Club::class)]
+    #[Groups(['score_browse'])]
     private ?Club $secondClub = null;
 
     #[ORM\ManyToOne(targetEntity: Club::class)]
@@ -52,6 +54,7 @@ class Game
     private ?Tournament $tournament = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['score_browse'])]
     private ?string $name = null;
 
    
