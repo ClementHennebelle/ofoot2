@@ -24,6 +24,48 @@
             <div id="collapseEight" class="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
+                        {% for game in games|slice(0, 8) %}
+                        <form id="{{ game.id }}" class="update-game-form" >
+                            <div class="match">
+                                <div class="match-header">Match {{ game.name }}</div>
+                                <div class="teams">
+                                    <select name = "firstClub">
+                                        <option value = "" >Choisir un club</option>
+                                        {% for club in tournament.clubs %}
+                                            <option value = "{{ club.id }}" {% if club.id is same as game.firstClub.id %} selected {% endif %}> {{ club.clubName }} </option>
+                                        
+                                        {% endfor %}
+                                    </select>
+                                    <select name = "secondClub">
+                                        <option value = "" >Choisir un club</option>
+                                        {% for club in tournament.clubs %}
+                                            <option value = "{{ club.id }}" {% if club.id is same as game.secondClub.id %} selected {% endif %}> {{ club.clubName }} </option>
+                                        
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="result">
+                                    <input class="input" type="text" name="score" value = "{{game.score}}" placeholder="Résultat">
+                                </div>
+                                <button class="btn btn-primary mt-2 update-score-btn">Mettre à jour le score</button>
+                            </div>
+                        </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+{# Quarts de finales #}
+        <div class="accordion-item mb-2">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                    Quarts de finale
+                </button>
+            </h2>
+            <div id="collapseEight" class="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#tournamentAccordion">
+                <div class="accordion-body">
+                    <div class="round">
                         {% for game in games %}
                         <form id="{{ game.id }}" class="update-game-form" >
                             <div class="match">
@@ -56,8 +98,48 @@
                 </div>
             </div>
         </div>
+{# Demi finale #}
+       <div class="accordion-item mb-2">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                    Demi-finales
+                </button>
+            </h2>
+            <div id="collapseEight" class="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#tournamentAccordion">
+                <div class="accordion-body">
+                    <div class="round">
+                        {% for game in games %}
+                        <form id="{{ game.id }}" class="update-game-form" >
+                            <div class="match">
+                                <div class="match-header">Match {{ game.name }}</div>
+                                <div class="teams">
+                                    <select name = "firstClub">
+                                        <option value = "" >Choisir un club</option>
+                                        {% for club in tournament.clubs %}
+                                            <option value = "{{ club.id }}" {% if club.id is same as game.firstClub.id %} selected {% endif %}> {{ club.clubName }} </option>
+                                        
+                                        {% endfor %}
+                                    </select>
+                                    <select name = "secondClub">
+                                        <option value = "" >Choisir un club</option>
+                                        {% for club in tournament.clubs %}
+                                            <option value = "{{ club.id }}" {% if club.id is same as game.secondClub.id %} selected {% endif %}> {{ club.clubName }} </option>
+                                        
+                                        {% endfor %}
+                                    </select>
+                                </div>
 
-       
+                                <div class="result">
+                                    <input class="input" type="text" name="score" value = "{{game.score}}" placeholder="Résultat">
+                                </div>
+                                <button class="btn btn-primary mt-2 update-score-btn">Mettre à jour le score</button>
+                            </div>
+                        </form>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
   
 
 <script>
