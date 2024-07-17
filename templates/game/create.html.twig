@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Match - {{ parent() }}{% endblock %}
+
+{% block body %}
+<div class="container mt-5 text-black">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-company-grey text-white">
+                    <h2 class="mb-0">Nouveau Match</h2>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    
+                    <div class="mb-3">
+                        {{ form_label(form.name, 'Nom du match', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+
+                    {# <div class="mb-3">
+                        {{ form_label(form.score, 'Score', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.score, {'attr': {'class': 'form-control'}}) }}
+                    </div> #}
+                    {# <div class="mb-3">
+                        {{ form_label(form.time, 'Date et heure du match', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.time, {'attr': {'class': 'form-control'}}) }}
+                    </div> #}
+                    <div class="mb-3">
+                        {{ form_label(form.location, 'Lieu du match', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.location, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_label(form.description, 'Description du match', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    {# <div class="mb-3">
+                        {{ form_label(form.firstClub, 'Premier club', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.firstClub, {'attr': {'class': 'form-select'}}) }}
+                    </div> #}
+
+                    {# <div class="mb-3">
+                        {{ form_label(form.secondClub, 'Deuxième club', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.secondClub, {'attr': {'class': 'form-select'}}) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(form.tournament, 'Tournoi', {'label_attr': {'class': 'form-label'}}) }}
+                        {{ form_widget(form.tournament, {'attr': {'class': 'form-select'}}) }}
+                    </div> #}
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Créer le match</button>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -34,9 +34,12 @@ class GameController extends AbstractController
             return $this->redirectToRoute('app_tournament_browse', ['id' => $tournament->getId()]);
         }
 
-        return $this->render('game/index.html.twig', [
+        return $this->render('game/create.html.twig', [
             'form' => $form->createView(),
             'tournament' => $tournament,
+            'game' => $game,
         ]);
     }
+
+
 }
