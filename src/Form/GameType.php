@@ -30,15 +30,9 @@ class GameType extends AbstractType
         // ])
         // Ajoute un champ pour le nom du match
         ->add('name')
-    
+        ->add('description')
+        ->add('location');
       
-        // Ajoute un champ pour le tournoi, qui sera désactivé et pré-rempli
-        ->add('tournament', EntityType::class, [
-            'class' => Tournament::class,
-            'choice_label' => 'tournamentName', // Utilise la méthode getTournamentName() pour afficher le nom
-            'data' => $tournament, // Pré-remplit avec le tournoi passé en option
-            'disabled' => true, // Désactive le champ pour empêcher sa modification
-        ]);
 
 
     // Ajoute un écouteur d'événement qui se déclenche juste avant que les données ne soient définies sur le formulaire
@@ -53,17 +47,17 @@ class GameType extends AbstractType
 
 
         // Ajoute dynamiquement les champs pour les clubs participants
-        $form->add('firstClub', EntityType::class, [
-            'class' => Club::class,
-            'choice_label' => 'clubName', // Utilise la méthode getClubName() pour afficher le nom du club
-            'choices' => $clubChoices, // Limite les choix aux clubs du tournoi
-        ])
+        // $form->add('firstClub', EntityType::class, [
+        //     'class' => Club::class,
+            // 'choice_label' => 'clubName', // Utilise la méthode getClubName() pour afficher le nom du club
+            // 'choices' => $clubChoices, // Limite les choix aux clubs du tournoi
+        // ])
        
-        ->add('secondClub', EntityType::class, [
-            'class' => Club::class,
-            'choice_label' => 'clubName',
-            'choices' => $clubChoices,
-        ]);
+        // ->add('secondClub', EntityType::class, [
+        //     'class' => Club::class,
+        //     'choice_label' => 'clubName',
+        //     'choices' => $clubChoices,
+        // ]);
     });
     }
     

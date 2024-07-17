@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 
-#[Route('/api/score', name: 'app_apiscore')]
-class ScoreController extends AbstractController
+#[Route('/api/game', name: 'app_apiscore')]
+class GameController extends AbstractController
 {
  #[Route('/', name: 'app_score', methods: "GET")]
 public function index(GameRepository $gameRepository) : JsonResponse
@@ -56,11 +56,12 @@ return $this->json($allScore, 200, [], ["groups" => "score_browse"]);
      ], 201); // 201 est le code de statut HTTP pour "Created"
  }
 
- #[Route('/update/{id}', name: 'score_update', methods: ['PATCH'])]
+ #[Route('/{id}', name: 'score_update', methods: ['PATCH'])]
  public function updateScore(Request $request, EntityManagerInterface $entityManager, int $id): JsonResponse
  {
     
     $data = json_decode($request->getContent(), true);
+    dd($data);
     $score = $data['score'] ?? null;
 
     if ($score === null) {

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Game;
 use App\Entity\Tournament;
 use App\Form\TournamentType;
 use App\Repository\TournamentRepository;
@@ -28,7 +29,7 @@ class TournamentController extends AbstractController
 
     #[Route('/tournament/{id}', name: 'app_tournament_read', methods:"GET", requirements: ["id" => "\d+"])]
     public function read(Tournament $tournamentRead): Response
-{
+{ 
     // Récupérer les utilisateurs inscrits à ce tournoi avec leur club
     $clubs = $tournamentRead->getClubs();
 // dd($clubs->isEmpty());
@@ -48,7 +49,7 @@ class TournamentController extends AbstractController
     public function score(Tournament $tournamentRead): Response
     {
       
-        return $this->render('score/score.html.twig', [
+        return $this->render('game/score.html.twig', [
             'tournamentRead' => $tournamentRead,
         ]);
     }
@@ -66,21 +67,21 @@ class TournamentController extends AbstractController
 
       // route des score avec tournoi{id}
 
-      #[Route('/tournament/score/{id}/add', name: 'app_tournament_add', methods:"GET", requirements: ["id" => "\d+"])]
-      public function scoreAdd(): Response
+      #[Route('/tournament/{id}/games', name: 'app_tournament_games', methods:"GET", requirements: ["id" => "\d+"])]
+      public function scoreAdd(Tournament $tournament, EntityManagerInterface $entityManager): Response
       {
-          return $this->render('score/add.html.twig');
-          
+        $games = $entityManager->getRepository(Game::class)->findBy(['tournament' => $tournament]);
+
+        dump($games);
+
+        return $this->render('game/index.html.twig',[
+            'tournament' => $tournament,
+            'games' => $games,
+        ]);
 
       }
-      #[Route('/tournament/score/{id}/update', name: 'app_tournament_update', methods:"GET", requirements: ["id" => "\d+"])]
-      public function scoreUpdate(): Response
-      {
-          return $this->render('score/update.html.twig');
-          
-
-      }
-
+     
+// Créer un tournoi
       #[Route('/create', name: 'app_create_tournament', methods: ['GET', 'POST'])]
       public function new(Request $request, EntityManagerInterface $entityManager): Response
       {
@@ -120,4 +121,5 @@ class TournamentController extends AbstractController
           ]);
       }
   
+      
 }
