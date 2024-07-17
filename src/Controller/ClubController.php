@@ -52,7 +52,7 @@ class ClubController extends AbstractController
 
         // Récupération des membres du club
         $members = [];
-        foreach ($club->getUser() as $member) {
+        foreach ($club->getUsers() as $member) {
             $members[] = [
                 'lastname' => $member->getLastname(),
                 'firstname' => $member->getFirstname(),
@@ -62,7 +62,7 @@ class ClubController extends AbstractController
 
         // Récupération des tournois du club
         $tournaments = [];
-        foreach ($club->getTournament() as $tournament) {
+        foreach ($club->getTournaments() as $tournament) {
             if ($tournament->getDate() > new \DateTime()) {
                 $tournaments[] = [
                     'tournamentName' => $tournament->getTournamentName(),
