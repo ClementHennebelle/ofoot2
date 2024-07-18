@@ -350,11 +350,24 @@ footer {
     font-size: 16px;
 }
 
-/* Effet de survol */
-.teams input[type="text"]:hover {
-    background-color: #21f30e; /* Vert foncé */
-}
+/* Media Queries pour les écrans de taille moyenne à petite */
+@media (max-width: 768px) {
+    .match {
+        flex-direction: column; /* Affichage en colonne sur les petits écrans */
+    }
 
+    .teams {
+        margin-top: 10px; /* Espacement entre les équipes */
+    }
+
+    .input {
+        width: 100%; /* Largeur totale pour s'adapter à la taille de l'écran */
+    }
+
+    .team, .result {
+        margin-bottom: 5px; /* Espacement entre les éléments */
+    }
+}
 
 /* Back office */
 .semi-transparent-bg-white {
