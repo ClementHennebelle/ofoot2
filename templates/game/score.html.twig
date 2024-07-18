@@ -17,11 +17,11 @@
         <!-- Huitièmes de finale -->
         <div class="accordion-item mb-2">
             <h2 class="accordion-header" id="headingEight">
-                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                     Huitièmes de finale
                 </button>
             </h2>
-            <div id="collapseEight" class="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#tournamentAccordion">
+            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
                         {% for game in games %}
@@ -46,11 +46,11 @@
         <!-- Quarts de finale -->
         <div class="accordion-item mb-2">
             <h2 class="accordion-header" id="headingQuarters">
-                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseQuarters" aria-expanded="true" aria-controls="collapseQuarters">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseQuarters" aria-expanded="true" aria-controls="collapseQuarters">
                     Quarts de finale
                 </button>
             </h2>
-            <div id="collapseQuarters" class="accordion-collapse collapse show" aria-labelledby="headingQuarters" data-bs-parent="#tournamentAccordion">
+            <div id="collapseQuarters" class="accordion-collapse collapse" aria-labelledby="headingQuarters" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
                         {% for game in games %}
@@ -75,11 +75,11 @@
         <!-- Demi-finale -->
         <div class="accordion-item mb-2">
             <h2 class="accordion-header" id="headingSemi">
-                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSemi" aria-expanded="true" aria-controls="collapseSemi">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSemi" aria-expanded="true" aria-controls="collapseSemi">
                     Demi-finale
                 </button>
             </h2>
-            <div id="collapseSemi" class="accordion-collapse collapse show" aria-labelledby="headingSemi" data-bs-parent="#tournamentAccordion">
+            <div id="collapseSemi" class="accordion-collapse collapse" aria-labelledby="headingSemi" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
                         {% for game in games %}
@@ -88,11 +88,12 @@
                                 <div class="match-header"> {{ game.name }}</div>
                                 <div class="teams">
                                     <input class="input" type="text" value="{{ game.firstClub ? game.firstClub.clubName : 'Non défini' }}" readonly>
+                                    <div class="result">
+                                    <input class="input" type="text" value="{{ game.score }}" placeholder="Résultat" readonly>
+                                    </div>
                                     <input class="input" type="text" value="{{ game.secondClub ? game.secondClub.clubName : 'Non défini' }}" readonly>
                                 </div>
-                                <div class="result">
-                                    <input class="input" type="text" value="{{ game.score }}" placeholder="Résultat" readonly>
-                                </div>
+                                
                             </div>
                             {% endif %}
                         {% endfor %}
@@ -104,11 +105,11 @@
         <!-- Petite finale -->
         <div class="accordion-item mb-2">
             <h2 class="accordion-header" id="headingSmallFinal">
-                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSmallFinal" aria-expanded="true" aria-controls="collapseSmallFinal">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSmallFinal" aria-expanded="true" aria-controls="collapseSmallFinal">
                     Petite finale
                 </button>
             </h2>
-            <div id="collapseSmallFinal" class="accordion-collapse collapse show" aria-labelledby="headingSmallFinal" data-bs-parent="#tournamentAccordion">
+            <div id="collapseSmallFinal" class="accordion-collapse collapse" aria-labelledby="headingSmallFinal" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
                         {% for game in games %}
@@ -133,11 +134,11 @@
         <!-- Finale -->
         <div class="accordion-item mb-2">
             <h2 class="accordion-header" id="headingFinal">
-                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFinal" aria-expanded="true" aria-controls="collapseFinal">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFinal" aria-expanded="true" aria-controls="collapseFinal">
                     Finale
                 </button>
             </h2>
-            <div id="collapseFinal" class="accordion-collapse collapse show" aria-labelledby="headingFinal" data-bs-parent="#tournamentAccordion">
+            <div id="collapseFinal" class="accordion-collapse collapse" aria-labelledby="headingFinal" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
                         {% for game in games %}
@@ -153,13 +154,11 @@
                                 </div>
                             </div>
                             {% endif %}
+                            </div>
                         {% endfor %}
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+                
+          
 <script>
 // Fonction pour afficher les scores
 function displayScores(scores) {
