@@ -17,18 +17,18 @@
         <!-- Huitièmes de finale -->
         <div class="accordion-item mb-2">
             <h2 class="accordion-header" id="headingEight">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
                     Huitièmes de finale
                 </button>
             </h2>
-            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#tournamentAccordion">
+            <div id="collapseEight" class="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
                         {% for game in games %}
                         {% if 'huitiemes' in game.name|lower %}
                         <form id="{{ game.id }}" class="update-game-form" >
                             <div class="match">
-                                <div class="match-header">{{ game.name }}</div>
+                                <div class="match-header">Match {{ game.name }}</div>
                                 <div class="teams">
                                     <select name = "firstClub">
                                         <option value = "" >Choisir un club</option>
@@ -49,7 +49,7 @@
                                 <div class="result">
                                     <input class="input" type="text" name="score" value = "{{game.score}}" placeholder="Résultat">
                                 </div>
-                                <button class="btn btn-secondary mt-2 update-score-btn">Mettre à jour le score</button>
+                                <button class="btn btn-primary mt-2 update-score-btn">Mettre à jour le score</button>
                             </div>
                             {% endif %}
                         </form>
@@ -58,22 +58,21 @@
                 </div>
             </div>
         </div>
-
 {# Quarts de finales  #}
         <div class="accordion-item mb-2">
-            <h2 class="accordion-header" id="headingQuarter">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseQuarter" aria-expanded="true" aria-controls="collapseQuarter">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
                     Quarts de finale
                 </button>
             </h2>
-            <div id="collapseQuarter" class="accordion-collapse collapse" aria-labelledby="headingQuarter" data-bs-parent="#tournamentAccordion">
+            <div id="collapseEight" class="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
                         {% for game in games %}
                         {% if 'quart' in game.name|lower %}
                         <form id="{{ game.id }}" class="update-game-form" >
                             <div class="match">
-                                <div class="match-header">{{ game.name }}</div>
+                                <div class="match-header">Match {{ game.name }}</div>
                                 <div class="teams">
                                     <select name = "firstClub">
                                         <option value = "" >Choisir un club</option>
@@ -94,31 +93,30 @@
                                 <div class="result">
                                     <input class="input" type="text" name="score" value = "{{game.score}}" placeholder="Résultat">
                                 </div>
-                                <button class="btn btn-secondary mt-2 update-score-btn">Mettre à jour le score</button>
+                                <button class="btn btn-primary mt-2 update-score-btn">Mettre à jour le score</button>
                             </div>
                              {% endif %}
                         </form>
                         {% endfor %}
                     </div>
                 </div>
-            </div>
             </div> 
-        
+        {# </div>
 {# Demi finale #}
        <div class="accordion-item mb-2">
-            <h2 class="accordion-header" id="headingDemies">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDemies" aria-expanded="true" aria-controls="collapseDemies">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
                     Demi-Finale
                 </button>
             </h2>
-            <div id="collapseDemies" class="accordion-collapse collapse" aria-labelledby="headingDemies" data-bs-parent="#tournamentAccordion">
+            <div id="collapseEight" class="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
                         {% for game in games %}
                         {% if 'demi' in game.name|lower %}
                         <form id="{{ game.id }}" class="update-game-form" >
                             <div class="match">
-                                <div class="match-header">{{ game.name }}</div>
+                                <div class="match-header">Match {{ game.name }}</div>
                                 <div class="teams">
                                     <select name = "firstClub">
                                         <option value = "" >Choisir un club</option>
@@ -139,7 +137,7 @@
                                 <div class="result">
                                     <input class="input" type="text" name="score" value = "{{game.score}}" placeholder="Résultat">
                                 </div>
-                                <button class="btn btn-secondary mt-2 update-score-btn">Mettre à jour le score</button>
+                                <button class="btn btn-primary mt-2 update-score-btn">Mettre à jour le score</button>
                             </div>
                              {% endif %}
                         </form>
@@ -147,23 +145,21 @@
                     </div>
                 </div>
             </div> 
-            </div>
-
 {# Petite finale #}
             <div class="accordion-item mb-2">
-            <h2 class="accordion-header" id="headingPetiteFinale">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePetiteFinale" aria-expanded="true" aria-controls="collapsePetiteFinale">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
                     Petite Finale
                 </button>
             </h2>
-            <div id="collapsePetiteFinale" class="accordion-collapse collapse" aria-labelledby="headingPetiteFinale" data-bs-parent="#tournamentAccordion">
+            <div id="collapseEight" class="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
                         {% for game in games %}
                         {% if 'petite' in game.name|lower %}
                         <form id="{{ game.id }}" class="update-game-form" >
                             <div class="match">
-                                <div class="match-header">{{ game.name }}</div>
+                                <div class="match-header">Match {{ game.name }}</div>
                                 <div class="teams">
                                     <select name = "firstClub">
                                         <option value = "" >Choisir un club</option>
@@ -184,7 +180,7 @@
                                 <div class="result">
                                     <input class="input" type="text" name="score" value = "{{game.score}}" placeholder="Résultat">
                                 </div>
-                                <button class="btn btn-secondary mt-2 update-score-btn">Mettre à jour le score</button>
+                                <button class="btn btn-primary mt-2 update-score-btn">Mettre à jour le score</button>
                             </div>
                              {% endif %}
                         </form>
@@ -192,23 +188,22 @@
                     </div>
                 </div>
             </div> 
-            </div>
-
    {# Finale  #}
+
    <div class="accordion-item mb-2">
-            <h2 class="accordion-header" id="headingFinale">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFinale" aria-expanded="true" aria-controls="collapseFinale">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
                     Finale
                 </button>
             </h2>
-            <div id="collapseFinale" class="accordion-collapse collapse" aria-labelledby="headingFinale" data-bs-parent="#tournamentAccordion">
+            <div id="collapseEight" class="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#tournamentAccordion">
                 <div class="accordion-body">
                     <div class="round">
                         {% for game in games %}
                         {% if 'grande' in game.name|lower %}
                         <form id="{{ game.id }}" class="update-game-form" >
                             <div class="match">
-                                <div class="match-header">{{ game.name }}</div>
+                                <div class="match-header">Match {{ game.name }}</div>
                                 <div class="teams">
                                     <select name = "firstClub">
                                         <option value = "" >Choisir un club</option>
@@ -226,39 +221,27 @@
                                     </select>
                                 </div>
 
-                                 <div class="result">
-                                    <input class="input" type="text" name="score" value="{{ game.score }}" placeholder="Résultat">
+                                <div class="result">
+                                    <input class="input" type="text" name="score" value = "{{game.score}}" placeholder="Résultat">
                                 </div>
-                                <button class="btn btn-secondary mt-2 update-score-btn">Mettre à jour le score</button>
+                                <button class="btn btn-primary mt-2 update-score-btn">Mettre à jour le score</button>
                             </div>
+                             {% endif %}
                         </form>
-                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-                        
-                        
-                    
-                
-            
+            </div> 
 
 <script>
-// Sélectionne tous les formulaires avec la classe 'update-game-form'
-document.querySelectorAll('.update-game-form').forEach(form => {
-    // Ajoute un écouteur d'événement 'submit' à chaque formulaire
-    form.addEventListener('submit', async function(event) {
-        // Empêche le comportement par défaut du formulaire (rechargement de la page)
+   document.querySelectorAll('.update-game-form').forEach(form => {
+    form.addEventListener('submit', async function() {
         event.preventDefault();
         console.log("c'est soumis !!!");
-
-        // Crée un objet FormData à partir du formulaire soumis
+        // const form = event.target;
         const formData = new FormData(this);
+        console.log(formData.get("score"));
 
-        // Crée un objet avec les données du jeu
         const gameData = {
             score: formData.get("score"),
             firstClub: formData.get("firstClub"),
@@ -270,7 +253,6 @@ document.querySelectorAll('.update-game-form').forEach(form => {
         console.log('To URL:', `/api/game/${this.id}`);
 
         try {
-            // Envoie une requête PATCH à l'API avec les données du jeu
             const response = await fetch(`/api/game/${this.id}`, {
                 method: 'PATCH',
                 headers: {
@@ -279,29 +261,24 @@ document.querySelectorAll('.update-game-form').forEach(form => {
                 body: JSON.stringify(gameData)
             });
 
-            // Récupère la réponse sous forme de texte
             const responseText = await response.text();
             console.log('Raw response:', responseText);
 
             let data;
             try {
-                // Tente de parser la réponse en JSON
                 data = JSON.parse(responseText);
             } catch (parseError) {
-                // Gère les erreurs de parsing JSON
                 console.error('Error parsing JSON:', parseError);
                 alert('Server response is not valid JSON. Check the console for details.');
                 return;
             }
 
-            // Vérifie si la requête a réussi
             if (response.ok) {
                 alert(`Score updated successfully! Match: ${data.name}, Score: ${data.score}`);
             } else {
                 alert(`Error updating score: ${data.error || 'Unknown error'}`);
             }
         } catch (error) {
-            // Gère les erreurs de réseau ou autres
             console.error('Error:', error);
             alert('An error occurred while updating the score.');
         }
