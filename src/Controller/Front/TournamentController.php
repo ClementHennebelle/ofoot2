@@ -15,36 +15,31 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class TournamentController extends AbstractController
 {
+    // Affiche la liste de tous les tournois
     #[Route('/tournament', name: 'app_tournament_browse', methods:"GET")]
     public function browse(TournamentRepository $tournamentRepository): Response
     {
-
-        $tournamentHome= $tournamentRepository->findAll();
+        $tournamentHome = $tournamentRepository->findAll();
 
         return $this->render('tournament/index.html.twig', [
             'tournamentHome' => $tournamentHome,
         ]);
     }
 
-
+    // Affiche les détails d'un tournoi spécifique
     #[Route('/tournament/{id}', name: 'app_tournament_read', methods:"GET", requirements: ["id" => "\d+"])]
     public function read(Tournament $tournamentRead): Response
-{ 
-    // Récupérer les utilisateurs inscrits à ce tournoi avec leur club
-    $clubs = $tournamentRead->getClubs();
-// dd($clubs->isEmpty());
-    return $this->render('tournament/read.html.twig', [
-        'tournamentRead' => $tournamentRead,
-        'clubs' => $clubs,
-    ]);
-}
+    { 
+        // Récupère les clubs inscrits à ce tournoi
+        $clubs = $tournamentRead->getClubs();
 
-    
+        return $this->render('tournament/read.html.twig', [
+            'tournamentRead' => $tournamentRead,
+            'clubs' => $clubs,
+        ]);
+    }
 
-
-
-    // route des score avec tournoi{id}
-
+    // Affiche les scores d'un tournoi spécifique
     #[Route('/tournament/{id}/score/', name: 'app_tournament_score', methods:"GET", requirements: ["id" => "\d+"])]
     public function score(Tournament $tournament, EntityManagerInterface $entityManager): Response
     {
@@ -56,72 +51,56 @@ class TournamentController extends AbstractController
         ]);
     }
 
-    // #[Route('/tournament/{id}/register', name: 'app_tournament_register', methods:"GET", requirements: ["id" => "\d+"])]
-    // public function register(Tournament $tournamentRead): Response
-    // {
-      
-    //     return $this->render('tournament/register.html.twig', [
-    //         'tournamentRead' => $tournamentRead,
-    //         // 'form' => $form->createView(),
-    //     ]);
-   
-    // }
-
-      // route des score avec tournoi{id}
-
-      #[Route('/tournament/{id}/games', name: 'app_tournament_games', methods:"GET", requirements: ["id" => "\d+"])]
-      public function scoreAdd(Tournament $tournament, EntityManagerInterface $entityManager): Response
-      {
+    // Affiche les jeux d'un tournoi spécifique
+    #[Route('/tournament/{id}/games', name: 'app_tournament_games', methods:"GET", requirements: ["id" => "\d+"])]
+    public function scoreAdd(Tournament $tournament, EntityManagerInterface $entityManager): Response
+    {
         $games = $entityManager->getRepository(Game::class)->findBy(['tournament' => $tournament]);
-
-        //dd($tournament);
 
         return $this->render('game/index.html.twig',[
             'tournament' => $tournament,
             'games' => $games,
         ]);
-
-      }
+    }
      
-// Créer un tournoi
-      #[Route('/create', name: 'app_create_tournament', methods: ['GET', 'POST'])]
-      public function new(Request $request, EntityManagerInterface $entityManager): Response
-      {
-          $tournament = new Tournament();
-          $form = $this->createForm(TournamentType::class, $tournament);
-          $form->handleRequest($request);
-  
-          if ($form->isSubmitted() && $form->isValid()) {
-              $user = $this->getUser();
-              $tournament->setCreator($user);
-              $entityManager->persist($tournament);
-              $entityManager->flush();
-  
-              return $this->redirectToRoute('app_tournament_browse', [], Response::HTTP_SEE_OTHER);
-          }
-  
-          return $this->render('tournament/new.html.twig', [
-              'tournament' => $tournament,
-              'form' => $form,
-          ]);
-      }
+    // Crée un nouveau tournoi
+    #[Route('/create', name: 'app_create_tournament', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $tournament = new Tournament();
+        $form = $this->createForm(TournamentType::class, $tournament);
+        $form->handleRequest($request);
 
-      #[Route('/tournament/{id}/register', name: 'app_tournament_register', methods: ['GET'], requirements: ['id' => '\d+'])]
-      public function showRegistrationForm(Tournament $tournament): Response
-      {
-          $user = $this->getUser();
-          if (!$user) {
-              $this->addFlash('error', 'Vous devez être connecté pour vous inscrire à un tournoi.');
-              return $this->redirectToRoute('app_login');
-          }
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser();
+            $tournament->setCreator($user);
+            $entityManager->persist($tournament);
+            $entityManager->flush();
 
-          $isAlreadyRegistered = $user->getClub()->getTournaments()->contains($tournament);
-    // dd($isAlreadyRegistered);
-          return $this->render('tournament_registration/register.html.twig', [
-              'tournament' => $tournament,
-              'isAlreadyRegistered' => $isAlreadyRegistered,
-          ]);
-      }
-  
-      
+            return $this->redirectToRoute('app_tournament_browse', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('tournament/new.html.twig', [
+            'tournament' => $tournament,
+            'form' => $form,
+        ]);
+    }
+
+    // Affiche le formulaire d'inscription à un tournoi
+    #[Route('/tournament/{id}/register', name: 'app_tournament_register', methods: ['GET'], requirements: ['id' => '\d+'])]
+    public function showRegistrationForm(Tournament $tournament): Response
+    {
+        $user = $this->getUser();
+        if (!$user) {
+            $this->addFlash('error', 'Vous devez être connecté pour vous inscrire à un tournoi.');
+            return $this->redirectToRoute('app_login');
+        }
+
+        $isAlreadyRegistered = $user->getClub()->getTournaments()->contains($tournament);
+
+        return $this->render('tournament_registration/register.html.twig', [
+            'tournament' => $tournament,
+            'isAlreadyRegistered' => $isAlreadyRegistered,
+        ]);
+    }
 }
