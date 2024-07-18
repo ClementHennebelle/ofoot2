@@ -32,15 +32,15 @@
                     {% endif %}
 
                    <h5 class="mt-4 text-black">Tournois auxquels vous êtes inscrit :</h5>
-{% if clubInfo.userTournaments is not empty %}
-    <ul>
-        {% for tournament in clubInfo.userTournaments %}
-            <li class="text-black">{{ tournament.tournamentName }} le {{ tournament.tournamentDate }}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p class="text-black">Vous n'êtes inscrit à aucun tournoi à venir</p>
-{% endif %}
+                {% if clubInfo.userTournaments is not empty %}
+                    <ul>
+                        {% for tournament in clubInfo.userTournaments %}
+                            <li class="text-black">{{ tournament.tournamentName }} le {{ tournament.tournamentDate }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                        <p class="text-black">Vous n'êtes inscrit à aucun tournoi à venir</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

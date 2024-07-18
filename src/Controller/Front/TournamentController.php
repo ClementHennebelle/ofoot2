@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Front;
 
 use App\Entity\Game;
 use App\Entity\Tournament;
@@ -97,7 +97,7 @@ class TournamentController extends AbstractController
               $entityManager->persist($tournament);
               $entityManager->flush();
   
-              return $this->redirectToRoute('app_account', [], Response::HTTP_SEE_OTHER);
+              return $this->redirectToRoute('app_tournament_browse', [], Response::HTTP_SEE_OTHER);
           }
   
           return $this->render('tournament/new.html.twig', [
