@@ -12,10 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\AddClubType;
 use App\Form\ClubType;
 
-
-
 class ClubController extends AbstractController
 {
+
     // #[Route('/club', name: 'app_club_browse', methods:"GET")]
     // public function browse(ClubRepository $clubpRepo): Response
     // {
@@ -24,10 +23,13 @@ class ClubController extends AbstractController
     //         'clubList' => $allClubs,
     //     ]);
     // }
+
+    // Route pour afficher les détails du club de l'utilisateur connecté
+
     #[Route('/club', name: 'app_club_read', methods: ["GET"])]
     public function read(): Response
     {
-        // Vérification si l'utilisateur est connecté
+        // Vérification de la connexion de l'utilisateur
         $user = $this->getUser();
         if (!$user) {
             return $this->redirectToRoute('app_login');
@@ -35,7 +37,6 @@ class ClubController extends AbstractController
         // Récupération du club de l'utilisateur
         $club = $user->getClub();
         if (!$club) {
-            // Rediriger vers une page d'erreur ou afficher un message si l'utilisateur n'a pas de club
             $this->addFlash('error', 'Vous n\'êtes rattaché à aucun club.');
             return $this->redirectToRoute('app_account');
         }
@@ -54,7 +55,12 @@ class ClubController extends AbstractController
                 'email' => $member->getEmail(),
             ];
         }
+
         // Récupération des tournois du club
+
+
+        // Récupération des tournois futurs du club
+
         $tournaments = [];
         foreach ($club->getTournaments() as $tournament) {
             if ($tournament->getDate() > new \DateTime()) {
@@ -76,7 +82,11 @@ class ClubController extends AbstractController
                 'tournamentName' => $tournament->getTournamentName(),
                 'tournamentDate' => $tournament->getDate()->format('d/m/Y'),
             ];
-        }
+       
+
+
+        // Préparation des informations du club pour la vue
+
         $clubInfo = [
             'clubName' => $clubName,
             'clubLicenceNumber' => $clubLicenceNumber,
@@ -87,11 +97,21 @@ class ClubController extends AbstractController
             'tournaments' => $tournaments,
             'userTournaments' => $userTournaments,
         ];
+
+
+
+        // Rendu de la vue avec les informations du club
+
         return $this->render('club/read.html.twig', [
             'clubInfo' => $clubInfo,
             'clubId' => $club->getId(),
         ]);
     }
+
+
+
+    // Route pour ajouter un nouveau club
+
     #[Route('/club/add', name: 'app_club_add', methods:["GET", "POST"])]
     public function add(EntityManagerInterface $em, Request $request): Response
     {
@@ -109,6 +129,7 @@ class ClubController extends AbstractController
         return $this->render('club/add.html.twig', [
             'form' => $form,
         ]);
+
         }
      #[Route('/createclub', name: 'app_club_create_club', methods: ['GET', 'POST'])]
      public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -126,4 +147,28 @@ class ClubController extends AbstractController
              'form' => $form,
          ]);
      }
+
+    }
+
+    // Route pour créer un nouveau club (similaire à add, potentiellement redondant)
+    #[Route('/createclub', name: 'app_club_create_club', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $club = new Club();
+        $form = $this->createForm(ClubType::class, $club);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($club);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_club_browse', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('club_back/new.html.twig', [
+            'club' => $club,
+            'form' => $form,
+        ]);
+    }
+
 }
