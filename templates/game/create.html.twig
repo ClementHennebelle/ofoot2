@@ -3,14 +3,29 @@
 {% block title %}Nouveau Match - {{ parent() }}{% endblock %}
 
 {% block body %}
-<div class="container mt-5 text-black">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header bg-company-grey text-white">
-                    <h2 class="mb-0">Nouveau Match</h2>
-                </div>
-                <div class="card-body">
+<div class="container mt-4 custom-contact-container">
+    <div class="row">
+        <div class="col text-center">
+            <div class="rounded-pill bg-dark d-inline-block p-3">
+                <h2 class="section-title m-0">Ajouter un match</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4 mb-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-10 col-sm-12 semi-transparent-bg-white p-4 text-center text-black">
+            <p>Merci d'écrire le noms des matchs sous la forme suivante :</p>
+            <p>Huitieme Match 1<br>
+                Quart Match 1<br>
+                Demi Match 1<br>
+                Petite finale<br>
+                Finale</p>
+    </div>
+        </div>
+            </div>
+                 <div class="container mt-4 mb-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-10 col-sm-12 semi-transparent-bg-white p-4 text-center text-black">
                     {{ form_start(form) }}
                     
                     <div class="mb-3">
@@ -50,7 +65,7 @@
                     </div> #}
 
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Créer le match</button>
+                        <button type="submit" class="btn btn-secondary">Créer le match</button>
                     </div>
 
                     {{ form_end(form) }}
