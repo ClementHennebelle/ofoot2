@@ -29,9 +29,7 @@ class GameType extends AbstractType
         //     'required' => false,
         // ])
         // Ajoute un champ pour le nom du match
-        ->add('name')
-        ->add('description')
-        ->add('location');
+        ->add('name');
       
 
 
