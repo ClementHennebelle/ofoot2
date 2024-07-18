@@ -1,12 +1,8 @@
 <?php
-
 declare(strict_types=1);
-
 namespace DoctrineMigrations;
-
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
-
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
@@ -16,7 +12,6 @@ final class Version20240716130353 extends AbstractMigration
     {
         return '';
     }
-
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
@@ -36,7 +31,6 @@ final class Version20240716130353 extends AbstractMigration
         $this->addSql('ALTER TABLE tournament ADD CONSTRAINT FK_BD5FB8D961220EA6 FOREIGN KEY (creator_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE user ADD CONSTRAINT FK_8D93D64961190A32 FOREIGN KEY (club_id) REFERENCES club (id)');
     }
-
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
