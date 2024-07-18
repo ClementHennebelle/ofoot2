@@ -74,7 +74,7 @@ class TournamentController extends AbstractController
       {
         $games = $entityManager->getRepository(Game::class)->findBy(['tournament' => $tournament]);
 
-        dump($games);
+        //dd($tournament);
 
         return $this->render('game/index.html.twig',[
             'tournament' => $tournament,
