@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Back;
 
 use App\Entity\Tournament;
 use App\Entity\User;
