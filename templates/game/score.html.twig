@@ -142,9 +142,9 @@
                 <div class="accordion-body">
                     <div class="round">
                         {% for game in games %}
-                            {% if 'finale' in game.name|lower %}
+                            {% if 'grande' in game.name|lower %}
                             <div class="match">
-                                <div class="match-header">Match {{ game.name }}</div>
+                                <div class="match-header">{{ game.name }}</div>
                                 <div class="teams">
                                     <input class="input" type="text" value="{{ game.firstClub ? game.firstClub.clubName : 'Non défini' }}" readonly>
                                     <input class="input" type="text" value="{{ game.secondClub ? game.secondClub.clubName : 'Non défini' }}" readonly>
