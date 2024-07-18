@@ -236,14 +236,18 @@
             </div> 
 
 <script>
-   document.querySelectorAll('.update-game-form').forEach(form => {
-    form.addEventListener('submit', async function() {
+// Sélectionne tous les formulaires avec la classe 'update-game-form'
+document.querySelectorAll('.update-game-form').forEach(form => {
+    // Ajoute un écouteur d'événement 'submit' à chaque formulaire
+    form.addEventListener('submit', async function(event) {
+        // Empêche le comportement par défaut du formulaire (rechargement de la page)
         event.preventDefault();
         console.log("c'est soumis !!!");
-        // const form = event.target;
-        const formData = new FormData(this);
-        console.log(formData.get("score"));
 
+        // Crée un objet FormData à partir du formulaire soumis
+        const formData = new FormData(this);
+
+        // Crée un objet avec les données du jeu
         const gameData = {
             score: formData.get("score"),
             firstClub: formData.get("firstClub"),
@@ -255,6 +259,7 @@
         console.log('To URL:', `/api/game/${this.id}`);
 
         try {
+            // Envoie une requête PATCH à l'API avec les données du jeu
             const response = await fetch(`/api/game/${this.id}`, {
                 method: 'PATCH',
                 headers: {
@@ -263,24 +268,29 @@
                 body: JSON.stringify(gameData)
             });
 
+            // Récupère la réponse sous forme de texte
             const responseText = await response.text();
             console.log('Raw response:', responseText);
 
             let data;
             try {
+                // Tente de parser la réponse en JSON
                 data = JSON.parse(responseText);
             } catch (parseError) {
+                // Gère les erreurs de parsing JSON
                 console.error('Error parsing JSON:', parseError);
                 alert('Server response is not valid JSON. Check the console for details.');
                 return;
             }
 
+            // Vérifie si la requête a réussi
             if (response.ok) {
                 alert(`Score updated successfully! Match: ${data.name}, Score: ${data.score}`);
             } else {
                 alert(`Error updating score: ${data.error || 'Unknown error'}`);
             }
         } catch (error) {
+            // Gère les erreurs de réseau ou autres
             console.error('Error:', error);
             alert('An error occurred while updating the score.');
         }
