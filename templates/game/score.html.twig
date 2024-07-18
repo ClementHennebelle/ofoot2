@@ -25,21 +25,144 @@
                 <div class="accordion-body">
                     <div class="round">
                         {% for game in games %}
+                            {% if 'huitiemes' in game.name|lower %}
                             <div class="match">
-                                <div class="match-header">Match {{ game.name }}</div>
+                                <div class="match-header"> {{ game.name }}</div>
                                 <div class="teams">
-                                    <input class="input" type="text" value="{{ game.firstClub.clubName }}" readonly>
-                                    <input class="input" type="text" value="{{ game.secondClub.clubName }}" readonly>
+                                    <input class="input" type="text" value="{{ game.firstClub ? game.firstClub.clubName : 'Non défini' }}" readonly>
+                                    <input class="input" type="text" value="{{ game.secondClub ? game.secondClub.clubName : 'Non défini' }}" readonly>
                                 </div>
                                 <div class="result">
                                     <input class="input" type="text" value="{{ game.score }}" placeholder="Résultat" readonly>
                                 </div>
                             </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Quarts de finale -->
+        <div class="accordion-item mb-2">
+            <h2 class="accordion-header" id="headingQuarters">
+                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseQuarters" aria-expanded="true" aria-controls="collapseQuarters">
+                    Quarts de finale
+                </button>
+            </h2>
+            <div id="collapseQuarters" class="accordion-collapse collapse show" aria-labelledby="headingQuarters" data-bs-parent="#tournamentAccordion">
+                <div class="accordion-body">
+                    <div class="round">
+                        {% for game in games %}
+                            {% if 'quart' in game.name|lower %}
+                            <div class="match">
+                                <div class="match-header"> {{ game.name }}</div>
+                                <div class="teams">
+                                    <input class="input" type="text" value="{{ game.firstClub ? game.firstClub.clubName : 'Non défini' }}" readonly>
+                                    <input class="input" type="text" value="{{ game.secondClub ? game.secondClub.clubName : 'Non défini' }}" readonly>
+                                </div>
+                                <div class="result">
+                                    <input class="input" type="text" value="{{ game.score }}" placeholder="Résultat" readonly>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demi-finale -->
+        <div class="accordion-item mb-2">
+            <h2 class="accordion-header" id="headingSemi">
+                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSemi" aria-expanded="true" aria-controls="collapseSemi">
+                    Demi-finale
+                </button>
+            </h2>
+            <div id="collapseSemi" class="accordion-collapse collapse show" aria-labelledby="headingSemi" data-bs-parent="#tournamentAccordion">
+                <div class="accordion-body">
+                    <div class="round">
+                        {% for game in games %}
+                            {% if 'demi' in game.name|lower %}
+                            <div class="match">
+                                <div class="match-header"> {{ game.name }}</div>
+                                <div class="teams">
+                                    <input class="input" type="text" value="{{ game.firstClub ? game.firstClub.clubName : 'Non défini' }}" readonly>
+                                    <input class="input" type="text" value="{{ game.secondClub ? game.secondClub.clubName : 'Non défini' }}" readonly>
+                                </div>
+                                <div class="result">
+                                    <input class="input" type="text" value="{{ game.score }}" placeholder="Résultat" readonly>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Petite finale -->
+        <div class="accordion-item mb-2">
+            <h2 class="accordion-header" id="headingSmallFinal">
+                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSmallFinal" aria-expanded="true" aria-controls="collapseSmallFinal">
+                    Petite finale
+                </button>
+            </h2>
+            <div id="collapseSmallFinal" class="accordion-collapse collapse show" aria-labelledby="headingSmallFinal" data-bs-parent="#tournamentAccordion">
+                <div class="accordion-body">
+                    <div class="round">
+                        {% for game in games %}
+                            {% if 'petite' in game.name|lower %}
+                            <div class="match">
+                                <div class="match-header">{{ game.name }}</div>
+                                <div class="teams">
+                                    <input class="input" type="text" value="{{ game.firstClub ? game.firstClub.clubName : 'Non défini' }}" readonly>
+                                    <input class="input" type="text" value="{{ game.secondClub ? game.secondClub.clubName : 'Non défini' }}" readonly>
+                                </div>
+                                <div class="result">
+                                    <input class="input" type="text" value="{{ game.score }}" placeholder="Résultat" readonly>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Finale -->
+        <div class="accordion-item mb-2">
+            <h2 class="accordion-header" id="headingFinal">
+                <button class="accordion-button text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFinal" aria-expanded="true" aria-controls="collapseFinal">
+                    Finale
+                </button>
+            </h2>
+            <div id="collapseFinal" class="accordion-collapse collapse show" aria-labelledby="headingFinal" data-bs-parent="#tournamentAccordion">
+                <div class="accordion-body">
+                    <div class="round">
+                        {% for game in games %}
+                            {% if 'finale' in game.name|lower %}
+                            <div class="match">
+                                <div class="match-header">Match {{ game.name }}</div>
+                                <div class="teams">
+                                    <input class="input" type="text" value="{{ game.firstClub ? game.firstClub.clubName : 'Non défini' }}" readonly>
+                                    <input class="input" type="text" value="{{ game.secondClub ? game.secondClub.clubName : 'Non défini' }}" readonly>
+                                </div>
+                                <div class="result">
+                                    <input class="input" type="text" value="{{ game.score }}" placeholder="Résultat" readonly>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- Finale -->
+        <!-- Ajouter ces sections de la même manière que les précédentes -->
+
     </div>
 </div>
 <script>
