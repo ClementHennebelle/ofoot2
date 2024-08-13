@@ -20,6 +20,17 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\Controller\ErrorController:
+        public: true
+        arguments:
+            $debug: '%kernel.debug%'
+
+    Symfony\Component\HttpKernel\EventListener\ErrorListener:
+        tags:
+            - { name: kernel.event_subscriber }
+        arguments:
+            $controller: 'App\Controller\ErrorController::show'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 

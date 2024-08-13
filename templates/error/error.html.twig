@@ -1,0 +1,22 @@
+{# templates/error/error.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur {{ status_code }} - O'FOOT{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card bg-dark text-white">
+                <div class="card-body text-center">
+                    <h1 class="display-1 mb-4">{{ status_code }}</h1>
+                    <h2 class="mb-4">{{ status_text }}</h2>
+                    <div class="mt-5">
+                        <a href="{{ path('app_main') }}" class="btn btn-lg btn-primary">Retour à l'accueil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
